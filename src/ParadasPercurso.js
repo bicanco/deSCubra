@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar,Button} from 'react-materialize';
+import {a} from 'materialize-css';
 
 export class ParadasPercurso extends React.Component{
 	constructor(props){
@@ -11,10 +11,8 @@ export class ParadasPercurso extends React.Component{
 	renderParada(i){
 		return (
 			<div>
-			<Navbar brand={i} right>
-				<Button color="#ffffff">+</Button>
-				<Button>-</Button>
-			</Navbar>
+				<a>+</a>
+				<a>-</a>
 			</div>
 		);
 	}
