@@ -10,6 +10,10 @@ docker-compose up
 RODAR O CONTAINER ESPECIFICO
 docker run -d -p 3000:3000 descubra
 
+CONEXÃO
+http://localhost:3000/ (somente Linux)
+http://192.168.99.100:3000/
+
 SAIR DO CONTAINER
 	- SE RODOU COM -d
 	docker rm descubra
