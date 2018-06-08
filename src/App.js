@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './images1.png';
+import {PerfilPercurso} from './PerfilPercurso';
 import './App.css';
+import M from 'materialize-css';
 
 class App extends Component {
+	constructor(props){
+		super(props);
+//		document.addEventListener('DOMContentLoaded', function() {
+//		var elems = document.querySelectorAll('.modal');
+//	 	var instances = M.Modal.init(elems, options);
+//	 	 });
+		M.AutoInit();
+	}
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <PerfilPercurso imgSrc={logo} name='Percurso' />
         </p>
       </div>
     );
