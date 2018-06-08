@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
 	<header>
-      		<div className="App" style={{backgroundColor: 'red'}}>
+      		<div className="App">
        		 <p className="App-intro">
          	 <PerfilPercurso imgSrc={logo} name='Percurso' />
         	</p>
