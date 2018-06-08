@@ -1,6 +1,5 @@
 import React from 'react';
 import {ParadasPercurso} from './ParadasPercurso';
-import {Row,Input} from 'materialize-css';
 import M from 'materialize-css';
 
 export class PerfilPercurso extends React.Component{
@@ -17,24 +16,26 @@ export class PerfilPercurso extends React.Component{
 	}
 	render(){
 		return(
-		<header sylte={{backgroundColor: 'red'}}>
+		<header style={{backgroundColor: 'red'}}>
  	     		<div className="perfil_percurso" >
  	     			<div align='center'>
    	    			 	<img src={this.props.imgSrc} alt="Imagem do Percurso" />
-      					<h1>{this.props.name}</h1>
+      					<h1 class="white-text">{this.props.name}    <button class="btn red"><i></button></h1>
       				</div>
       				<ParadasPercurso paradas={this.state.paradas} />
       				<div align='center'>
-					<button data-target="modal1" class="btn modal-trigger">Modal</button>
+					<button class="btn green">Nova Parada</button>    <button data-target="modal1" class="btn modal-trigger red">Remover Percurso</button>
 					<div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
+						<div class="modal-content">
+	    						<h4>Tem certeza que deseja remover?</h4>
+							<p>Digite o nome do percurso para removê-lo.</p>
+							<input type="text" />
+	   					</div>
+    						<div class="modal-footer">
+							<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+							<a href="#!" class="modal-close waves-effect waves-green btn-flat red-text">Remover</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</header>
