@@ -4,9 +4,10 @@ class LoginForm extends React.Component {
 
   handleSignIn(e) {
     e.preventDefault()
+    var sha512 = require('js-sha512');
     let username = this.refs.username.value
     let password = this.refs.password.value
-    this.props.onSignIn(username, password)
+    this.props.onSignIn(username, sha512(password))
   }
 
   render() {

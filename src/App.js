@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import LoginForm from './containers/Login.js'
+import LoginForm from './Login.js'
+import Connection from './connectionFactory.js'
 import './App.css';
 
 class App extends Component {
@@ -14,8 +15,9 @@ class App extends Component {
 
   // App "actions" (functions that modify state)
   signIn(username, password) {
-    // This is where you would call Firebase, an API etc...
+    //var conn = new Connection.createDBConnection();
     // calling setState will re-render the entire app (efficiently!)
+    console.log(username,password);
     this.setState({
       user: {
         username,
@@ -39,6 +41,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <LoginForm onSignIn={this.signIn.bind(this)} />
       </div>
     );
   }
