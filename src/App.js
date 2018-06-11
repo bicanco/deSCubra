@@ -1,8 +1,34 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import LoginForm from './containers/Login.js'
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    // the initial application state
+    this.state = {
+      user: null
+    }
+  }
+
+  // App "actions" (functions that modify state)
+  signIn(username, password) {
+    // This is where you would call Firebase, an API etc...
+    // calling setState will re-render the entire app (efficiently!)
+    this.setState({
+      user: {
+        username,
+        password,
+      }
+    })
+  }
+
+  signOut() {
+    // clear out user from state
+    this.setState({user: null})
+  }
+
   render() {
     return (
       <div className="App">
