@@ -1,15 +1,9 @@
-var postgres  = require('pg');
+const { Pool, Client } = require('pg')
 
-function createDBConnection(){
-        return pg.createConnection({
-            host: 'db', 
-            port: 10,
-            database: 'deSCubra',
-            user: 'username',
-            password: 'pass'
-        });
-}
-
-module.exports = function() {
-    return createDBConnection;
-}
+const client = new Client({
+  user: 'postgres',
+  host: 'db',
+  database: 'deSCubra',
+  password: 'password',
+  port: 5432,
+})
