@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import LoginForm from './Login.js'
-//import Connection from './connectionFactory.js'
+"import Connection from './connectionFactory.js'
 import './App.css';
 import M from 'materialize-css';
 

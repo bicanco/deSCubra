@@ -6,8 +6,8 @@
     "js-sha512": "^0.7.1",
     "materialize-css": "^1.0.0-rc.1",
     "pg": "^7.4.3",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
