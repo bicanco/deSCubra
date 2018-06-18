@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import LoginForm from './Login.js'
-//import Connection from './connectionFactory.js'
+import LoginForm from './Login.js';
+import Client from './Client.js';
 import './App.css';
-import M from 'materialize-css';
 
 class App extends Component {
   constructor(props) {
@@ -16,13 +15,19 @@ class App extends Component {
 
   // App "actions" (functions that modify state)
   signIn(username, password) {
-    //var conn = new Connection.createDBConnection();
     // calling setState will re-render the entire app (efficiently!)
-    console.log(username,password);
-    this.setState({
-      user: {
-        username,
-        password,
+    Client.admLogin(username, password, res => {
+      console.log(res.sucess)
+      if(res.sucess == 'True'){
+        console.log("Fez login")
+        this.setState({
+          user: {
+            username,
+            password,
+          }
+        })
+      } else {
+        console.log("Usuario nao cadastrado")
       }
     })
   }

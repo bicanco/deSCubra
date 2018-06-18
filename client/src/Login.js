@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class LoginForm extends React.Component {
+class LoginForm extends Component {
 
   handleSignIn(e) {
     e.preventDefault()
     var sha512 = require('js-sha512');
     let username = this.refs.username.value
     let password = this.refs.password.value
-    this.props.onSignIn(username, sha512(password))
+    this.props.onSignIn(sha512(username), sha512(password))
   }
 
   render() {
