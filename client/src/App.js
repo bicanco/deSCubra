@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import {PerfilParada} from './PerfilParada';
-import LoginForm from './Login.js'
-import {PerfilPercurso} from './PerfilPercurso';
-//import Connection from './connectionFactory.js'
+import logo from './images1.png';
+import Client from './Client.js';
 import './App.css';
-import M from 'materialize-css';
+import {PerfilPercurso} from './PerfilPercurso.js';
 
 class App extends Component {
   constructor(props) {
@@ -14,18 +11,23 @@ class App extends Component {
     this.state = {
       user: null
     }
-
   }
 
   // App "actions" (functions that modify state)
   signIn(username, password) {
-    //var conn = new Connection.createDBConnection();
     // calling setState will re-render the entire app (efficiently!)
-    console.log(username,password);
-    this.setState({
-      user: {
-        username,
-        password,
+    Client.admLogin(username, password, res => {
+      console.log(res.sucess)
+      if(res.sucess === 'True'){
+        console.log("Fez login")
+        this.setState({
+          user: {
+            username,
+            password,
+          }
+        })
+      } else {
+        console.log("Usuario nao cadastrado")
       }
     })
   }
@@ -38,9 +40,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header >
-            <PerfilPercurso />
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
         </header>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+        <PerfilPercurso nome='aaa' imgSrc={logo}/>
       </div>
     );
   }

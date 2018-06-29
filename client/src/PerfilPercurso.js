@@ -1,10 +1,10 @@
 import React from 'react';
 import {ParadasPercurso} from './ParadasPercurso';
 import M from 'materialize-css';
-
+import axios from 'axios';
 export class PerfilPercurso extends React.Component{
 	constructor(props){
-		super(props);//passar como props o nome do percurso a imagem do percurso e um vetor com as paradas do percurso
+		super(props);
 		this.state = {
 			name: props.name,
 			imgSrc: props.imgSrc,
@@ -21,7 +21,6 @@ export class PerfilPercurso extends React.Component{
 	stringRenderFotoPerfil(foto){
 		//composicao do elemento html da foto do percurso
 		return "<img class=\"responsive-img\" src=\""+foto+"\" alt=\"Imagem do Percurso\" />";
-
 	}
 
 	renderFotoPerfil(foto){
@@ -34,7 +33,6 @@ export class PerfilPercurso extends React.Component{
 	stringRenderNomePerfil(name){
 		//composicao do elemento html do nome do Percurso
 		return "<h1 class=\"white-text\">"+name+"    <button data-target=\"modalTrocarNomePercurso\" class=\"btn modal-trigger red\"><i class=\"material-icons\">create</i></button></h1>";
-
 	}
 
 	renderNomePerfil(name){
@@ -50,9 +48,12 @@ export class PerfilPercurso extends React.Component{
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
 		if(x.elements[0].value !== ""){
-//			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
-			this.state.imgSrc = x.elemets[0].value;
+			console.log(this.state.imgSrc);
+			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
+			this.state.imgSrc = x.elements[0].value;
+			axios.post('http://localhost:3001/file-upload', this.state.imgSrc);
 		}
+
 		if(x.elements[2].value !== ""){
 			n.innerHTML = this.stringRenderNomePerfil(x.elements[2].value);
 		}
