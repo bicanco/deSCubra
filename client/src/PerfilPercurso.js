@@ -1,6 +1,7 @@
 import React from 'react';
 import {ParadasPercurso} from './ParadasPercurso';
 import M from 'materialize-css';
+import axios from 'axios';
 
 export class PerfilPercurso extends React.Component{
 	constructor(props){
@@ -19,7 +20,6 @@ export class PerfilPercurso extends React.Component{
 
 	stringRenderFotoPerfil(foto){
 		return "<img class=\"responsive-img\" src=\""+foto+"\" alt=\"Imagem do Percurso\" />";
-
 	}
 
 	renderFotoPerfil(foto){
@@ -32,7 +32,7 @@ export class PerfilPercurso extends React.Component{
 		return "<h1 class=\"white-text\">"+name+"    <button data-target=\"modalTrocarNomePercurso\" class=\"btn modal-trigger red\"><i class=\"material-icons\">create</i></button></h1>";
 
 	}
-	
+
 	renderNomePerfil(name){
 		return(
 			<h1 class="white-text">{name}    <button data-target="modalTrocarNomePercurso" class="btn modal-trigger red"><i class="material-icons">create</i></button></h1>
@@ -44,9 +44,12 @@ export class PerfilPercurso extends React.Component{
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
 		if(x.elements[0].value !== ""){
-//			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
-			this.state.imgSrc = x.elemets[0].value;
+			console.log(this.state.imgSrc);
+			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
+			this.state.imgSrc = x.elements[0].value;
+			axios.post('http://localhost:3001/file-upload', this.state.imgSrc);
 		}
+
 		if(x.elements[2].value !== ""){
 			n.innerHTML = this.stringRenderNomePerfil(x.elements[2].value);
 		}
@@ -61,12 +64,12 @@ export class PerfilPercurso extends React.Component{
 					<div id="NomePercursoPerfilPercurso">{this.renderNomePerfil(this.state.name)}</div>
 					<div id="modalTrocarNomePercurso" class="modal">
 						<div class="modal-content">
-							<form id="formTrocarPerfilPercurso" action="#" enctype="multipart/form-data" method="post">
+							<form id="formTrocarPerfilPercurso" action="#" encType="multipart/form-data" method="post">
 								<p>Trocar imagem:</p>
 								<div class="file-field input-field">
 									<div class="btn">
 										<span>Imagem</span>
-										<input type="file" />
+										<input type="file"/>
 									</div>
 									<div class="file-path-wrapper">
 										<input class="file-path validate" type="text" />
