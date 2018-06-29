@@ -1,21 +1,22 @@
 import React from 'react';
-import Connection from './connectionFactory';
+import M from 'materialize-css';
+//import Connection from './connectionFactory';
 
 export class PerfilParada extends React.Component{
 	constructor(props){
-		super(props);
+		super(props);//passar como props o nome, descricao, enigma e possossiveis respostas do percurso
 		this.state = {
+			nome: 'nom',
+			descricao: 'desc',
+			enigma: 'enigma',
+			possiveisResp: 'poss',
 		}
-		document.addEventListener('DOMContentLoaded', function() {
-    		var elems = document.querySelectorAll('.modal');
-			var options = {};
-			M.Modal.init(elems, options);
- 		});	
 	}
 
+/*
 	inserirParada(){
 		var conn = new Connection.createDBConnection();
-		var x = document.getElementById("formDadosParada");]
+		var x = document.getElementById("formDadosParada");
 
 		conn.connect(function(err){
 		  if(err) return console.log(err);
@@ -33,7 +34,7 @@ export class PerfilParada extends React.Component{
 		Caso precise manipular as variáveis para a interface
 		*/
 
-		const query = {
+/*		const query = {
 		  	text: 'INSERT INTO PARADA(nome, descricao, enigma, respostas) VALUES ($1, $2, $3, $4)',
 		  	values: [name, desc, engm, answer],
 		}
@@ -50,40 +51,62 @@ export class PerfilParada extends React.Component{
 		  	.then(res => console.log(res.rows[0]))
 		  	.catch(e => console.error(e.stack))
 	}
+*/
+	onChangeNome = (nome) =>{//mudar o valor no campo nome
+		this.setState({nome})
+	}
+
+	onChangeDescricao = (descricao) =>{//mudar o valor no campo descricao
+		this.setState({descricao})
+	}
+
+	onChangeEnigma = (enigma) =>{//mudar o valor no campo enigma
+		this.setState({enigma})
+	}
+
+	onChangepossiveisResp = (possiveisResp) =>{//mudar o valor no campo possiveis respostas
+		this.setState({possiveisResp})
+	}
 
 	render(){
 		return(
-		<div class="red accent-4">
- 	     		<div className="perfil_parada">
-					<div id="modalIncluirNovaParada" class="modal">
-						<div class="modal-content">
+		<div>
+			{/*render do perfil de uma parada no percurso*/}
+			<div>
+ 	   		<div className="perfil_parada">
+					<div id="PerfilParada" class="white" >
+						<div>
 							<form id="formDadosParada" action="#" enctype="multipart/form-data" method="post">
-								<p>Imagem da parada:</p>
+								<img class="responsive-img" alt="Imagem da parada" />
+								{/*botao para trocar a imagem da parada*/}
 								<div class="file-field input-field">
-									<div class="btn">
-										<span>Imagem</span>
+									<div class="btn red accent-4">
+										<span>Trocar Imagem</span>
 										<input type="file" />
 									</div>
 									<div class="file-path-wrapper">
 										<input class="file-path validate" type="text" />
 									</div>
 								</div>
-								<p>Insira o nome da parada:</p>
-								<input type="text" />
-								<p>Insira a descrição da parada:</p>
-								<input type="text" />
-								<p>Insira o enigma da parada:</p>
-								<input type="text" />
-								<p>Insira as possíveis respostas da parada: (separe-as por ';')</p>
-								<input type="text" />
+								{/*campo de nome da parada*/}
+								<label for="nameField" class="black-text">Nome:</label>
+								<input value={this.state.nome} type="text" onChange={(e) => this.onChangeNome(e.target.nome)} id="nameField" />
+								{/*campo de descricao da parada*/}
+								<label for="descriptionField" class="black-text">Descrição:</label>
+								<input value={this.state.descricao} type="text" onChange={(e) => this.onChangeDescricao(e.target.descricao)} id="descriptionField" />
+								{/*campo de enigma da parada*/}
+								<label for="enigmaField" class="black-text">Enigma da parada:</label>
+								<input value={this.state.enigma} type="text" onChange={(e) => this.onChangeEnigma(e.target.enigma)} id="enigmaField" />
+								{/*campo de respostas possiveis*/}
+								<label for="answerField" class="black-text">Possíveis respostas da parada: (separadas por ';')</label>
+								<input value={this.state.possiveisResp} type="text" onChange={(e) => this.onChangepossiveisResp(e.target.possiveisResp)} id="answerField" />
 							</form>
 						</div>
-						<div class="modal-footer">
-							<a href="#!" class="modal-close waves-effect waves-green btn-flat red-text">Cancelar</a>
-							<button class="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.inserirParada()}>Inserir</button>
-						</div>
+						{/*botoes de cancelar e salvar*/}
+						<button class="waves-effect waves-red btn-flat red-text">Cancelar</button>
+						<button class="waves-effect waves-green btn-flat green-text">Salvar</button>
 					</div>
-      			</div>
+      	</div>
 			</div>
 		</div>
 		);

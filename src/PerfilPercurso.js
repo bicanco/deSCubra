@@ -4,12 +4,13 @@ import M from 'materialize-css';
 
 export class PerfilPercurso extends React.Component{
 	constructor(props){
-		super(props);
+		super(props);//passar como props o nome do percurso a imagem do percurso e um vetor com as paradas do percurso
 		this.state = {
 			name: props.name,
 			imgSrc: props.imgSrc,
 			paradas: [1,2,3,4,5,6],
 		}
+		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
     		var elems = document.querySelectorAll('.modal');
 		var options = {};
@@ -18,28 +19,33 @@ export class PerfilPercurso extends React.Component{
 	}
 
 	stringRenderFotoPerfil(foto){
+		//composicao do elemento html da foto do percurso
 		return "<img class=\"responsive-img\" src=\""+foto+"\" alt=\"Imagem do Percurso\" />";
 
 	}
 
 	renderFotoPerfil(foto){
+		//render da foto do percurso
 		return(
 			<img class="responsive-img" src={foto} alt="Imagem do Percurso" />
 		);
 	}
 
 	stringRenderNomePerfil(name){
+		//composicao do elemento html do nome do Percurso
 		return "<h1 class=\"white-text\">"+name+"    <button data-target=\"modalTrocarNomePercurso\" class=\"btn modal-trigger red\"><i class=\"material-icons\">create</i></button></h1>";
 
 	}
-	
+
 	renderNomePerfil(name){
+		//render do nome do percurso
 		return(
 			<h1 class="white-text">{name}    <button data-target="modalTrocarNomePercurso" class="btn modal-trigger red"><i class="material-icons">create</i></button></h1>
 		);
 	}
 
 	mudarPerfilPercurso(){
+		//funcao que altera os elementos a html quando os dados sao atualizados
 		var x = document.getElementById("formTrocarPerfilPercurso");
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
@@ -60,7 +66,9 @@ export class PerfilPercurso extends React.Component{
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
 					<div id="NomePercursoPerfilPercurso">{this.renderNomePerfil(this.state.name)}</div>
 					<div id="modalTrocarNomePercurso" class="modal">
+						{/*mensagem a aparecer ao selecionar o botao que troca as informcaoes do percurso*/}
 						<div class="modal-content">
+							{/*conteudo da mensagem*/}
 							<form id="formTrocarPerfilPercurso" action="#" enctype="multipart/form-data" method="post">
 								<p>Trocar imagem:</p>
 								<div class="file-field input-field">
@@ -77,26 +85,32 @@ export class PerfilPercurso extends React.Component{
 							</form>
 						</div>
 						<div class="modal-footer">
+							{/*botoes na parte inferior da mensagem*/}
 							<a href="#!" class="modal-close waves-effect waves-green btn-flat red-text">Cancelar</a>
 							<button  class="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.mudarPerfilPercurso()}>Trocar</button>
 						</div>
 					</div>
-      				</div>
-				<div align="right">
-					<a class="btn-floating red"><i class="material-icons">add</i></a>
-				</div>
-      				<ParadasPercurso paradas={this.state.paradas} />
-      				<div align='center'>
-					<button class="btn green">Nova Parada</button>    <button data-target="modalRemoverPercurso" class="btn modal-trigger red">Remover Percurso</button>
+						<div align="right">
+							<a class="btn-floating red"><i class="material-icons">add</i></a>
+						</div>
+      		</div>
+					{/*render da colecao das paradas desse percurso*/}
+      		<ParadasPercurso paradas={this.state.paradas} />
+      		<div align='center'>
+					{/*botoes de Salvar e Remover Percurso*/}
+					<button class="btn green">Salvar</button> <button data-target="modalRemoverPercurso" class="btn modal-trigger red">Remover Percurso</button>
 					<div id="modalRemoverPercurso" class="modal">
+						{/*mensagem a aparecer quando deseja-se remover um percurso*/}
 						<div class="modal-content">
+									{/*Conteudo da mensagem*/}
 	    						<h4>Tem certeza que deseja remover?</h4>
 							<p>Digite o nome do percurso para removê-lo:</p>
 							<form action="#">
 								<input type="text" />
 							</form>
 	   					</div>
-    						<div class="modal-footer">
+    					<div class="modal-footer">
+							{/*botoes na parte inferior da mensagem*/}
 							<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
 							<a href="#!" class="modal-close waves-effect waves-green btn-flat red-text">Remover</a>
 						</div>

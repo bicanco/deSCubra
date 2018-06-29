@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import {PerfilParada} from './PerfilParada';
 import LoginForm from './Login.js'
-import Connection from './connectionFactory.js'
+import {PerfilPercurso} from './PerfilPercurso';
+//import Connection from './connectionFactory.js'
 import './App.css';
 import M from 'materialize-css';
 
@@ -12,6 +14,7 @@ class App extends Component {
     this.state = {
       user: null
     }
+
   }
 
   // App "actions" (functions that modify state)
@@ -35,14 +38,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header >
+            <PerfilPercurso />
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <LoginForm onSignIn={this.signIn.bind(this)} />
       </div>
     );
   }
