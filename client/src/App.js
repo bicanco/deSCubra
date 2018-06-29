@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import LoginForm from './Login.js';
+import logo from './images1.png';
 import Client from './Client.js';
 import './App.css';
+import {PerfilPercurso} from './PerfilPercurso.js';
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class App extends Component {
     // calling setState will re-render the entire app (efficiently!)
     Client.admLogin(username, password, res => {
       console.log(res.sucess)
-      if(res.sucess == 'True'){
+      if(res.sucess === 'True'){
         console.log("Fez login")
         this.setState({
           user: {
@@ -47,7 +47,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <LoginForm onSignIn={this.signIn.bind(this)} />
+        <PerfilPercurso nome='aaa' imgSrc={logo}/>
       </div>
     );
   }
