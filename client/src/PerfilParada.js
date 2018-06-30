@@ -1,5 +1,4 @@
 import React from 'react';
-import M from 'materialize-css';
 //import Connection from './connectionFactory';
 
 export class PerfilParada extends React.Component{
