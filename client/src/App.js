@@ -3,8 +3,10 @@ import Client from './Client.js';
 import './App.css';
 import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginSocial from './LoginSocial.js';
+import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
+import {Percurso} from './Percurso.js';
 
 class App extends Component {
   constructor(props) {
@@ -65,7 +67,7 @@ class App extends Component {
           <TopMenu user={this.state.user} callbackSignIn={this.signIn} callbackSignOut={this.signOut}/>
         </header>
         <main className="App">
-          <PerfilParada />
+          <Percurso />
         </main>
         <footer>
           <FootMenu />

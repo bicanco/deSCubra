@@ -11,7 +11,7 @@
     "react-dom": "^16.4.0",
     "react-facebook-login": "^4.0.1",
     "react-google-login": "^3.2.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

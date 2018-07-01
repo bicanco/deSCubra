@@ -12,17 +12,15 @@ class LoginAdmin extends Component {
 
   render() {
     return (
-      <div>
         <div>
           <form onSubmit={this.handleSignIn.bind(this)}>
             <h5>Login para administradores</h5>
             <input type="text" ref="username" placeholder="Usuário" />
             <input type="password" ref="password" placeholder="Senha" />
-            <button>Login</button>
+            <button class="btn-flat green-text">Login</button>
           </form>
+          <p><br /></p>
         </div>
-        <h5>Login para exploradores</h5>
-      </div>
     );
   }
 

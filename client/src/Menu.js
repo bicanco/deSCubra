@@ -84,11 +84,11 @@ export class FootMenu extends React.Component{
               <h5 className="white-text">Integrantes</h5>
               <ul>
                 <li>David Souza Rodrigues</li>
-                <li>Fernanda Marana</li>
+                <li>Fernanda Tostes Marana</li>
                 <li>Gabriel Toschi de Oliveira</li>
                 <li>Juliana de Mello Crivelli</li>
-                <li>Marcelo de Moraes Carvalho da Silva</li>
-                <li>Marcos Wendell Souza de Oliveira Santos</li>
+                <li>Marcelo de Moraes C. da Silva</li>
+                <li>Marcos Wendell S. de O. Santos</li>
               </ul>
             </div>
           </div>

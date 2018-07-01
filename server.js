@@ -114,6 +114,67 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
+app.get("/addParada", (req, res)) => {
+  const nome = req.query.n
+  const descricao = req.query.d
+  const enigma = req.query.e
+  const respostas = req.query.r
+  const image = req.query.i
+
+  if (!nome) {
+    res.json({
+      error: "Missing required parameter `n`"
+    });
+    return;
+  }
+  if (!descricao) {
+    res.json({
+      error: "Missing required parameter `d`"
+    });
+    return;
+  }
+  if (!enigma) {
+    res.json({
+      error: "Missing required parameter `e`"
+    });
+    return;
+  }
+  if (!respostas) {
+    res.json({
+      error: "Missing required parameter `r`"
+    });
+    return;
+  }
+  if (!image) {
+    res.json({
+      error: "Missing required parameter `i`"
+    });
+    return;
+  }
+
+  const add = 'insert into parada values ($1, $2, $3, $4, $5, $6, $7)'
+  const values = [percurso, cod, nome, descricao, enigma, respostas, imagem]
+
+  // callback
+  bd.query(add, values, (err, q_res) => {
+    console.log(err, q_res)
+    if (err) {
+      console.log("Erro ao cadastrar parada")
+      console.log(err.stack)
+    } else {
+      if(q_res.rowCount == 1){
+        res.json({
+          sucess: "True"
+        });
+      } else {
+        res.json({
+        sucess: "False"
+        });
+      }
+    }
+  })
+}
+
 // query teste para ver se banco esta conectando
 bd.query('SELECT NOW()', (err, res) => {
   console.log(err, res)
