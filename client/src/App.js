@@ -6,6 +6,7 @@ import LoginSocial from './LoginSocial.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
+import {Percurso} from './Percurso.js';
 
 class App extends Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class App extends Component {
           <TopMenu isAdmin={true} />
         </header>
         <main className="App">
+          <Percurso />
         </main>
         <footer>
           <FootMenu />
