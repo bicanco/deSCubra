@@ -13,6 +13,7 @@ class LoginAdmin extends Component {
   render() {
     return (
         <div>
+          {/*interface para login do admnistrador*/}
           <form onSubmit={this.handleSignIn.bind(this)}>
             <h5>Login para administradores</h5>
             <input type="text" ref="username" placeholder="Usuário" />
