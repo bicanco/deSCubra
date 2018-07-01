@@ -67,7 +67,6 @@ class App extends Component {
           <TopMenu isAdmin={true} />
         </header>
         <main className="App">
-          <LoginAdmin />
         </main>
         <footer>
           <FootMenu />
