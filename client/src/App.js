@@ -3,6 +3,7 @@ import Client from './Client.js';
 import './App.css';
 import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginSocial from './LoginSocial.js';
+import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
 
@@ -66,7 +67,7 @@ class App extends Component {
           <TopMenu isAdmin={true} />
         </header>
         <main className="App">
-          <PerfilParada />
+          <LoginAdmin />
         </main>
         <footer>
           <FootMenu />

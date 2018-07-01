@@ -19,7 +19,7 @@ class LoginSocial extends Component {
     }
 
     return (
-      <div>
+      <div class="white">
         <h5 class="red-text text-accent-4">Login para exploradores</h5>
           <FacebookLogin
            appId="1781495368553121"
@@ -36,6 +36,7 @@ class LoginSocial extends Component {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
           />
+        <p><br /></p>
       </div>
     );
   }
