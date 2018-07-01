@@ -5,6 +5,7 @@ export class PerfilParada extends React.Component{
 	constructor(props){
 		super(props);//passar como props o nome, descricao, enigma e possossiveis respostas do percurso
 		this.state = {
+			percurso: props.percurso,
 			nome: 'nom',
 			descricao: 'desc',
 			enigma: 'enigma',
@@ -12,8 +13,9 @@ export class PerfilParada extends React.Component{
 		}
 	}
 
-/*
+
 	inserirParada(){
+		/*
 		var conn = new Connection.createDBConnection();
 		var x = document.getElementById("formDadosParada");
 
@@ -23,34 +25,18 @@ export class PerfilParada extends React.Component{
 		})
 
 		var img = x.elements[0].value;
-		var name = x.elements[1].value;
-		var desc = x.elements[2].value;
-		var engm = x.elements[3].value;
-		var answer = x.elements[4].value;
+		var nome = this.state.nome
+		var desc = this.state.desc
+		var engm = this.state.enigma
+		var resp = this.state.possiveisResp
 
 		/*
 		Vou deixar anotado aqui
 		Caso precise manipular as variáveis para a interface
 		*/
 
-/*		const query = {
-		  	text: 'INSERT INTO PARADA(nome, descricao, enigma, respostas) VALUES ($1, $2, $3, $4)',
-		  	values: [name, desc, engm, answer],
-		}
-
-		client.query(query, (err, res) => {
-		  	if (err) {
-		  	  	console.log(err.stack)
-		  	} else {
-		    	console.log(res.rows[0])
-		  	}
-		})
-
-		client.query(query)
-		  	.then(res => console.log(res.rows[0]))
-		  	.catch(e => console.error(e.stack))
 	}
-*/
+
 	onChangeNome = (nome) =>{//mudar o valor no campo nome
 		this.setState({nome})
 	}
@@ -81,7 +67,7 @@ export class PerfilParada extends React.Component{
 								<div className="file-field input-field">
 									<div className="btn red accent-4">
 										<span>Trocar Imagem</span>
-										<input type="file" />
+										<input type="file" id="imageField"/>
 									</div>
 									<div className="file-path-wrapper">
 										<input className="file-path validate" type="text" />
