@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './images1.png';
 import Client from './Client.js';
-import LoginForm from './Login.js';
 import './App.css';
 import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginSocial from './LoginSocial.js';
