@@ -1,19 +1,33 @@
 {
-  "name": "descubra",
-  "version": "0.1.0",
-  "private": true,
+  "name": "server",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "server.js",
   "dependencies": {
-    "js-sha512": "^0.7.1",
-    "materialize-css": "^1.0.0-rc.1",
+    "axios": "^0.18.0",
+    "express": "4.16.3",
+    "materialize-css": "^1.0.0-rc.2",
     "pg": "^7.4.3",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "node start-client.js"
+  },
+  "devDependencies": {
+    "concurrently": "3.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrieltoschi/deSCubra.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrieltoschi/deSCubra/issues"
+  },
+  "homepage": "https://github.com/gabrieltoschi/deSCubra#readme"
 }

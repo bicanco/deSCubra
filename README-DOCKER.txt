@@ -28,3 +28,8 @@ docker run --name nome_que_voce_quer nome_da_imagem(ex:postgres:10)
 
 RODAR LINKANDO 2 CONTAINERES
 docker run -it --link nome_do_container_a_ser_linkado:nome_dado nome_da_imagem
+
+-------------------------------------
+
+NO WINDOWS:
+192.168.99.100
