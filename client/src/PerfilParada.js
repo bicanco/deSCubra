@@ -1,5 +1,4 @@
 import React from 'react';
-import M from 'materialize-css';
 //import Connection from './connectionFactory';
 
 export class PerfilParada extends React.Component{
@@ -74,37 +73,37 @@ export class PerfilParada extends React.Component{
 			{/*render do perfil de uma parada no percurso*/}
 			<div>
  	   		<div className="perfil_parada">
-					<div id="PerfilParada" class="white" >
+					<div id="PerfilParada" className="red lighten-1">
 						<div>
-							<form id="formDadosParada" action="#" enctype="multipart/form-data" method="post">
-								<img class="responsive-img" alt="Imagem da parada" />
+							<form id="formDadosParada" action="#" encType="multipart/form-data" method="post">
+								<img className="responsive-img" alt="Imagem da parada" />
 								{/*botao para trocar a imagem da parada*/}
-								<div class="file-field input-field">
-									<div class="btn red accent-4">
+								<div className="file-field input-field">
+									<div className="btn red accent-4">
 										<span>Trocar Imagem</span>
 										<input type="file" />
 									</div>
-									<div class="file-path-wrapper">
-										<input class="file-path validate" type="text" />
+									<div className="file-path-wrapper">
+										<input className="file-path validate" type="text" />
 									</div>
 								</div>
 								{/*campo de nome da parada*/}
-								<label for="nameField" class="black-text">Nome:</label>
+								<label htmlFor="nameField" className="black-text">Nome:</label>
 								<input value={this.state.nome} type="text" onChange={(e) => this.onChangeNome(e.target.nome)} id="nameField" />
 								{/*campo de descricao da parada*/}
-								<label for="descriptionField" class="black-text">Descrição:</label>
+								<label htmlFor="descriptionField" className="black-text">Descrição:</label>
 								<input value={this.state.descricao} type="text" onChange={(e) => this.onChangeDescricao(e.target.descricao)} id="descriptionField" />
 								{/*campo de enigma da parada*/}
-								<label for="enigmaField" class="black-text">Enigma da parada:</label>
+								<label htmlFor="enigmaField" className="black-text">Enigma da parada:</label>
 								<input value={this.state.enigma} type="text" onChange={(e) => this.onChangeEnigma(e.target.enigma)} id="enigmaField" />
 								{/*campo de respostas possiveis*/}
-								<label for="answerField" class="black-text">Possíveis respostas da parada: (separadas por ';')</label>
+								<label htmlFor="answerField" className="black-text">Possíveis respostas da parada: (separadas por ';')</label>
 								<input value={this.state.possiveisResp} type="text" onChange={(e) => this.onChangepossiveisResp(e.target.possiveisResp)} id="answerField" />
 							</form>
 						</div>
 						{/*botoes de cancelar e salvar*/}
-						<button class="waves-effect waves-red btn-flat red-text">Cancelar</button>
-						<button class="waves-effect waves-green btn-flat green-text">Salvar</button>
+						<button className="waves-effect waves-red btn-flat red-text text-accent-4">Cancelar</button>
+						<button className="waves-effect waves-green btn-flat green-text">Salvar</button>
 					</div>
       	</div>
 			</div>
