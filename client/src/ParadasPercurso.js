@@ -19,7 +19,7 @@ export class ParadasPercurso extends React.Component{
 
 	render(){
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-		const aux = this.state.paradas.map((paradas) => <li class="collection-item red lighten-1">{this.renderParada(paradas)}</li>);
+		const aux = this.state.paradas.map((paradas) => <li class="collection-item grey lighten-5">{this.renderParada(paradas)}</li>);
 		return(
 			<ul class="collection">
 				{/*render da lista de paradas do percurso*/}

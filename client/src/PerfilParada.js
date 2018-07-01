@@ -59,7 +59,7 @@ export class PerfilParada extends React.Component{
 			{/*render do perfil de uma parada no percurso*/}
 			<div>
  	   		<div className="perfil_parada">
-					<div id="PerfilParada" className="red lighten-1">
+					<div id="PerfilParada" className="grey lighten-5">
 						<div>
 							<form id="formDadosParada" action="#" encType="multipart/form-data" method="post">
 								<img className="responsive-img" alt="Imagem da parada" />
