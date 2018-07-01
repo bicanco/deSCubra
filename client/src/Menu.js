@@ -7,9 +7,6 @@ import LoginSocial from './LoginSocial.js';
 export class TopMenu extends React.Component{
     constructor(props){
       super(props);
-      this.state ={
-        user: props.user,
-      };
       document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.sidenav');
         var options ={};
@@ -37,7 +34,7 @@ export class TopMenu extends React.Component{
           <div>
           <li><a>Sobre</a></li>
           <li><a>Percursos</a></li>
-          <li><a>Log Out</a></li>
+          <li><a onClick={this.props.callbackSignOut}>Log Out</a></li>
           </div>
         );
       }
@@ -56,12 +53,12 @@ export class TopMenu extends React.Component{
               </ul>
               <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">Menu</i></a>
               <ul className="right hide-on-med-and-down">
-                {this.renderOptions(this.state.user)}
+                {this.renderOptions(this.props.user)}
               </ul>
             </div>
           </nav>
           <ul className="sidenav" id="mobile-demo">
-            {this.renderOptions(this.state.user)}
+            {this.renderOptions(this.props.user)}
           </ul>
         </div>
       );

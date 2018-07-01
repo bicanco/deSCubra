@@ -46,18 +46,20 @@ class App extends Component {
               type
             }
           })
-          console.log(this.state.user.username)
         } else {
           console.log("Erro ao fazer login de explorador")
         }
       })
     }
-    console.log("User set(end) " + this.state.username)
   }
 
   signOut = () => {
     // clear out user from state
     this.setState({user: null})
+  }
+
+  inc() {
+    console.log(this.state.user)
   }
 
   render() {

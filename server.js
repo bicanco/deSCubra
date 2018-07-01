@@ -114,7 +114,7 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
-app.get("/addParada", (req, res)) => {
+app.get("/addParada", (req, res) => {
   const nome = req.query.n
   const descricao = req.query.d
   const enigma = req.query.e
@@ -173,7 +173,7 @@ app.get("/addParada", (req, res)) => {
       }
     }
   })
-}
+})
 
 // query teste para ver se banco esta conectando
 bd.query('SELECT NOW()', (err, res) => {

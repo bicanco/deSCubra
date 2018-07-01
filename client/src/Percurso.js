@@ -20,7 +20,7 @@ export class Percurso extends React.Component{
 
   render(){
       return(
-        <div class="white">
+        <div className="white">
           <nav>
             <div className="nav-wrapper red">
               <ul className="left">
@@ -36,7 +36,7 @@ export class Percurso extends React.Component{
           <p>{this.state.descricao}</p>
           <p>{this.state.nParadas} paradas - Estimativa: {this.state.estimativa}</p>
           <br />
-          <a class="btn-flat waves-effect waves-green green-text">Começar Percurso</a>
+          <a className="btn-flat waves-effect waves-green green-text">Começar Percurso</a>
           <p><br /></p>
         </div>
       );
