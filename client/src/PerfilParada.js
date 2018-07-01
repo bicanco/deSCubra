@@ -1,40 +1,43 @@
 import React from 'react';
-//import Connection from './connectionFactory';
+import Client from './Client.js';
+import M from 'materialize-css';
 
 export class PerfilParada extends React.Component{
 	constructor(props){
 		super(props);//passar como props o nome, descricao, enigma e possossiveis respostas do percurso
 		this.state = {
 			percurso: props.percurso,
-			nome: 'nom',
-			descricao: 'desc',
-			enigma: 'enigma',
-			possiveisResp: 'poss',
+			nome: props.nome,
+			descricao: props.descricao,
+			enigma: props.enigma,
+			possiveisResp: props.possiveisResp,
 		}
 	}
 
-
+	// Insere uma nova parada no banco por meio de uma chamada ao servidor com o modulo fetch
 	inserirParada(){
-		/*
-		var conn = new Connection.createDBConnection();
 		var x = document.getElementById("formDadosParada");
+		var img = x.elements[0].value
 
-		conn.connect(function(err){
-		  if(err) return console.log(err);
-		  console.log('conectou!');
-		})
-
-		var img = x.elements[0].value;
+		var percurso = this.state.percurso
 		var nome = this.state.nome
-		var desc = this.state.desc
+		var desc = this.state.descicao
 		var engm = this.state.enigma
 		var resp = this.state.possiveisResp
+
+		Client.addParada(percurso, nome, desc, engm, resp, img, res => {
+			console.log(res.sucess)
+			if(res.sucess === 'True'){
+				console.log("Adicionou parada")
+			} else {
+				console.log("Erro ao tentar inserir parada")
+			}
+		})
 
 		/*
 		Vou deixar anotado aqui
 		Caso precise manipular as variáveis para a interface
 		*/
-
 	}
 
 	onChangeNome = (nome) =>{//mudar o valor no campo nome
@@ -89,7 +92,7 @@ export class PerfilParada extends React.Component{
 						</div>
 						{/*botoes de cancelar e salvar*/}
 						<button className="waves-effect waves-red btn-flat red-text text-accent-4">Cancelar</button>
-						<button className="waves-effect waves-green btn-flat green-text">Salvar</button>
+						<button className="waves-effect waves-green btn-flat green-text" onClick={() => this.inserirParada()}>Salvar</button>
 					</div>
       	</div>
 			</div>
