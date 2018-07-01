@@ -1,5 +1,4 @@
 import React from 'react';
-import M from 'materialize-css';
 //import Connection from './connectionFactory';
 
 export class PerfilParada extends React.Component{
@@ -74,7 +73,7 @@ export class PerfilParada extends React.Component{
 			{/*render do perfil de uma parada no percurso*/}
 			<div>
  	   		<div className="perfil_parada">
-					<div id="PerfilParada" class="white" >
+					<div id="PerfilParada" class="red lighten-1">
 						<div>
 							<form id="formDadosParada" action="#" enctype="multipart/form-data" method="post">
 								<img class="responsive-img" alt="Imagem da parada" />
@@ -103,7 +102,7 @@ export class PerfilParada extends React.Component{
 							</form>
 						</div>
 						{/*botoes de cancelar e salvar*/}
-						<button class="waves-effect waves-red btn-flat red-text">Cancelar</button>
+						<button class="waves-effect waves-red btn-flat red-text text-accent-4">Cancelar</button>
 						<button class="waves-effect waves-green btn-flat green-text">Salvar</button>
 					</div>
       	</div>
