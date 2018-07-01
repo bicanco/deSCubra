@@ -22,7 +22,7 @@ export class Percurso extends React.Component{
       return(
         <div class="white">
           <nav>
-            <div className="nav-wrapper red accent-3">
+            <div className="nav-wrapper red">
               <ul className="left">
               <li><a href="#">
                 <i className="material-icons">keyboard_backspace</i>
