@@ -9,21 +9,21 @@ class LoginForm extends Component {
     var sha512 = require('js-sha512');
     let username = this.refs.username.value
     let password = this.refs.password.value
-    this.props.onSignIn(sha512(username), sha512(password))
+    this.props.onSignIn(sha512(username), sha512(password), 'adm')
   }
 
   render() {
     const responseFacebook = (response) => {
       let email = response.email;
       let name = response.name;
-      //Client.checkUser(email, name)
+      this.props.onSignIn(email, name, 'exp')
       console.log(email, name);
     }
 
     const responseGoogle = (response) => {
       let email = response.profileObj.email;
       let name = response.profileObj.name;
-      //Client.checkUser(email, name)
+      this.props.onSignIn(email, name, 'exp')
       console.log(email, name);
     }
 
