@@ -20,7 +20,7 @@ class LoginSocial extends Component {
 
     return (
       <div>
-        <h5 class="red-text text-accent-4">Login para exploradores</h5>
+        <li>
           <FacebookLogin
            appId="1781495368553121"
            fields="name,email,picture"
@@ -28,14 +28,15 @@ class LoginSocial extends Component {
            textButton="LOGIN COM FACEBOOK"
            callback={responseFacebook}
           />
-        <br />
-        <br />
+        </li>
+        <li>
           <GoogleLogin
             clientId="280220453193-emokhhlts65sak7idrcunpu09irer0mq.apps.googleusercontent.com"
             buttonText="LOGIN COM GOOGLE"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
           />
+        </li>
       </div>
     );
   }

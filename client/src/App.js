@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   // App "actions" (functions that modify state)
-  signIn(username, password, type) {
+  signIn = (username, password, type) => {
     // calling setState will re-render the entire app (efficiently!)
     if(type === 'adm'){
       Client.admLogin(username, password, res => {
@@ -26,7 +26,6 @@ class App extends Component {
           this.setState({
             user: {
               username,
-              password,
               type
             }
           })
@@ -42,19 +41,19 @@ class App extends Component {
           this.setState({
             user: {
               username,
-              password,
               type
             }
           })
+          console.log(this.state.user.username)
         } else {
           console.log("Erro ao fazer login de explorador")
         }
       })
     }
-
+    console.log("User set(end) " + this.state.username)
   }
 
-  signOut() {
+  signOut = () => {
     // clear out user from state
     this.setState({user: null})
   }
@@ -63,7 +62,7 @@ class App extends Component {
     return (
       <div>
         <header>
-          <TopMenu isAdmin={true} />
+          <TopMenu user={this.state.user} callbackSignIn={this.signIn} callbackSignOut={this.signOut}/>
         </header>
         <main className="App">
           <PerfilParada />

@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import M from 'materialize-css';
 import gitlogo from './img/github.png';
 import logo32 from './img/logo32.png';
+import LoginSocial from './LoginSocial.js';
 
 export class TopMenu extends React.Component{
     constructor(props){
       super(props);
       this.state ={
-        isAdmin: props.isAdmin,
+        user: props.user,
       };
       document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.sidenav');
@@ -16,19 +17,27 @@ export class TopMenu extends React.Component{
       });
     }
 
-    renderOptions(isAdmin){
-      if(isAdmin){
+    renderOptions(user){
+      console.log("Renderizando menu para " + user)
+      if(!user){
+        return(
+          <LoginSocial onSignIn={this.props.callbackSignIn}/>
+        );
+      }
+      if(user.type == 'adm'){
+        console.log("Login adm")
         return(
           <div>
           <li><a>Log Out</a></li>
           </div>
         );
-      }else{
+      }else if(user.type == 'exp'){
+        console.log("Login exp")
         return(
           <div>
+          <li><a>Sobre</a></li>
+          <li><a>Percursos</a></li>
           <li><a>Log Out</a></li>
-          <li><a>2</a></li>
-          <li><a>3</a></li>
           </div>
         );
       }
@@ -45,14 +54,14 @@ export class TopMenu extends React.Component{
                   #deSCubra
                 </a></li>
               </ul>
-              <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+              <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">Menu</i></a>
               <ul className="right hide-on-med-and-down">
-                {this.renderOptions(this.state.isAdmin)}
+                {this.renderOptions(this.state.user)}
               </ul>
             </div>
           </nav>
           <ul className="sidenav" id="mobile-demo">
-            {this.renderOptions(this.state.isAdmin)}
+            {this.renderOptions(this.state.user)}
           </ul>
         </div>
       );
@@ -66,7 +75,7 @@ export class FootMenu extends React.Component{
         <div className="container">
           <div className="row">
             <div className="col l6 s12">
-              <h5 className="white-text">#deSCubra</h5>
+              <h5 className="white-text">deSCubra</h5>
               <p className="grey-text text-lighten-4">Projeto da disciplina SSC0130 - Engenharia de Software</p>
               <p className="grey-text text-lighten-4">Professora: Drª. Simone do Rocio Senger de Souza</p>
               <p className="grey-text text-lighten-4">Estagiário PAE: Leo Natan Paschoal</p>
