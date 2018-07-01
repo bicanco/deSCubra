@@ -5,7 +5,7 @@ import './App.css';
 import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginSocial from './LoginSocial.js';
 import {PerfilParada} from './PerfilParada.js';
-import TopMenu from './Menu.js';
+import {TopMenu,FootMenu} from './Menu.js';
 
 class App extends Component {
   constructor(props) {
@@ -42,9 +42,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <TopMenu isAdmin={true} />
-        <PerfilParada />
+      <div>
+        <header>
+          <TopMenu isAdmin={true} />
+        </header>
+        <main className="App">
+          <PerfilParada />
+        </main>
+        <footer>
+          <FootMenu />
+        </footer>
       </div>
     );
   }
