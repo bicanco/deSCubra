@@ -7,15 +7,15 @@ class LoginSocial extends Component {
     const responseFacebook = (response) => {
       let email = response.email;
       let name = response.name;
-      //Client.checkUser(email, name)
+      this.props.onSignIn(email, name, 'exp')
       console.log(email, name);
     }
 
     const responseGoogle = (response) => {
-  //    let email = response.profileObj.email;
-  //    let name = response.profileObj.name;
-      //Client.checkUser(email, name)
-  //    console.log(email, name);
+      let email = response.profileObj.email;
+      let name = response.profileObj.name;
+      this.props.onSignIn(email, name, 'exp')
+      console.log(email, name);
     }
 
     return (
@@ -27,7 +27,7 @@ class LoginSocial extends Component {
            size="small"
            textButton="LOGIN COM FACEBOOK"
            callback={responseFacebook}
-            />
+          />
         <br />
         <br />
           <GoogleLogin

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import M from 'materialize-css';
+import gitlogo from './img/github.png';
+import logo32 from './img/logo32.png';
 
 export class TopMenu extends React.Component{
     constructor(props){
@@ -34,19 +36,22 @@ export class TopMenu extends React.Component{
 
     render(){
       return(
-        <div class="navbar">
+        <div className="navbar">
           <nav>
-            <div class="nav-wrapper red accent-4">
-              <ul class="left hide-on-med-and-down">
-                <li><a href="#" class="brand-logo left">Logo</a></li>
+            <div className="nav-wrapper red accent-4">
+              <ul className="left hide-on-med-and-down">
+                <li><a href="#" className="brand-logo left">
+                  <img src={logo32} alt="deSCubra logo" />
+                  #deSCubra
+                </a></li>
               </ul>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
+              <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+              <ul className="right hide-on-med-and-down">
                 {this.renderOptions(this.state.isAdmin)}
               </ul>
             </div>
           </nav>
-          <ul class="sidenav" id="mobile-demo">
+          <ul className="sidenav" id="mobile-demo">
             {this.renderOptions(this.state.isAdmin)}
           </ul>
         </div>
@@ -57,28 +62,34 @@ export class TopMenu extends React.Component{
 export class FootMenu extends React.Component{
   render(){
   return(
-      <footer class="page-footer red accent-4">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">oi</p>
+      <footer className="page-footer red accent-4">
+        <div className="container">
+          <div className="row">
+            <div className="col l6 s12">
+              <h5 className="white-text">#deSCubra</h5>
+              <p className="grey-text text-lighten-4">Projeto da disciplina SSC0130 - Engenharia de Software</p>
+              <p className="grey-text text-lighten-4">Professora: Drª. Simone do Rocio Senger de Souza</p>
+              <p className="grey-text text-lighten-4">Estagiário PAE: Leo Natan Paschoal</p>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
+            <div className="col l4 offset-l2 s12">
+              <h5 className="white-text">Integrantes</h5>
               <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                <li>David Souza Rodrigues</li>
+                <li>Fernanda Marana</li>
+                <li>Gabriel Toschi de Oliveira</li>
+                <li>Juliana de Mello Crivelli</li>
+                <li>Marcelo de Moraes Carvalho da Silva</li>
+                <li>Marcos Wendell Souza de Oliveira Santos</li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        <div className="footer-copyright">
+          <div className="container">
+            © 2018 Copyright Text
+            <a className="grey-text text-lighten-4 right" href="https://github.com/gabrieltoschi/deSCubra">
+              <img src={gitlogo} alt="git logo" />
+            </a>
           </div>
         </div>
       </footer>

@@ -20,25 +20,25 @@ export class PerfilPercurso extends React.Component{
 
 	stringRenderFotoPerfil(foto){
 		//composicao do elemento html da foto do percurso
-		return "<img class=\"responsive-img\" src=\""+foto+"\" alt=\"Imagem do Percurso\" />";
+		return "<img className=\"responsive-img\" src=\""+foto+"\" alt=\"Imagem do Percurso\" />";
 	}
 
 	renderFotoPerfil(foto){
 		//render da foto do percurso
 		return(
-			<img class="responsive-img" src={foto} alt="Imagem do Percurso" />
+			<img className="responsive-img" src={foto} alt="Imagem do Percurso" />
 		);
 	}
 
 	stringRenderNomePerfil(name){
 		//composicao do elemento html do nome do Percurso
-		return "<h1 class=\"white-text\">"+name+"    <button data-target=\"modalTrocarNomePercurso\" class=\"btn modal-trigger red\"><i class=\"material-icons\">create</i></button></h1>";
+		return "<h1 className=\"white-text\">"+name+"    <button data-target=\"modalTrocarNomePercurso\" className=\"btn modal-trigger red\"><i className=\"material-icons\">create</i></button></h1>";
 	}
 
 	renderNomePerfil(name){
 		//render do nome do percurso
 		return(
-			<h1 class="white-text">{name}    <button data-target="modalTrocarNomePercurso" class="btn modal-trigger red"><i class="material-icons">create</i></button></h1>
+			<h1 className="white-text">{name}    <button data-target="modalTrocarNomePercurso" className="btn modal-trigger red"><i className="material-icons">create</i></button></h1>
 		);
 	}
 
@@ -61,48 +61,48 @@ export class PerfilPercurso extends React.Component{
 
 	render(){
 		return(
-		<div class="red accent-4">
+		<div className="red accent-4">
  	     		<div className="perfil_percurso" >
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
 					<div id="NomePercursoPerfilPercurso">{this.renderNomePerfil(this.state.name)}</div>
-					<div id="modalTrocarNomePercurso" class="modal">
+					<div id="modalTrocarNomePercurso" className="modal">
 						{/*mensagem a aparecer ao selecionar o botao que troca as informcaoes do percurso*/}
-						<div class="modal-content">
+						<div className="modal-content">
 							{/*conteudo da mensagem*/}
-							<form id="formTrocarPerfilPercurso" action="#" enctype="multipart/form-data" method="post">
+							<form id="formTrocarPerfilPercurso" action="#" encType="multipart/form-data" method="post">
 								<p>Trocar imagem:</p>
-								<div class="file-field input-field">
-									<div class="btn">
+								<div className="file-field input-field">
+									<div className="btn">
 										<span>Imagem</span>
 										<input type="file" />
 									</div>
-									<div class="file-path-wrapper">
-										<input class="file-path validate" type="text" />
+									<div className="file-path-wrapper">
+										<input className="file-path validate" type="text" />
 									</div>
 								</div>
 								<p>Definir novo nome para o percurso:</p>
 								<input type="text" />
 							</form>
 						</div>
-						<div class="modal-footer">
+						<div className="modal-footer">
 							{/*botoes na parte inferior da mensagem*/}
-							<a href="#!" class="modal-close waves-effect waves-green btn-flat red-text">Cancelar</a>
-							<button  class="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.mudarPerfilPercurso()}>Trocar</button>
+							<a href="#!" className="modal-close waves-effect waves-green btn-flat red-text">Cancelar</a>
+							<button  className="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.mudarPerfilPercurso()}>Trocar</button>
 						</div>
 					</div>
 						<div align="right">
-							<a class="btn-floating red"><i class="material-icons">add</i></a>
+							<a className="btn-floating red"><i className="material-icons">add</i></a>
 						</div>
       		</div>
 					{/*render da colecao das paradas desse percurso*/}
       		<ParadasPercurso paradas={this.state.paradas} />
       		<div align='center'>
 					{/*botoes de Salvar e Remover Percurso*/}
-					<button class="btn green">Salvar</button> <button data-target="modalRemoverPercurso" class="btn modal-trigger red">Remover Percurso</button>
-					<div id="modalRemoverPercurso" class="modal">
+					<button className="btn green">Salvar</button> <button data-target="modalRemoverPercurso" className="btn modal-trigger red">Remover Percurso</button>
+					<div id="modalRemoverPercurso" className="modal">
 						{/*mensagem a aparecer quando deseja-se remover um percurso*/}
-						<div class="modal-content">
+						<div className="modal-content">
 									{/*Conteudo da mensagem*/}
 	    						<h4>Tem certeza que deseja remover?</h4>
 							<p>Digite o nome do percurso para removê-lo:</p>
@@ -110,10 +110,10 @@ export class PerfilPercurso extends React.Component{
 								<input type="text" />
 							</form>
 	   					</div>
-    					<div class="modal-footer">
+    					<div className="modal-footer">
 							{/*botoes na parte inferior da mensagem*/}
-							<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-							<a href="#!" class="modal-close waves-effect waves-green btn-flat red-text">Remover</a>
+							<a href="#!" className="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+							<a href="#!" className="modal-close waves-effect waves-green btn-flat red-text">Remover</a>
 						</div>
 					</div>
 				</div>

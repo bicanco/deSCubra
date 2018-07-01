@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './images1.png';
 import Client from './Client.js';
 import './App.css';
 import {PerfilPercurso} from './PerfilPercurso.js';
@@ -19,7 +18,7 @@ class App extends Component {
   // App "actions" (functions that modify state)
   signIn(username, password, type) {
     // calling setState will re-render the entire app (efficiently!)
-    if(type == 'adm'){
+    if(type === 'adm'){
       Client.admLogin(username, password, res => {
         console.log(res.sucess)
         if(res.sucess === 'True'){
@@ -35,7 +34,7 @@ class App extends Component {
           console.log("Administrador nao cadastrado")
         }
       })
-    } else if (type == 'exp'){
+    } else if (type === 'exp'){
       Client.expLogin(username, password, res => {
         console.log(res.sucess)
         if(res.sucess === 'True'){
