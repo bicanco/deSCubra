@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {PerfilPercurso} from './PerfilPercurso.js';
 
 export class ListaPercursos extends React.Component{
 	constructor(props){
@@ -9,11 +11,18 @@ export class ListaPercursos extends React.Component{
 	}
 
 	renderLinhaPercurso(i){
+		const url = "/editarPercurso/"+i
 		return (
 			<div align="left">
 				{/*render de um percurso, com botao para editar*/}
 				<h5 class="white-text">{i}</h5>
-        <div align="right"><button class="btn red"><i class="material-icons">edit</i></button></div>
+        <div align="right">
+					<Link to={url}>
+						<button class="btn red">
+							<i class="material-icons">edit</i>
+						</button>
+					</Link>
+				</div>
 			</div>
 		);
 	}
@@ -22,10 +31,12 @@ export class ListaPercursos extends React.Component{
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
 		const aux = this.state.percursos.map((percursos) => <li class="collection-item red lighten-1">{this.renderLinhaPercurso(percursos)}</li>);
 		return(
-			<ul class="collection">
-				{/*render da lista de percursos */}
-				{aux}
-			</ul>
+			<div>
+				<ul class="collection">
+					{/*render da lista de percursos */}
+					{aux}
+				</ul>
+			</div>
 		);
 	}
 }

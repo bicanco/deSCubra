@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Client from './Client.js';
 import './App.css';
+
 import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginSocial from './LoginSocial.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
 import {Percurso} from './Percurso.js';
+import About from './About.js';
+import {ListaPercursos} from './ListaPercursos.js';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +35,7 @@ class App extends Component {
               type
             }
           })
+
         } else {
           console.log("Administrador nao cadastrado")
         }
@@ -58,23 +63,29 @@ class App extends Component {
     this.setState({user: null})
   }
 
-  inc() {
-    console.log(this.state.user)
-  }
-
   render() {
     return (
-      <div>
-        <header>
-          <TopMenu user={this.state.user} callbackSignIn={this.signIn} callbackSignOut={this.signOut}/>
-        </header>
-        <main className="App">
-          <Percurso />
-        </main>
-        <footer>
-          <FootMenu />
-        </footer>
-      </div>
+      <Router>
+        <div>
+          <header>
+            <TopMenu user={this.state.user} callbackSignIn={this.signIn} callbackSignOut={this.signOut}/>
+          </header>
+            <main className="App">
+              {/*rota inicial*/}
+              <Route exact path="/" component={About} />
+              {/*rota de administradores*/}
+              <Route path="/adminLogin" component={LoginAdmin} />
+              <Route path="/listaPercursos" component={ListaPercursos} />
+    					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
+    					<Route exact path="/editarPercurso/:idPercurso/:idParada" component={PerfilParada} />
+              {/*rota exploradores*/}
+              <Route path="/Percursos" component={ListaPercursos} />
+            </main>
+          <footer>
+            <FootMenu />
+          </footer>
+        </div>
+      </Router>
     );
   }
 }

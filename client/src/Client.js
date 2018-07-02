@@ -1,3 +1,10 @@
+function addParada(percurso, nome, desc, engm, resp, img, callbackFn) {
+  return fetch(`/addParada?p=${percurso}&n=${nome}&d=${desc}&e=${engm}&r=${resp}&i=${img}`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
+}
+
 function admLogin(user, password, callbackFn) {
   return fetch(`/admLogin?u=${user}&p=${password}`)
   .then(checkStatus)
@@ -27,5 +34,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { admLogin, expLogin };
+const Client = { admLogin, expLogin, addParada };
 export default Client;

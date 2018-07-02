@@ -3,6 +3,7 @@ import M from 'materialize-css';
 import gitlogo from './img/github.png';
 import logo32 from './img/logo32.png';
 import LoginSocial from './LoginSocial.js';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export class TopMenu extends React.Component{
     constructor(props){
@@ -32,6 +33,10 @@ export class TopMenu extends React.Component{
         console.log("Login exp")
         return(
           <div>
+          {/*
+            <Link to="/"><li>Sobre</li></Link>
+            <Link to="/Percursos"><li>Percursos</li></Link>
+          */}
           <li><a>Sobre</a></li>
           <li><a>Percursos</a></li>
           <li><a onClick={this.props.callbackSignOut}>Log Out</a></li>

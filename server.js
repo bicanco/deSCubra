@@ -7,7 +7,7 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'juliana',
+  user: 'postgres',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
@@ -115,12 +115,19 @@ app.get("/expLogin", (req, res) => {
 })
 
 app.get("/addParada", (req, res) => {
+  const percurso = req.query.p
   const nome = req.query.n
   const descricao = req.query.d
   const enigma = req.query.e
   const respostas = req.query.r
-  const image = req.query.i
+  const imagem = req.query.i
 
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
   if (!nome) {
     res.json({
       error: "Missing required parameter `n`"
@@ -145,12 +152,34 @@ app.get("/addParada", (req, res) => {
     });
     return;
   }
-  if (!image) {
+  if (!imagem) {
     res.json({
       error: "Missing required parameter `i`"
     });
     return;
   }
+
+  const nextcod = 'select max(codigo) from parada where percurso = $1'
+  const value = [percurso]
+  var cod = 0
+
+  // find max cod
+  bd.query(nextcod, value, (err, q_res) => {
+    console.log(err, q_res)
+    if (err) {
+      console.log("Erro ao procurar o max value")
+      console.log(err.stack)
+    } else {
+      if(q_res.rowCount == 1){
+        console.log("Busca max realizada com sucesso")
+        if(!q_res.rows[0]){
+          cod: 0
+        } else{
+          cod: q_res.rows[0] + 1
+        }
+      }
+    }
+  })
 
   const add = 'insert into parada values ($1, $2, $3, $4, $5, $6, $7)'
   const values = [percurso, cod, nome, descricao, enigma, respostas, imagem]
