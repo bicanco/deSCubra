@@ -114,6 +114,10 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
+app.post("/uploadImage", (req, res) =>{
+  
+}
+
 app.get("/addParada", (req, res) => {
   const percurso = req.query.p
   const nome = req.query.n

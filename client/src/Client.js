@@ -1,3 +1,10 @@
+function uploadImage(file, nome, callbackFn){
+  return fetch(`/uploadImage?f=${file}&n=${nome}`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
+}
+
 function addParada(percurso, nome, desc, engm, resp, img, callbackFn) {
   return fetch(`/addParada?p=${percurso}&n=${nome}&d=${desc}&e=${engm}&r=${resp}&i=${img}`)
   .then(checkStatus)

@@ -48,6 +48,7 @@ export class PerfilPercurso extends React.Component{
 	mudarPerfilPercurso(){
 		//funcao que altera os elementos a html quando os dados sao atualizados
 		const nome_prev = this.state.nome;
+		var imgpath = null;
 		var x = document.getElementById("formTrocarPerfilPercurso");
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
@@ -55,8 +56,16 @@ export class PerfilPercurso extends React.Component{
 		if(x.elements[0].value !== ""){
 			console.log(this.state.imgSrc);
 			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
-			this.state.imgSrc = x.elements[0].value;
-			//axios.post('http://localhost:3001/file-upload', this.state.imgSrc);
+			Client.uploadImage(x.elements[0], x.elements[2].value, res=> {
+				console.log(res.sucess);
+				if(res.sucess == 'True'){
+					console.log("Imagem encontra-se no servidor");
+					this.state.imgSrc = res.path;
+				} else{
+					console.log("Erro ao tentar fazer o upload da imagem");
+					this.state.imgSrc = null;
+				}
+			}
 		}
 
 		if(x.elements[2].value !== ""){
@@ -90,7 +99,7 @@ export class PerfilPercurso extends React.Component{
 									<div className="file-field input-field">
 										<div className="btn">
 											<span>Imagem</span>
-											<input type="file" />
+											<input type="file"/>
 										</div>
 										<div className="file-path-wrapper">
 											<input className="file-path validate" type="text" />
