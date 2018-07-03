@@ -1,12 +1,15 @@
 import React from 'react';
-import {ParadasPercurso} from './ParadasPercurso';
+import {ParadasPercurso} from './ParadasPercurso.js';
 import M from 'materialize-css';
 import axios from 'axios';
+import Client from './Client.js'
+
 export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			name: props.name,
+			nome: props.nome,
+			descricao: props.descricao,
 			imgSrc: props.imgSrc,
 			paradas: [1,2,3,4,5,6],
 		}
@@ -44,19 +47,31 @@ export class PerfilPercurso extends React.Component{
 
 	mudarPerfilPercurso(){
 		//funcao que altera os elementos a html quando os dados sao atualizados
+		const nome_prev = this.state.nome;
 		var x = document.getElementById("formTrocarPerfilPercurso");
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
+
 		if(x.elements[0].value !== ""){
 			console.log(this.state.imgSrc);
 			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
 			this.state.imgSrc = x.elements[0].value;
-			axios.post('http://localhost:3001/file-upload', this.state.imgSrc);
+			//axios.post('http://localhost:3001/file-upload', this.state.imgSrc);
 		}
 
 		if(x.elements[2].value !== ""){
 			n.innerHTML = this.stringRenderNomePerfil(x.elements[2].value);
+			this.state.nome = x.elements[2].value;
 		}
+
+		Client.addPercurso(nome_prev, this.state.nome, this.state.descricao, this.state.imgSrc, res => {
+			console.log(res.sucess);
+			if(res.sucess === 'True'){
+				console.log("Adicionou/Alterou Percurso");
+			} else {
+				console.log("Erro ao tentar adicionar/alterar percurso");
+			}
+		})
 	}
 
 	render(){

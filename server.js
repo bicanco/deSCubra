@@ -204,6 +204,76 @@ app.get("/addParada", (req, res) => {
   })
 })
 
+app.get("/addPercurso", (req, res) => {
+  const nome_prev = req.query.pn
+  const nome_curr = req.query.cn
+  const descricao = req.query.d
+  const imagem = req.query.i
+
+  if (!nome_prev) {
+    res.json({
+      error: "Missing required parameter `pn`"
+    });
+    return;
+  }
+  if (!nome_curr) {
+    res.json({
+      error: "Missing required parameter `cn`"
+    });
+    return;
+  }
+  if (!descricao) {
+    res.json({
+      error: "Missing required parameter `d`"
+    });
+    return;
+  }
+  if (!imagem) {
+    res.json({
+      error: "Missing required parameter `i`"
+    });
+    return;
+  }
+
+  const alter = 'update percurso set nome = $1, descricao = $2, imagem = $3  where nome = $4'
+  const value = [nome_curr, descricao, imagem, nome_prev]
+
+  // callback
+  bd.query(alter, value, (err, q_res) => {
+    console.log(err, q_res)
+    if (err) {
+      console.log("Erro ao alterar percurso")
+      console.log(err.stack)
+    } else {
+      if(q_res.rowCount == 1){
+        res.json({
+          sucess: "True"
+        });
+      } else{
+        const add = 'insert into percurso values ($1,$2,$3)'
+        values = [nome_curr, descricao, imagem]
+        bd.query(add, values, (err, q_res) => {
+          console.log(err, q_res)
+          if (err) {
+            console.log("Erro ao cadastrar percurso")
+            console.log(err.stack)
+          } else {
+            if(q_res.rowCount == 1){
+              res.json({
+                sucess: "True"
+              });
+            } else {
+              res.json({
+                sucess: "False"
+              });
+            }
+          }
+        })
+      }
+    }
+  })
+})
+
 // query teste para ver se banco esta conectando
 bd.query('SELECT NOW()', (err, res) => {
   console.log(err, res)

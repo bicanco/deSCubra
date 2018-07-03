@@ -21,7 +21,7 @@ export class PerfilParada extends React.Component{
 
 		var percurso = this.state.percurso
 		var nome = this.state.nome
-		var desc = this.state.descicao
+		var desc = this.state.descricao
 		var engm = this.state.enigma
 		var resp = this.state.possiveisResp
 
