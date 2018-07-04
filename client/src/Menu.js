@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import M from 'materialize-css';
 import gitlogo from './img/github.png';
-import logo32 from './img/logo32.png';
+import logo32 from './img/logo-white32.png';
 import LoginSocial from './LoginSocial.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -50,16 +50,17 @@ export class TopMenu extends React.Component{
         <div className="navbar">
           <nav>
             <div className="nav-wrapper red accent-4">
+            <div className="container">
               <ul className="left hide-on-med-and-down">
                 <li><a href="#" className="brand-logo left">
-                  <img src={logo32} alt="deSCubra logo" />
-                  #deSCubra
+                  <img src={logo32} alt="deSCubra logo" />   #deSCubra
                 </a></li>
               </ul>
               <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">Menu</i></a>
               <ul className="right hide-on-med-and-down">
                 {this.renderOptions(this.props.user)}
               </ul>
+            </div>
             </div>
           </nav>
           <ul className="sidenav" id="mobile-demo">

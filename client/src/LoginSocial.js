@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleLogin from 'react-google-login';
 
 class LoginSocial extends Component {
@@ -27,8 +27,10 @@ class LoginSocial extends Component {
            appId="1781495368553121"
            fields="name,email,picture"
            size="small"
-           textButton="LOGIN COM FACEBOOK"
            callback={responseFacebook}
+           render={renderProps => (
+             <a class="waves-effect waves-light btn blue darken-3" onClick={renderProps.onClick}>LOGIN COM FACEBOOK</a>
+           )}
           />
         </li>
         <li>
@@ -38,6 +40,9 @@ class LoginSocial extends Component {
             buttonText="LOGIN COM GOOGLE"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
+            render={renderProps => (
+              <a class="waves-effect waves-light btn red darken-4" onClick={renderProps.onClick}>LOGIN COM GOOGLE</a>
+            )}
           />
           </li>
       </div>
