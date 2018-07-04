@@ -41,3 +41,36 @@ export class Percurso extends React.Component{
       );
   }
 }
+
+export class FinalPercurso extends Component{
+  constructor(props){
+      super(props);
+      this.state={
+        percurso: "percurso",
+      }
+  }
+
+  render(){
+    return(
+      <div>
+        <nav>
+          {/*barra de voltar para tela principal*/}
+          <div className="nav-wrapper red">
+            <ul className="left">
+            <li><a href="#">
+              <i className="material-icons">keyboard_backspace</i>
+            </a></li>
+            <li>Percurso: {this.state.percurso}</li>
+            </ul>
+          </div>
+        </nav>
+        <h2>Parabéns!</h2>
+        <h4>Você terminou o percurso {this.state.percurso} </h4>
+        <button class="btn-flat red-text">Recomeçar Percurso</button>
+      </div>
+    );
+  }
+}
+
+const Percursos = {Percurso, FinalPercurso};
+export default Percursos;

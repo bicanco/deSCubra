@@ -107,3 +107,6 @@ export class FootMenu extends React.Component{
     );
   }
 }
+
+const Menu = {TopMenu,FootMenu};
+export default Menu;

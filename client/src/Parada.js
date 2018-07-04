@@ -5,8 +5,10 @@ export class Parada extends Component{
   constructor(props){
       super(props);
       this.state = {
+          percurso: "percurso 1",
           id: 1,
           nome: "Nome parada",
+          direcoes: "vire a esquerda",
           enigma: "Local de encontro para muitos estudantes de qual curso?",
           imgSrc: "",
           descricao: "fdsfkndsokfndsonfosdnfiodniofnsdaoifnnnnnnnn\nnnn\nnnnnnnnnnnnnnnnnnn\nnnn\\\\\nnnnn\nnnnnnn\nnnn\n\n\n\\n\n\n\n\n\n\n\n\n\nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaa",
@@ -21,16 +23,29 @@ export class Parada extends Component{
   }
 
   conferirResposta(){
+    /*falta conferir todas as possiveis respostas*/
     var x = document.getElementById("formRespostaParada");
-    var elems = document.querySelectorAll('.modal');
-    var instance = M.Modal.getInstance(x.elements[0].value===this.state.resposta?elems[1]:elems[0]);
+    var elem = document.getElementById(x.elements[0].value===this.state.resposta?"modalRespostaCorreta":"modalRespostaErrada");
+    var instance = M.Modal.getInstance(elem);
     instance.open();
   }
 
   render(){
     return(
       <div>
+        <nav>
+          {/*barra de voltar para tela principal*/}
+          <div className="nav-wrapper red">
+            <ul className="left">
+            <li><a href="#">
+              <i className="material-icons">keyboard_backspace</i>
+            </a></li>
+            <li>Percurso: {this.state.percurso}</li>
+            </ul>
+          </div>
+        </nav>
         <h2>Enigma {this.state.id}</h2>
+        <h4>Direções: {this.state.direcoes}</h4>
         <h4>{this.state.enigma}</h4>
         <form id="formRespostaParada">
           <input type="text" />
