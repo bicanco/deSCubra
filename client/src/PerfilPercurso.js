@@ -65,7 +65,7 @@ export class PerfilPercurso extends React.Component{
 					console.log("Erro ao tentar fazer o upload da imagem");
 					this.state.imgSrc = null;
 				}
-			}
+			})
 		}
 
 		if(x.elements[2].value !== ""){
