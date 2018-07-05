@@ -73,7 +73,7 @@ class App extends Component {
           </header>
             <main className="App">
               {/*rota inicial*/}
-              <Route exact path="/" component={Parada} />
+              <Route exact path="/" component={About} />
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
               <Route path="/listaPercursos" component={() => <ListaPercursos user={this.state.user} />} />
@@ -81,7 +81,7 @@ class App extends Component {
     					<Route exact path="/editarPercurso/:idPercurso/:idParada" component={PerfilParada} />
               {/*rota exploradores*/}
               <Route path="/Percursos" component={Percurso} />
-              <Route path="/Parada" component={Parada} />
+              <Route path="/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
             </main>
           <footer>
             <FootMenu />
