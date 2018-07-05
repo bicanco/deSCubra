@@ -11,7 +11,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5432,
+  port: 5433,
 })
 bd.connect()
 
@@ -348,14 +348,14 @@ app.get("/selectPercursos", (req, res) =>{
     rowMode: 'array',
   }
 
-  bd.query(query, (err,q_res) => {
+  bd.query(query, (err, q_res) => {
     if(err){
       console.log("Erro ao selecionar percursos")
       console.log(err.stack)
     } else{
-      if(q_res.rowCount > 0){
+      if(q_res.rowCount !== 0){
         res.json({
-          sucess: "True"
+          sucess: "True",
           percursos: q_res.rows
         })
       } else{
