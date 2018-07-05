@@ -58,7 +58,7 @@ export class FinalPercurso extends Component{
   constructor(props){
       super(props);//passar como props nome do percurso
       this.state={
-        percurso: "Andando para Testar II,V: O Retorno Está De Volta",
+        percurso: props.aux.match.params.idPercurso,
       }
   }
 
@@ -98,7 +98,7 @@ export class FinalPercurso extends Component{
         <h5>Você terminou o percurso {this.state.percurso}.</h5>
         {/*botao de recomecar percurso*/}
         <br />
-        <a href={"/explorar/Percurso/"+this.state.percurso} class="btn red white-text" onClick={()=>this.recomecarPercurso()}><i class="material-icons left">replay</i> Recomeçar Percurso</a> <a class="btn green white-text" onClick={()=>this.recomecarPercurso()}><i class="material-icons left">playlist_play</i>Lista de Percursos</a>
+        <a href={"/explorar/Percurso/"+this.state.percurso} class="btn red white-text" onClick={()=>this.recomecarPercurso()}><i class="material-icons left">replay</i> Recomeçar Percurso</a> <a href="/explorar/ListaPercursos" class="btn green white-text"><i class="material-icons left">playlist_play</i>Lista de Percursos</a>
       </div>
 
         <br />

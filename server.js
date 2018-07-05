@@ -7,11 +7,11 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'juliana',
+  user: 'postgres',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5433,
+  port: 5432,
 })
 bd.connect()
 
@@ -268,6 +268,34 @@ app.get("/removeParada", (req,res) => {
           sucess: "False"
         })
       }
+    }
+  })
+})
+
+app.get("/lastParada", (req, res) => {
+  const percurso = req.query.p
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+
+  const query ={
+    text: "select max(codigo) from parada where percurso = $1",
+    values: [percurso],
+    rowMode: 'array',
+  }
+
+  bd.query(query, (err, q_res) =>{
+    if(err){
+      console.log("Erro ao remover percurso");
+      console.log(err.stack);
+    } else{
+        res.json({
+          sucess: "True",
+          lastParada: q_res.rows[0][0],
+        })
     }
   })
 })
