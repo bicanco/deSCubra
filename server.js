@@ -347,7 +347,7 @@ app.get("/selectPercursos", (req, res) =>{
     text: "select nome from percurso",
     rowMode: 'array',
   }
-  
+
   bd.query(query, (err,q_res) => {
     if(err){
       console.log("Erro ao selecionar percursos")
