@@ -18,20 +18,17 @@ export class PainelAdmin extends React.Component{
 
 	render(){
 		return(
-		<div class="red accent-4">
- 	     		<div className="painel_admin_header" >
+		<div class="container">
  	     			<div align='center'>
-   	    			<div id="tituloPainelAdmin" class='white-text'>
-								<h1>Painel de Administração</h1>
-								<h4>PERCURSOS DISPONÍVEIS</h4>
+   	    			<div id="tituloPainelAdmin" class='black-text'>
+								<h3>Painel de Administração</h3>
+								<h5>Percursos Disponíveis</h5>
 							</div>
-
-						<button class="btn red">Cadastrar Percurso</button><br /><br />
-      		</div>
 
 					<ListaPercursos percursos={this.state.percursos} />
 					{/*render da colecao dos percursos disponiveis no sistema*/}
 
+					<button class="btn green">Cadastrar Novo Percurso</button><br /><br />
 			</div>
 		</div>
 		);
