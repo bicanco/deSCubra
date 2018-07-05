@@ -10,7 +10,8 @@ import {TopMenu,FootMenu} from './Menu.js';
 import {Percurso} from './Percurso.js';
 import About from './About.js';
 import {ListaPercursos} from './ListaPercursos.js';
-import {Parada} from './Parada.js'
+import {Parada} from './Parada.js';
+import {PainelAdmin} from './PainelAdmin.js';
 
 class App extends Component {
 
@@ -36,7 +37,7 @@ class App extends Component {
               type
             }
           })
-          this.props.history.push('/listaPercursos')
+          this.props.history.push('/PainelAdmin')
         } else {
           console.log("Administrador nao cadastrado")
         }
@@ -73,14 +74,14 @@ class App extends Component {
           </header>
             <main className="App">
               {/*rota inicial*/}
-              <Route exact path="/" component={PerfilPercurso} />
+              <Route exact path="/" component={About} />
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
-              <Route path="/listaPercursos" component={() => <ListaPercursos user={this.state.user} />} />
+              <Route path="/PainelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
     					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
     					<Route exact path="/editarPercurso/:idPercurso/:idParada" component={PerfilParada} />
               {/*rota exploradores*/}
-              <Route path="/Percursos" component={Percurso} />
+              <Route path="/Percursos" component={() => <ListaPercursos user={this.state.user} />} />
             </main>
           <footer>
             <FootMenu />

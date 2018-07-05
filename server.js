@@ -1,7 +1,7 @@
 const { Pool, Client } = require('pg')
 const express = require("express")
-import multer from 'multer';
-import axios from 'axios';
+const multer = require('multer')
+const axios = require("axios")
 //const login = require("./routes/login.js")
 // Setup banco e ports
 
@@ -9,7 +9,7 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'postgres',
+  user: 'juliana',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
@@ -141,7 +141,6 @@ app.post('/uploadImage', upload.single('file'), (req, res) =>{
      .then(response => res.status(200).json(response.data.data))
      .catch((error) => res.status(500).json(error.response.data))
   });
-})
 
 app.get("/addParada", (req, res) => {
   const percurso = req.query.p
@@ -321,16 +320,20 @@ app.get("/removePercurso", (req, res) => {
 });
 
 app.get("/listPercursos", (req, res) => {
-  const select = 'select * from percurso'
-  // callback
-  bd.query(select, (err, q_res) => {
+  const query = {
+    text: 'select * from percurso',
+    rowMode: 'array',
+  };
+
+  bd.query(query, (err, q_res) => {
     console.log(err, q_res)
     if (err) {
       console.log("Erro ao selecionar percursos")
       console.log(err.stack)
     } else {
-      console.log(q_res.rows)
+      console.log(q_res.rows[0][0])
       res.json({
+        percursos: q_res.rows,
         sucess: "True"
       });
     }

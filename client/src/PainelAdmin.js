@@ -2,11 +2,13 @@ import React from 'react';
 import {ListaPercursos} from './ListaPercursos.js';
 import M from 'materialize-css';
 import axios from 'axios';
+import Client from './Client.js';
+
 export class PainelAdmin extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			percursos: ['percurso 1', 'percurso B', 'percurso III'],
+			percursos: [],
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
@@ -16,17 +18,23 @@ export class PainelAdmin extends React.Component{
  		 });
 	}
 
+	componentDidMount(){
+		Client.listPercursos(res => {
+			this.setState({percursos: res.percursos})
+		})
+	}
+
 	render(){
 		return(
-		<div class="red accent-4">
+		<div className="red accent-4">
  	     		<div className="painel_admin_header" >
  	     			<div align='center'>
-   	    			<div id="tituloPainelAdmin" class='white-text'>
+   	    			<div id="tituloPainelAdmin" className='white-text'>
 								<h1>Painel de Administração</h1>
 								<h4>PERCURSOS DISPONÍVEIS</h4>
 							</div>
 
-						<button class="btn red">Cadastrar Percurso</button><br /><br />
+						<button className="btn red">Cadastrar Percurso</button><br /><br />
       		</div>
 
 					<ListaPercursos percursos={this.state.percursos} />

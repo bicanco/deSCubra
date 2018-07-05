@@ -47,6 +47,13 @@ function removePercurso(nome, callbackFn){
   .then(callbackFn)
 }
 
+function listPercursos(callbackFn) {
+  return fetch(`/listPercursos`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
+}
+
 function admLogin(user, password, callbackFn) {
   return fetch(`/admLogin?u=${user}&p=${password}`)
   .then(checkStatus)
@@ -76,5 +83,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { admLogin, expLogin, addParada, addPercurso, removePercurso };
+const Client = { admLogin, expLogin, addParada, addPercurso, removePercurso, listPercursos };
 export default Client;
