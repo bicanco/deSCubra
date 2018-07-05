@@ -204,6 +204,36 @@ app.get("/addParada", (req, res) => {
   })
 })
 
+app.get("/removeParada", (req,res) => {
+  const nome = req.query.n
+
+  if(!nome){
+    res.json({
+      error: "Missing required parameter `n`"
+    });
+  }
+
+  const remove = "delete from parada where nome = $1";
+  const value = [nome];
+
+  bd.query(remove, value, (err, q_res) =>{
+    if(err){
+      console.log("Erro ao remover percurso");
+      console.log(err.stack);
+    } else{
+      if(q_res.rowCount === 1){
+        res.json({
+          sucess: "True"
+        })
+      } else{
+        res.json({
+          sucess: "False"
+        })
+      }
+    }
+  })
+})
+
 app.get("/addPercurso", (req, res) => {
   const nome_prev = req.query.pn
   const nome_curr = req.query.cn
@@ -258,7 +288,7 @@ app.get("/addPercurso", (req, res) => {
             console.log("Erro ao cadastrar percurso")
             console.log(err.stack)
           } else {
-            if(q_res.rowCount == 1){
+            if(q_res.rowCount === 1){
               res.json({
                 sucess: "True"
               });
@@ -275,21 +305,34 @@ app.get("/addPercurso", (req, res) => {
 })
 
 app.get("/removePercurso", (req, res) => {
+  const nome = req.query.n
+
   if(!nome){
     res.json({
       error: "Missing required parameter `n`"
     });
   }
   const remove = "delete from percurso where nome = $1";
-  const value = nome;
+  const value = [nome];
+
   console.log(remove);
   bd.query(remove, value, (err,q_res) =>{
     if(err){
       console.log("Erro ao remover percurso");
       console.log(err.stack);
+    } else {
+      if(q_res.rowCount === 1){
+        res.json({
+          sucess: "True"
+        });
+      } else {
+        res.json({
+          sucess: "False"
+        });
+      }
     }
-  });
-});
+  })
+})
 
 app.get("/listPercursos", (req, res) => {
   const select = 'select * from percurso'
