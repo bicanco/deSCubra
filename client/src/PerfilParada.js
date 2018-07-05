@@ -58,6 +58,7 @@ export class PerfilParada extends React.Component{
 	}
 
 	render(){
+		const url = "/editarPercurso/" + this.state.percurso
 		return(
 		<div>
 			{/*render do perfil de uma parada no percurso*/}
@@ -92,8 +93,8 @@ export class PerfilParada extends React.Component{
 							</form>
 						</div>
 						{/*botoes de cancelar e salvar*/}
-						<button className="waves-effect waves-red btn-flat red-text text-accent-4">Cancelar</button>
-						<button className="waves-effect waves-green btn-flat green-text" onClick={() => this.inserirParada()}>Salvar</button>
+						<a className="waves-effect waves-red btn-flat red-text text-accent-4" href={url} >Cancelar</a>
+						<a className="waves-effect waves-green btn-flat green-text" onClick={() => this.inserirParada()} href={url}>Salvar</a>
 					</div>
       	</div>
 			</div>

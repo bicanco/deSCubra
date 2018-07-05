@@ -98,6 +98,8 @@ export class PerfilPercurso extends React.Component{
 	}
 
 	render(){
+		const url = "/adicionarParada/" + this.state.nome
+
 		return(
 			<div class="white">
  	     		<div className="perfil_percurso container" >
@@ -130,14 +132,15 @@ export class PerfilPercurso extends React.Component{
 							</div>
 						</div>
 						<div align="center">
-							<a className="btn red"><i className="material-icons left">add</i>ADICIONAR PARADA</a>
+						<a className="btn red" href={url} ><i className="material-icons left">add</i>ADICIONAR PARADA</a>
 						</div>
       				</div>
 					{/*render da colecao das paradas desse percurso*/}
       				<ParadasPercurso paradas={this.state.paradas} />
       				<div align='center'>
 						{/*botoes de Salvar e Remover Percurso*/}
-						<button className="btn-flat green-text">Salvar</button> <button data-target="modalRemoverPercurso" className="btn-flat modal-trigger red-text">Remover Percurso</button>
+						<a className="btn-flat green-text" href="/painelAdmin">Salvar</a>
+						<button data-target="modalRemoverPercurso" className="btn-flat modal-trigger red-text">Remover Percurso</button>
 						<p><br class="red" /></p>
 						<div id="modalRemoverPercurso" className="modal">
 							{/*mensagem a aparecer quando deseja-se remover um percurso*/}
@@ -152,7 +155,7 @@ export class PerfilPercurso extends React.Component{
     						<div className="modal-footer">
 								{/*botoes na parte inferior da mensagem*/}
 								<button className="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-								<button className="waves-effect waves-red btn-flat red-text" onClick={() => this.removerPercurso()}>Remover</button>
+								<a className="waves-effect waves-red btn-flat red-text" onClick={() => this.removerPercurso()} href="/painelAdmin">Remover</a>
 							</div>
 						</div>
 					</div>
