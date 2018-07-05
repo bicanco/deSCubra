@@ -12,7 +12,7 @@ export class Parada extends Component{
           enigma: "Local de encontro para muitos estudantes de qual curso?",
           imgSrc: "",
           descricao: "fdsfkndsokfndsonfosdnfiodniofnsdaoifnnnnnnnn\nnnn\nnnnnnnnnnnnnnnnnnn\nnnn\\\\\nnnnn\nnnnnnn\nnnn\n\n\n\\n\n\n\n\n\n\n\n\n\nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaa",
-          resposta: "resposta"
+          resposta: "resposta1;resposta2"
       }
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -23,9 +23,16 @@ export class Parada extends Component{
   }
 
   conferirResposta(){
-    /*falta conferir todas as possiveis respostas*/
-    var x = document.getElementById("formRespostaParada");
-    var elem = document.getElementById(x.elements[0].value===this.state.resposta?"modalRespostaCorreta":"modalRespostaErrada");
+    var x = document.getElementById("formRespostaParada").elements[0].value;
+    var modal = "modalRespostaErrada";
+    var possiveisRespostas = this.state.resposta.split(";");
+    for(var i = 0 ; i < possiveisRespostas.length; i++){
+      if(x === possiveisRespostas[i]){
+        modal = "modalRespostaCorreta";
+        break;
+      }
+    }
+    var elem = document.getElementById(modal);
     var instance = M.Modal.getInstance(elem);
     instance.open();
   }

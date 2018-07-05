@@ -73,7 +73,7 @@ class App extends Component {
           </header>
             <main className="App">
               {/*rota inicial*/}
-              <Route exact path="/" component={PerfilPercurso} />
+              <Route exact path="/" component={About} />
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
               <Route path="/listaPercursos" component={() => <ListaPercursos user={this.state.user} />} />
