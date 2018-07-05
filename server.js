@@ -1,7 +1,5 @@
 const { Pool, Client } = require('pg')
 const express = require("express")
-const multer = require('multer')
-const axios = require("axios")
 //const login = require("./routes/login.js")
 // Setup banco e ports
 
@@ -13,18 +11,9 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5433,
+  port: 5432,
 })
 bd.connect()
-
-const storage = multer.diskStorage({
-  destination: './files',
-  filename(req, file, cb) {
-    cb(null, `${new Date()}-${file.originalname}`);
-  },
-});
-
-const upload = multer({ storage });
 
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
@@ -125,23 +114,6 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
-app.post('/uploadImage', upload.single('file'), (req, res) =>{
-   const file = req.file; // file passed from client
-   const meta = req.body; // all other values passed from the client, like name, etc..
-
-   // send the data to our REST API
-   axios({
-      url: `https://api.myrest.com/uploads`,
-      method: 'post',
-      data: {
-        file,
-        name: meta.name,
-      },
-    })
-     .then(response => res.status(200).json(response.data.data))
-     .catch((error) => res.status(500).json(error.response.data))
-  });
-
 app.get("/addParada", (req, res) => {
   const percurso = req.query.p
   const nome = req.query.n
@@ -201,9 +173,9 @@ app.get("/addParada", (req, res) => {
       if(q_res.rowCount == 1){
         console.log("Busca max realizada com sucesso")
         if(!q_res.rows[0]){
-          cod: 0
+          cod = 0
         } else{
-          cod: q_res.rows[0] + 1
+          cod = q_res.rows[0] + 1
         }
       }
     }
@@ -227,6 +199,74 @@ app.get("/addParada", (req, res) => {
         res.json({
         sucess: "False"
         });
+      }
+    }
+  })
+})
+
+app.get("/selectParada", (req, res) =>{
+  const percurso = req.query.p
+  const id = req.query.i
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+  if (!id) {
+    res.json({
+      error: "Missing required parameter `i`"
+    });
+    return;
+  }
+
+  const query ={
+    text: "select nome,descricao,pergunta,resposta,imagem from parada where percurso = $1 and codigo = $2",
+    values: [percurso,id],
+    rowMode: 'array',
+  }
+  bd.query(query, (err,q_res) => {
+    if(err){
+      console.log("Erro ao selecionar parada")
+      console.log(err.stack)
+    }else{
+      res.json({
+        sucess: 'True',
+        nome: q_res.rows[0][0],
+        descricao: q_res.rows[0][1],
+        pergunta: q_res.rows[0][2],
+        resposta: q_res.rows[0][3],
+        imagem: q_res.rows[0][4],
+      })
+    }
+  })
+})
+
+app.get("/removeParada", (req,res) => {
+  const nome = req.query.n
+
+  if(!nome){
+    res.json({
+      error: "Missing required parameter `n`"
+    });
+  }
+
+  const remove = "delete from parada where nome = $1";
+  const value = [nome];
+
+  bd.query(remove, value, (err, q_res) =>{
+    if(err){
+      console.log("Erro ao remover percurso");
+      console.log(err.stack);
+    } else{
+      if(q_res.rowCount === 1){
+        res.json({
+          sucess: "True"
+        })
+      } else{
+        res.json({
+          sucess: "False"
+        })
       }
     }
   })
@@ -286,7 +326,7 @@ app.get("/addPercurso", (req, res) => {
             console.log("Erro ao cadastrar percurso")
             console.log(err.stack)
           } else {
-            if(q_res.rowCount == 1){
+            if(q_res.rowCount === 1){
               res.json({
                 sucess: "True"
               });
@@ -302,7 +342,34 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
+app.get("/selectPercursos", (req, res) =>{
+  const query ={
+    text: "select nome from percurso",
+    rowMode: 'array',
+  }
+
+  bd.query(query, (err,q_res) => {
+    if(err){
+      console.log("Erro ao selecionar percursos")
+      console.log(err.stack)
+    } else{
+      if(q_res.rowCount > 0){
+        res.json({
+          sucess: "True"
+          percursos: q_res.rows
+        })
+      } else{
+        res.json({
+          sucess: "False"
+        })
+      }
+    }
+  })
+})
+
 app.get("/removePercurso", (req, res) => {
+  const nome = req.query.n
+
   if(!nome){
     res.json({
       error: "Missing required parameter `n`"
@@ -315,9 +382,19 @@ app.get("/removePercurso", (req, res) => {
     if(err){
       console.log("Erro ao remover percurso");
       console.log(err.stack);
+    } else {
+      if(q_res.rowCount === 1){
+        res.json({
+          sucess: "True"
+        });
+      } else {
+        res.json({
+          sucess: "False"
+        });
+      }
     }
-  });
-});
+  })
+})
 
 app.get("/listPercursos", (req, res) => {
   const query = {

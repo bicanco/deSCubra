@@ -81,7 +81,8 @@ class App extends Component {
     					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
     					<Route exact path="/editarPercurso/:idPercurso/:idParada" component={PerfilParada} />
               {/*rota exploradores*/}
-              <Route path="/Percursos" component={() => <ListaPercursos user={this.state.user} />} />
+              <Route path="/Percursos" component={Percurso} />
+              <Route path="/Parada" component={Parada} />
             </main>
           <footer>
             <FootMenu />

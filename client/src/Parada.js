@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
 import M from 'materialize-css';
+import Client from './Client.js';
+import { Link } from "react-router-dom";
 
 export class Parada extends Component{
   constructor(props){
       super(props);//passar como props nome do percurso, id da parada, nome da parada, direcoes e enigma da prada, imagem da parada, descricao da parada e possiveis respostas da parada
       this.state = {
-          percurso: "percurso 1",
-          id: 1,
-          nome: "Nome parada",
-          direcoes: "vire a esquerda",
-          enigma: "Local de encontro para muitos estudantes de qual curso?",
-          imgSrc: "",
-          descricao: "fdsfkndsokfndsonfosdnfiodniofnsdaoifnnnnnnnn\nnnn\nnnnnnnnnnnnnnnnnnn\nnnn\\\\\nnnnn\nnnnnnn\nnnn\n\n\n\\n\n\n\n\n\n\n\n\n\nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaa",
-          resposta: "resposta"
+          percurso: "Percurso de Teste 1",
+          id: 0,
       }
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -22,10 +18,35 @@ export class Parada extends Component{
        });
   }
 
+  componentDidMount(){
+    Client.selectParada(this.state.percurso,this.state.id, res =>{
+      console.log(res.sucess);
+      console.log("Selecionou Parada");
+      if(res.sucess === 'True'){
+        this.setState({
+          nome: res.nome,
+          descricao: res.descricao,
+          enigma: res.pergunta,
+          resposta: res.resposta,
+          imgSrc: res.imagem,
+        });
+      }else{
+        console.log("Erro ao tentar selecionar Parada");
+      }
+    });
+  }
+
   conferirResposta(){
-    /*falta conferir todas as possiveis respostas*/
-    var x = document.getElementById("formRespostaParada");
-    var elem = document.getElementById(x.elements[0].value===this.state.resposta?"modalRespostaCorreta":"modalRespostaErrada");
+    var x = document.getElementById("formRespostaParada").elements[0].value;
+    var modal = "modalRespostaErrada";
+    var possiveisRespostas = this.state.resposta.split(";");
+    for(var i = 0 ; i < possiveisRespostas.length; i++){
+      if(x === possiveisRespostas[i]){
+        modal = "modalRespostaCorreta";
+        break;
+      }
+    }
+    var elem = document.getElementById(modal);
     var instance = M.Modal.getInstance(elem);
     instance.open();
   }
@@ -85,7 +106,7 @@ export class Parada extends Component{
           </div>
           {/*botao de proximo enigma*/}
           <div class="modal-footer">
-            <a class="btn-flat green-text modal-trigger">Próximo Enigma</a>
+            <Link to="./Parada" class="btn-flat green-text">Próximo Enigma</Link>
           </div>
         </div>
         <p><br /></p>

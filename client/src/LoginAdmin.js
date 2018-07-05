@@ -12,7 +12,7 @@ class LoginAdmin extends Component {
 
   render() {
     return (
-        <div>
+        <div class="row"><div class="col s12 m4 offset-m4 l4 offset-l4">
           {/*interface para login do admnistrador*/}
           <form onSubmit={this.handleSignIn.bind(this)}>
             <h5>Login para administradores</h5>
@@ -21,7 +21,7 @@ class LoginAdmin extends Component {
             <button className="btn-flat green-text">Login</button>
           </form>
           <p><br /></p>
-        </div>
+        </div></div>
     );
   }
 

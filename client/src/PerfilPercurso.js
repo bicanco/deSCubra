@@ -8,17 +8,28 @@ export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			nome: "teste",
-			descricao: props.descricao,
-			imgSrc: props.imgSrc,
-			paradas: [1,2,3,4,5,6],
+			nome: null,
+			descricao: null,
+			imgSrc: null,
+			paradas: null,
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
     		var elems = document.querySelectorAll('.modal');
-		var options = {};
-		M.Modal.init(elems, options);
+				var options = {};
+				M.Modal.init(elems, options);
  		 });
+	}
+
+	componentDidMount(){
+		Client.perfilPercurso(this.state.nome, res => {
+			console.log(res)
+			if(res.sucess){
+				console.log("Informações do percurso obtidas")
+			} else{
+				console.log("Informações não encontradas")
+			}
+		})
 	}
 
 	stringRenderFotoPerfil(foto){
@@ -43,20 +54,13 @@ export class PerfilPercurso extends React.Component{
 	mudarPerfilPercurso(){
 		//funcao que altera os elementos a html quando os dados sao atualizados
 		const nome_prev = this.state.nome;
-		var imgpath = null;
 		var x = document.getElementById("formTrocarPerfilPercurso");
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
 
 		if(x.elements[0].value !== ""){
-			console.log(this.state.imgSrc)
 			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value)
-			const response = Client.uploadImage(x.elements[0], x.elements[2].value)
-			if(response.type = 'UPLOAD_DOCUMENT_SUCCESS'){
-				imgpath = response.data.fileUrl
-			} else if(response.type = 'UPLOAD_DOCUMENT_FAIL'){
-				imgpath = null;
-			}
+			this.state.imgSrc = x.elements[0].value;
 		}
 
 		if(x.elements[2].value !== ""){
@@ -95,7 +99,7 @@ export class PerfilPercurso extends React.Component{
 	render(){
 		return(
 			<div class="white">
- 	     		<div className="perfil_percurso" >
+ 	     		<div className="perfil_percurso container" >
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
 						<div>{this.renderNomePerfil(this.state.nome)}</div>
@@ -124,8 +128,8 @@ export class PerfilPercurso extends React.Component{
 								<button  className="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.mudarPerfilPercurso()}>Trocar</button>
 							</div>
 						</div>
-						<div align="right">
-							<a className="btn-floating red"><i className="material-icons">add</i></a>
+						<div align="center">
+							<a className="btn red"><i className="material-icons left">add</i>ADICIONAR PARADA</a>
 						</div>
       				</div>
 					{/*render da colecao das paradas desse percurso*/}
