@@ -1,5 +1,7 @@
 const { Pool, Client } = require('pg')
 const express = require("express")
+import multer from 'multer';
+import axios from 'axios';
 //const login = require("./routes/login.js")
 // Setup banco e ports
 
@@ -14,6 +16,15 @@ const bd = new Pool({
   port: 5433,
 })
 bd.connect()
+
+const storage = multer.diskStorage({
+  destination: './files',
+  filename(req, file, cb) {
+    cb(null, `${new Date()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 
 app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`);
@@ -114,8 +125,22 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
-app.post("/uploadImage", (req, res) =>{
+app.post('/uploadImage', upload.single('file'), (req, res) =>{
+   const file = req.file; // file passed from client
+   const meta = req.body; // all other values passed from the client, like name, etc..
 
+   // send the data to our REST API
+   axios({
+      url: `https://api.myrest.com/uploads`,
+      method: 'post',
+      data: {
+        file,
+        name: meta.name,
+      },
+    })
+     .then(response => res.status(200).json(response.data.data))
+     .catch((error) => res.status(500).json(error.response.data))
+  });
 })
 
 app.get("/addParada", (req, res) => {
