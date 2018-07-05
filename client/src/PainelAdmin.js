@@ -27,13 +27,12 @@ export class PainelAdmin extends React.Component{
 	componentDidMount(){
 		Client.listPercursos(res => {
 			this.setState({percursos: res.percursos})
-			console.log(res.percursos)
+			//console.log(res.percursos)
 		})
 	}
 
 	render(){
 		return(
-		<div>
 		<div className="container">
  			<div align='center'>
   			<div id="tituloPainelAdmin" className='black-text'>

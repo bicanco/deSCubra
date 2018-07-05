@@ -45,12 +45,14 @@ class App extends Component {
       })
     } else if (type === 'exp'){
       Client.expLogin(username, password, res => {
+        var name = password
         console.log(res.sucess)
         if(res.sucess === 'True'){
           console.log("Fez login como explorador")
           this.setState({
             user: {
               username,
+              name,
               type
             }
           })
@@ -83,7 +85,7 @@ class App extends Component {
     					<Route exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
               <Route exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
               {/*rota exploradores*/}
-              <Route path="/explorar/ListaPercursos" component={HomeExplorador} />
+              <Route path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
               <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
             </main>

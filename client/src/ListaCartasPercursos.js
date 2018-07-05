@@ -12,17 +12,16 @@ export class ListaCartasPercursos extends React.Component{
 	}
 
 	renderCartaoPercurso(percursoObj){
-		console.log(percursoObj.descricao);
 		return (
 				<div class="card">
 					<div class="card-image">
 						<img src={uspPH} />
-						<span class="card-title">{percursoObj.nome}</span>
+						<span class="card-title">{percursoObj[0]}</span>
 						<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">play_circle_filled</i></a>
 					</div>
 
 					<div class="card-content">
-					<p>{percursoObj.descricao}</p>
+					<p>{percursoObj[1]}</p>
 					</div>
 			</div>
 		);
@@ -30,7 +29,7 @@ export class ListaCartasPercursos extends React.Component{
 
 	render(){
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-		const aux = this.state.percursos.map((percursos) => <div class="col s12 m6">{this.renderCartaoPercurso(percursos)}</div>);
+		const aux = this.props.percursos.map((percursos) => <div class="col s12 m6">{this.renderCartaoPercurso(percursos)}</div>);
 		console.log();
 		return (
 			<div className="row">

@@ -48,7 +48,9 @@ export class PerfilPercurso extends React.Component{
 	renderNomePerfil(name){
 		//render do nome do percurso
 		return(
-			<h1><p><div id="NomePercursoPerfilPercurso">{name}</div><button data-target="modalTrocarNomePercurso" className="btn modal-trigger red"><i className="material-icons">create</i></button></p></h1>
+			<h1><div id="NomePercursoPerfilPercurso"><p>{name}</p></div>
+			<button data-target="modalTrocarNomePercurso" className="btn modal-trigger red">
+				<i className="material-icons">create</i></button></h1>
 		);
 	}
 
@@ -101,7 +103,7 @@ export class PerfilPercurso extends React.Component{
 		const url = "/adicionarParada/" + this.state.nome
 
 		return(
-			<div class="white">
+			<div className="white">
  	     		<div className="perfil_percurso container" >
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
@@ -141,7 +143,7 @@ export class PerfilPercurso extends React.Component{
 						{/*botoes de Salvar e Remover Percurso*/}
 						<a className="btn-flat green-text" href="/painelAdmin">Salvar</a>
 						<button data-target="modalRemoverPercurso" className="btn-flat modal-trigger red-text">Remover Percurso</button>
-						<p><br class="red" /></p>
+						<p><br className="red" /></p>
 						<div id="modalRemoverPercurso" className="modal">
 							{/*mensagem a aparecer quando deseja-se remover um percurso*/}
 							<div className="modal-content">
