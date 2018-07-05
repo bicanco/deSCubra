@@ -12,6 +12,7 @@ export class ListaCartasPercursos extends React.Component{
 	}
 
 	renderCartaoPercurso(percursoObj){
+		const url = "/explorar/Percurso/" + percursoObj[0]
 		return (
 				<div class="card">
 					<div class="card-image">
