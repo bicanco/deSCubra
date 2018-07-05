@@ -41,6 +41,8 @@ export class PainelAdmin extends React.Component{
 					<h5>Percursos Disponíveis</h5>
 				</div>
 			</div>
+		</div>
+		</div>
 		);
 	}
 }
