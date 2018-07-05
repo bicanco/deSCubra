@@ -33,7 +33,6 @@ export class PainelAdmin extends React.Component{
 
 	render(){
 		return(
-		<div>
 		<div className="container">
  			<div align='center'>
   			<div id="tituloPainelAdmin" className='black-text'>
@@ -41,7 +40,9 @@ export class PainelAdmin extends React.Component{
 					<h5>Percursos Disponíveis</h5>
 				</div>
 			</div>
-		</div>
+			<ListaPercursos percursos = {this.state.percursos} />
+			{/*render da colecao dos percursos disponiveis no sistema*/}
+			<button className="btn green">Cadastrar Novo Percurso</button><br /><br />
 		</div>
 		);
 	}
