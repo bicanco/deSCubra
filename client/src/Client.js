@@ -1,8 +1,29 @@
-function uploadImage(file, nome, callbackFn){
-  return fetch(`/uploadImage?f=${file}&n=${nome}`)
-  .then(checkStatus)
-  .then(parseJSON)
-  .then(callbackFn)
+import axios from 'axios';
+
+export function uploadSuccess({ data }) {
+  return {
+    type: 'UPLOAD_DOCUMENT_SUCCESS',
+    data,
+  };
+}
+
+export function uploadFail(error) {
+  return {
+    type: 'UPLOAD_DOCUMENT_FAIL',
+    error,
+  };
+}
+
+function uploadImage(file, nome){
+  let data = new FormData();
+  data.append('file', document);
+  data.append('name', nome);
+
+  return dispatch => {
+    axios.post('/uploadImage', data)
+      .then(response => dispatch(uploadSuccess(response)))
+      .catch(error => dispatch(uploadFail(error)))
+  }
 }
 
 function addParada(percurso, nome, desc, engm, resp, img, callbackFn) {

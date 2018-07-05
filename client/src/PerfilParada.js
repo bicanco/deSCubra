@@ -1,6 +1,5 @@
 import React from 'react';
 import Client from './Client.js';
-import M from 'materialize-css';
 
 export class PerfilParada extends React.Component{
 	constructor(props){

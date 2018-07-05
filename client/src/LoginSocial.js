@@ -12,10 +12,10 @@ class LoginSocial extends Component {
     }
 
     const responseGoogle = (response) => {
-     let email = response.profileObj.email;
-     let name = response.profileObj.name;
-     this.props.onSignIn(email, name, 'exp')
-     console.log(email, name);
+//     let email = response.profileObj.email;
+//     let name = response.profileObj.name;
+//     this.props.onSignIn(email, name, 'exp')
+//     console.log(email, name);
     }
 
     return (
@@ -29,7 +29,7 @@ class LoginSocial extends Component {
            size="small"
            callback={responseFacebook}
            render={renderProps => (
-             <a class="waves-effect waves-light btn blue darken-3" onClick={renderProps.onClick}>LOGIN COM FACEBOOK</a>
+             <a className="waves-effect waves-light btn blue darken-3" onClick={renderProps.onClick}>LOGIN COM FACEBOOK</a>
            )}
           />
         </li>
@@ -41,7 +41,7 @@ class LoginSocial extends Component {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             render={renderProps => (
-              <a class="waves-effect waves-light btn red darken-4" onClick={renderProps.onClick}>LOGIN COM GOOGLE</a>
+              <a className="waves-effect waves-light btn red darken-4" onClick={renderProps.onClick}>LOGIN COM GOOGLE</a>
             )}
           />
           </li>

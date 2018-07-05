@@ -1,44 +1,30 @@
-import React, {Component} from 'react';
-import M from 'materialize-css';
+import React from 'react';
 import gitlogo from './img/github.png';
 import logo32 from './img/logo-white32.png';
 import LoginSocial from './LoginSocial.js';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class TopMenu extends React.Component{
-    constructor(props){
-      super(props);
-      document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var options ={};
-        var instances = M.Sidenav.init(elems, options);
-      });
-    }
 
     renderOptions(user){
-      console.log("Renderizando menu para " + user)
       if(!user){
         return(
           <LoginSocial onSignIn={this.props.callbackSignIn}/>
         );
       }
-      if(user.type == 'adm'){
+      if(user.type === 'adm'){
         console.log("Login adm")
         return(
           <div>
-          <li><a>Log Out</a></li>
+          <li><a onClick={this.props.callbackSignOut}>Log Out</a></li>
           </div>
         );
-      }else if(user.type == 'exp'){
+      }else if(user.type === 'exp'){
         console.log("Login exp")
         return(
           <div>
-          {/*
-            <Link to="/"><li>Sobre</li></Link>
-            <Link to="/Percursos"><li>Percursos</li></Link>
-          */}
-          <li><a>Sobre</a></li>
-          <li><a>Percursos</a></li>
+          <li><Link to='./'>Sobre</Link></li>
+          <li><Link to="./Percursos">Percursos</Link></li>
           <li><a onClick={this.props.callbackSignOut}>Log Out</a></li>
           </div>
         );
@@ -52,11 +38,11 @@ export class TopMenu extends React.Component{
             <div className="nav-wrapper red accent-4">
             <div className="container">
               <ul className="left hide-on-med-and-down">
-                <li><a href="#" className="brand-logo left">
+                <li><a href="/" className="brand-logo left">
                   <img src={logo32} alt="deSCubra logo" />   #deSCubra
                 </a></li>
               </ul>
-              <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">Menu</i></a>
+              <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">Menu</i></a>
               <ul className="right hide-on-med-and-down">
                 {this.renderOptions(this.props.user)}
               </ul>

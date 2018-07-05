@@ -18,7 +18,7 @@ class LoginAdmin extends Component {
             <h5>Login para administradores</h5>
             <input type="text" ref="username" placeholder="Usuário" />
             <input type="password" ref="password" placeholder="Senha" />
-            <button class="btn-flat green-text">Login</button>
+            <button className="btn-flat green-text">Login</button>
           </form>
           <p><br /></p>
         </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {PerfilPercurso} from './PerfilPercurso.js';
+import { Link } from "react-router-dom";
 
 export class ListaPercursos extends React.Component{
 	constructor(props){
