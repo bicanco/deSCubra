@@ -10,12 +10,6 @@ class About extends Component {
     <div>
 
     <div className="row">
-      <div className="col s8 offset-s2">
-        <h3>#deSCubra</h3>
-      </div>
-    </div>
-
-    <div className="row">
       <div className="col s12 m8 l8 offset-m2 offset-l2 hide-on-med-and-down">
         <div class="card horizontal">
           <div class="card-image">
