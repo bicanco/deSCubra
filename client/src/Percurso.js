@@ -44,7 +44,7 @@ export class Percurso extends React.Component{
                 <br /><h6>{this.state.descricao}</h6> {/*descricao do percurso*/}
               </div>
               <div class="card-action">
-                <a href="#" className="btn waves-effect waves-light red white-text"><i class="material-icons left">directions_run</i>INICIAR</a>
+                <a href={"/explorar/Parada/"+this.state.nome+"/0"} className="btn waves-effect waves-light red white-text"><i class="material-icons left">directions_run</i>INICIAR</a>
               </div>
             </div>
           </div>
@@ -62,6 +62,10 @@ export class FinalPercurso extends Component{
       }
   }
 
+  recomecarPercurso(){
+    /*fazer mudanca status*/
+  }
+
   render(){
     return(
       <div>
@@ -69,7 +73,7 @@ export class FinalPercurso extends Component{
           {/*barra de voltar para tela principal*/}
           <div className="nav-wrapper red">
             <ul className="left">
-            <li><a href="#">
+            <li><a href={"explorar/Percurso/"+this.state.percurso}>
               <i className="material-icons">keyboard_backspace</i>
             </a></li>
             <li>Percurso: {this.state.percurso}</li>
@@ -80,7 +84,7 @@ export class FinalPercurso extends Component{
         <h2>Parabéns!</h2>
         <h4>Você terminou o percurso {this.state.percurso} </h4>
         {/*botao de recomecar percurso*/}
-        <button class="btn-flat red-text">Recomeçar Percurso</button>
+        <a href={"/explorar/Percurso/"+this.state.percurso} class="btn-flat red-text" onClick={()=>this.recomecarPercurso()}>Recomeçar Percurso</a>
       </div>
     );
   }

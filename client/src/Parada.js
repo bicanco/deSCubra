@@ -57,7 +57,7 @@ export class Parada extends Component{
 
   render(){
     const nextID = parseInt(this.state.id) + 1;
-    const next = "/"+this.state.percurso+"/"+nextID;
+    const next = "/explorar/Parada/"+this.state.percurso+"/"+nextID;
     console.log(nextID);
     return(
       <div>
@@ -65,7 +65,7 @@ export class Parada extends Component{
           {/*barra de voltar para tela principal*/}
           <div className="nav-wrapper red">
             <ul className="left">
-            <li><a href="#">
+            <li><a href={"/explorar/Percurso/"+this.state.percurso}>
               <i className="material-icons">keyboard_backspace</i>
             </a></li>
             <li>Percurso: {this.state.percurso}</li>
