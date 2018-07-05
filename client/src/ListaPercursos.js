@@ -11,11 +11,10 @@ export class ListaPercursos extends React.Component{
 	}
 
 	componentDidMount(){
-		console.log("mounted"+this.state.percursos)
+		console.log("mounted"+this.props.percursos)
 	}
 
 	renderLinhaPercurso(i){
-		console.log(i[0])
 		const url = "/editarPercurso/"+i[0]
 		return (
 			<div>
@@ -30,8 +29,8 @@ export class ListaPercursos extends React.Component{
 
 		console.log('renderizando'+this.state.percursos)
 		var aux = <p>Sem percursos cadastrados.</p>
-		if(this.state.percursos != []){
-			aux = this.state.percursos.map((percursos) => <li className="collection-item">{this.renderLinhaPercurso(percursos)}</li>);
+		if(this.props.percursos != []){
+			aux = this.props.percursos.map((percursos) => <li className="collection-item">{this.renderLinhaPercurso(percursos)}</li>);
 		}
 		return(
 			<div>

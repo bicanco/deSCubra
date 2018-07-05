@@ -9,10 +9,10 @@ export class PainelAdmin extends React.Component{
 
 		super(props);
 		this.state = {
-			percursos:  [ [ 'Percurso de Teste 1',
+			percursos:  [ [ 'Teste 1',
 											'Esse é um percurso de teste. Ele está sendo inserido diretamente no banco de dados.',
 											'images/percursos/teste1.png' ],
-										[ 'Percurso de Teste 2',
+										[ 'Teste 2',
 											'Eu queria ter algo legal para escrever aqui, mas vou ensinar você a terminar uma frase. Quando achar que está bom, escreva um ponto.',
 											'images/percursos/teste2.png' ] ],
 		}
@@ -26,7 +26,7 @@ export class PainelAdmin extends React.Component{
 
 	componentDidMount(){
 		Client.listPercursos(res => {
-			//this.setState({percursos: res.percursos})
+			this.setState({percursos: res.percursos})
 			console.log(res.percursos)
 		})
 	}
@@ -34,20 +34,15 @@ export class PainelAdmin extends React.Component{
 	render(){
 		return(
 		<div className="container">
- 	     			<div align='center'>
-   	    			<div id="tituloPainelAdmin" className='black-text'>
-								<h3>Painel de Administração</h3>
-								<h5>Percursos Disponíveis</h5>
-							</div>
-
-						<button class="btn red">Cadastrar Percurso</button><br /><br />
-      		</div>
-
-					<ListaPercursos percursos = {this.state.percursos} />
-					{/*render da colecao dos percursos disponiveis no sistema*/}
-
-					<button className="btn green">Cadastrar Novo Percurso</button><br /><br />
+ 			<div align='center'>
+  			<div id="tituloPainelAdmin" className='black-text'>
+					<h3>Painel de Administração</h3>
+					<h5>Percursos Disponíveis</h5>
+				</div>
 			</div>
+			<ListaPercursos percursos = {this.state.percursos} />
+			{/*render da colecao dos percursos disponiveis no sistema*/}
+			<button className="btn green">Cadastrar Novo Percurso</button><br /><br />
 		</div>
 		);
 	}
