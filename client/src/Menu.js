@@ -26,7 +26,7 @@ export class TopMenu extends React.Component{
         return(
           <div>
           <li><Link to='./'>Sobre</Link></li>
-          <li><Link to="./Percursos">Percursos</Link></li>
+          <li><Link to="/explorar/ListaPercursos">Percursos</Link></li>
           <li><a onClick={this.props.callbackSignOut}>Log Out</a></li>
           </div>
         );
