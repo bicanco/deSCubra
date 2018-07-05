@@ -73,7 +73,7 @@ class App extends Component {
           </header>
             <main className="App">
               {/*rota inicial*/}
-              <Route exact path="/" component={About} />
+              <Route exact path="/" component={PerfilPercurso} />
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={LoginAdmin} />
               <Route path="/listaPercursos" component={ListaPercursos} />

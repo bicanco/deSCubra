@@ -8,7 +8,7 @@ export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			nome: props.nome,
+			nome: "teste",
 			descricao: props.descricao,
 			imgSrc: props.imgSrc,
 			paradas: [1,2,3,4,5,6],
@@ -33,15 +33,10 @@ export class PerfilPercurso extends React.Component{
 		);
 	}
 
-	stringRenderNomePerfil(name){
-		//composicao do elemento html do nome do Percurso
-		return "<h1 className=\"white-text\">"+name+"    <button data-target=\"modalTrocarNomePercurso\" className=\"btn modal-trigger red\"><i className=\"material-icons\">create</i></button></h1>";
-	}
-
 	renderNomePerfil(name){
 		//render do nome do percurso
 		return(
-			<h1 className="white-text">{name}    <button data-target="modalTrocarNomePercurso" className="btn modal-trigger red"><i className="material-icons">create</i></button></h1>
+			<h1><p><div id="NomePercursoPerfilPercurso">{name}</div><button data-target="modalTrocarNomePercurso" className="btn modal-trigger red"><i className="material-icons">create</i></button></p></h1>
 		);
 	}
 
@@ -56,8 +51,7 @@ export class PerfilPercurso extends React.Component{
 		if(x.elements[0].value !== ""){
 			console.log(this.state.imgSrc);
 			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
-			/*
-			Client.uploadImage(x.elements[0], x.elements[2].value, res=> {
+/*			Client.uploadImage(x.elements[0], x.elements[2].value, res=> {
 				console.log(res.sucess);
 				if(res.sucess == 'True'){
 					console.log("Imagem encontra-se no servidor");
@@ -66,12 +60,11 @@ export class PerfilPercurso extends React.Component{
 					console.log("Erro ao tentar fazer o upload da imagem");
 					this.state.imgSrc = null;
 				}
-			})
 			})*/
 		}
 
 		if(x.elements[2].value !== ""){
-			n.innerHTML = this.stringRenderNomePerfil(x.elements[2].value);
+			n.innerHTML = x.elements[2].value;
 			this.state.nome = x.elements[2].value;
 		}
 
@@ -109,7 +102,7 @@ export class PerfilPercurso extends React.Component{
  	     		<div className="perfil_percurso" >
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
-						<div id="NomePercursoPerfilPercurso">{this.renderNomePerfil(this.state.name)}</div>
+						<div>{this.renderNomePerfil(this.state.nome)}</div>
 						<div id="modalTrocarNomePercurso" className="modal">
 							{/*mensagem a aparecer ao selecionar o botao que troca as informcaoes do percurso*/}
 							<div className="modal-content">
