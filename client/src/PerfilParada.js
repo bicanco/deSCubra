@@ -1,6 +1,7 @@
 import React from 'react';
 import Client from './Client.js';
 import M from 'materialize-css';
+import uspimg from './img/usp-campus1.jpg';
 
 export class PerfilParada extends React.Component{
 	constructor(props){
@@ -61,11 +62,11 @@ export class PerfilParada extends React.Component{
 		<div>
 			{/*render do perfil de uma parada no percurso*/}
 			<div>
- 	   		<div className="perfil_parada">
+ 	   		<div className="perfil_parada container">
 					<div id="PerfilParada" className="grey lighten-5">
 						<div>
 							<form id="formDadosParada" action="#" encType="multipart/form-data" method="post">
-								<img className="responsive-img" alt="Imagem da parada" />
+								<img src={uspimg} className="responsive-img" alt="Imagem da parada" />
 								{/*botao para trocar a imagem da parada*/}
 								<div className="file-field input-field">
 									<div className="btn red accent-4">
@@ -77,16 +78,16 @@ export class PerfilParada extends React.Component{
 									</div>
 								</div>
 								{/*campo de nome da parada*/}
-								<label htmlFor="nameField" className="black-text">Nome:</label>
+								<label htmlFor="nameField" className="black-text"><h6>Nome</h6></label>
 								<input value={this.state.nome} type="text" onChange={(e) => this.onChangeNome(e.target.nome)} id="nameField" />
 								{/*campo de descricao da parada*/}
-								<label htmlFor="descriptionField" className="black-text">Descrição:</label>
+								<label htmlFor="descriptionField" className="black-text"><h6>Descrição</h6></label>
 								<input value={this.state.descricao} type="text" onChange={(e) => this.onChangeDescricao(e.target.descricao)} id="descriptionField" />
 								{/*campo de enigma da parada*/}
-								<label htmlFor="enigmaField" className="black-text">Enigma da parada:</label>
+								<label htmlFor="enigmaField" className="black-text"><h6>Enigma da parada</h6></label>
 								<input value={this.state.enigma} type="text" onChange={(e) => this.onChangeEnigma(e.target.enigma)} id="enigmaField" />
 								{/*campo de respostas possiveis*/}
-								<label htmlFor="answerField" className="black-text">Possíveis respostas da parada: (separadas por ';')</label>
+								<label htmlFor="answerField" className="black-text"><h6>Possíveis respostas da parada: (separadas por ';')</h6></label>
 								<input value={this.state.possiveisResp} type="text" onChange={(e) => this.onChangepossiveisResp(e.target.possiveisResp)} id="answerField" />
 							</form>
 						</div>
