@@ -7,7 +7,7 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'postgres',
+  user: 'juliana',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
@@ -396,16 +396,20 @@ app.get("/removePercurso", (req, res) => {
 })
 
 app.get("/listPercursos", (req, res) => {
-  const select = 'select * from percurso'
-  // callback
-  bd.query(select, (err, q_res) => {
+  const query = {
+    text: 'select * from percurso',
+    rowMode: 'array',
+  };
+
+  bd.query(query, (err, q_res) => {
     console.log(err, q_res)
     if (err) {
       console.log("Erro ao selecionar percursos")
       console.log(err.stack)
     } else {
-      console.log(q_res.rows)
+      console.log(q_res.rows[0][0])
       res.json({
+        percursos: q_res.rows,
         sucess: "True"
       });
     }

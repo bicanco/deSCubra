@@ -12,10 +12,10 @@ class LoginSocial extends Component {
     }
 
     const responseGoogle = (response) => {
-//     let email = response.profileObj.email;
-//     let name = response.profileObj.name;
-//     this.props.onSignIn(email, name, 'exp')
-//     console.log(email, name);
+     let email = response.profileObj.email;
+     let name = response.profileObj.name;
+     this.props.onSignIn(email, name, 'exp')
+     console.log(email, name);
     }
 
     return (
