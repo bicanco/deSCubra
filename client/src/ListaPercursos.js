@@ -10,45 +10,37 @@ export class ListaPercursos extends React.Component{
 		};
 	}
 
+	componentDidMount(){
+		console.log("mounted"+this.state.percursos)
+	}
+
 	renderLinhaPercurso(i){
-		console.log(i)
-		const url = "/editarPercurso/"+i
+		console.log(i[0])
+		const url = "/editarPercurso/"+i[0]
 		return (
 			<div>
 				{/*render de um percurso, com botao para editar*/}
-<<<<<<< HEAD
-				<h5 className="white-text">{i}</h5>
-        <div align="right">
-					<Link to={url}>
-						<button className="btn red">
-							<i className="material-icons">edit</i>
-						</button>
-=======
-				{i}<Link to={url}><a class="secondary-content grey lighten-5"><i class="material-icons green-text text-darken-4">edit</i></a>
->>>>>>> 2a4c9e547781939e9800643cfa5afbbba4746412
-					</Link>
+				{i[0]}<a href={url} className="secondary-content"><i className="material-icons green-text text-darken-4">edit</i></a>
 			</div>
 		);
 	}
 
 	render(){
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-		const aux = this.state.percursos.map((percursos) => <li class="collection-item  grey lighten-5">{this.renderLinhaPercurso(percursos)}</li>);
+
+		console.log('renderizando'+this.state.percursos)
+		var aux = <p>Sem percursos cadastrados.</p>
+		if(this.state.percursos != []){
+			aux = this.state.percursos.map((percursos) => <li className="collection-item">{this.renderLinhaPercurso(percursos)}</li>);
+		}
 		return(
 			<div>
-<<<<<<< HEAD
-				<ul className="collection">
-					{/*render da lista de percursos */}
-					{aux}
-				</ul>
-=======
-				<div class="row">
-					<ul class="collection col s12 m4 offset-m4 l4 offset-l4">
+				<div className="row">
+					<ul className="collection col s12 m4 offset-m4 l4 offset-l4">
 						{/*render da lista de percursos */}
 						{aux}
 					</ul>
 				</div>
->>>>>>> 2a4c9e547781939e9800643cfa5afbbba4746412
 			</div>
 		);
 	}
