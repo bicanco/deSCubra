@@ -88,7 +88,7 @@ export class PerfilPercurso extends React.Component{
 	render(){
 		return(
 			<div class="white">
- 	     		<div className="perfil_percurso" >
+ 	     		<div className="perfil_percurso container" >
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
 						<div>{this.renderNomePerfil(this.state.nome)}</div>
@@ -117,8 +117,8 @@ export class PerfilPercurso extends React.Component{
 								<button  className="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.mudarPerfilPercurso()}>Trocar</button>
 							</div>
 						</div>
-						<div align="right">
-							<a className="btn-floating red"><i className="material-icons">add</i></a>
+						<div align="center">
+							<a className="btn red"><i className="material-icons left">add</i>ADICIONAR PARADA</a>
 						</div>
       				</div>
 					{/*render da colecao das paradas desse percurso*/}

@@ -25,7 +25,6 @@ export class ListaPercursos extends React.Component{
 		const aux = this.state.percursos.map((percursos) => <li class="collection-item">{this.renderLinhaPercurso(percursos)}</li>);
 		return(
 			<div>
-				<h3>Administração de Percursos</h3>
 				<div class="row">
 					<ul class="collection col s12 m4 offset-m4 l4 offset-l4">
 						{/*render da lista de percursos */}
