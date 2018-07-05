@@ -73,8 +73,8 @@ export class Parada extends Component{
             </ul>
           </div>
         </nav>
-        {/*texto do enigma da parada*/}
 
+        {/*texto do enigma da parada*/}
         <div class="container">
           <br />
           <div class="row">
