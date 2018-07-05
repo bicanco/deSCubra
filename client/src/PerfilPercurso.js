@@ -54,20 +54,14 @@ export class PerfilPercurso extends React.Component{
 		var n = document.getElementById("NomePercursoPerfilPercurso");
 
 		if(x.elements[0].value !== ""){
-			console.log(this.state.imgSrc);
-			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
-			/*
-			Client.uploadImage(x.elements[0], x.elements[2].value, res=> {
-				console.log(res.sucess);
-				if(res.sucess == 'True'){
-					console.log("Imagem encontra-se no servidor");
-					this.state.imgSrc = res.path;
-				} else{
-					console.log("Erro ao tentar fazer o upload da imagem");
-					this.state.imgSrc = null;
-				}
-			})
-			})*/
+			console.log(this.state.imgSrc)
+			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value)
+			const response = Client.uploadImage(x.elements[0], x.elements[2].value)
+			if(response.type = 'UPLOAD_DOCUMENT_SUCCESS'){
+				imgpath = response.data.fileUrl
+			} else if(response.type = 'UPLOAD_DOCUMENT_FAIL'){
+				imgpath = null;
+			}
 		}
 
 		if(x.elements[2].value !== ""){
