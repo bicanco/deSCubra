@@ -20,7 +20,7 @@ export class Percurso extends React.Component{
             {/*barra de voltar para tela principal*/}
             <div className="nav-wrapper red container">
               <ul className="left">
-              <li><a href="#">
+              <li><a href="/explorar/ListaPercursos">
                 <i className="material-icons">keyboard_backspace</i>
               </a></li>
               <li>Percurso: {this.state.nome}</li>

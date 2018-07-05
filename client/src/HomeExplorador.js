@@ -19,8 +19,8 @@ export class HomeExplorador extends React.Component{
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
     		var elems = document.querySelectorAll('.modal');
-		var options = {};
-		M.Modal.init(elems, options);
+				var options = {};
+				M.Modal.init(elems, options);
  		 });
 	}
 

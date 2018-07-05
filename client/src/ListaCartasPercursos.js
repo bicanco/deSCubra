@@ -12,13 +12,13 @@ export class ListaCartasPercursos extends React.Component{
 	}
 
 	renderCartaoPercurso(percursoObj){
-		console.log(percursoObj.descricao);
+		const url = "/explorar/Percurso/" + percursoObj.nome
 		return (
 				<div class="card">
 					<div class="card-image">
 						<img src={uspPH} />
 						<span class="card-title">{percursoObj.nome}</span>
-						<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">play_circle_filled</i></a>
+						<a class="btn-floating halfway-fab waves-effect waves-light red" href={url} ><i class="material-icons">play_circle_filled</i></a>
 					</div>
 
 					<div class="card-content">
