@@ -26,6 +26,13 @@ function addPercurso(nome_prev, nome_curr, desc, img, callbackFn) {
   .then(callbackFn)
 }
 
+function selectPercurso(callbackFn){
+  return fetch(`/selectPercurso?`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
+}
+
 function removePercurso(nome, callbackFn){
   return fetch(`/removePercurso?n=${nome}`)
   .then(checkStatus)

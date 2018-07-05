@@ -22,7 +22,7 @@ export class ListaPercursos extends React.Component{
 
 	render(){
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-		const aux = this.state.percursos.map((percursos) => <li class="collection-item">{this.renderLinhaPercurso(percursos)}</li>);
+		const aux = this.state.percursos.map((percursos) => <li class="collection-item  grey lighten-5">{this.renderLinhaPercurso(percursos)}</li>);
 		return(
 			<div>
 				<div class="row">

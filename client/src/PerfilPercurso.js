@@ -8,17 +8,28 @@ export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			nome: "teste",
-			descricao: props.descricao,
-			imgSrc: props.imgSrc,
-			paradas: [1,2,3,4,5,6],
+			nome: null,
+			descricao: null,
+			imgSrc: null,
+			paradas: null,
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
     		var elems = document.querySelectorAll('.modal');
-		var options = {};
-		M.Modal.init(elems, options);
+				var options = {};
+				M.Modal.init(elems, options);
  		 });
+	}
+
+	componentDidMount(){
+		Client.perfilPercurso(this.state.nome, res => {
+			console.log(res)
+			if(res.sucess){
+				console.log("Informações do percurso obtidas")
+			} else{
+				console.log("Informações não encontradas")
+			}
+		})
 	}
 
 	stringRenderFotoPerfil(foto){

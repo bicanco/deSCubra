@@ -342,6 +342,31 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
+app.get("/selectPercursos", (req, res) =>{
+  const query ={
+    text: "select nome from percurso",
+    rowMode: 'array',
+  }
+  
+  bd.query(query, (err,q_res) => {
+    if(err){
+      console.log("Erro ao selecionar percursos")
+      console.log(err.stack)
+    } else{
+      if(q_res.rowCount > 0){
+        res.json({
+          sucess: "True"
+          percursos: q_res.rows
+        })
+      } else{
+        res.json({
+          sucess: "False"
+        })
+      }
+    }
+  })
+})
+
 app.get("/removePercurso", (req, res) => {
   const nome = req.query.n
 
