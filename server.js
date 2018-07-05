@@ -11,7 +11,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5433,
+  port: 5432,
 })
 bd.connect()
 
@@ -204,6 +204,44 @@ app.get("/addParada", (req, res) => {
   })
 })
 
+app.get("/selectParada", (req, res) =>{
+  const percurso = req.query.p
+  const id = req.query.i
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+  if (!id) {
+    res.json({
+      error: "Missing required parameter `i`"
+    });
+    return;
+  }
+
+  const query ={
+    text: "select nome,descricao,pergunta,resposta,imagem from parada where percurso = $1 and codigo = $2",
+    values: [percurso,id],
+    rowMode: 'array',
+  }
+  bd.query(query, (err,q_res) => {
+    if(err){
+      console.log("Erro ao selecionar parada")
+      console.log(err.stack)
+    }else{
+      res.json({
+        sucess: 'True',
+        nome: q_res.rows[0][0],
+        descricao: q_res.rows[0][1],
+        pergunta: q_res.rows[0][2],
+        resposta: q_res.rows[0][3],
+        imagem: q_res.rows[0][4],
+      })
+    }
+  })
+})
+
 app.get("/removeParada", (req,res) => {
   const nome = req.query.n
 
@@ -313,8 +351,7 @@ app.get("/removePercurso", (req, res) => {
     });
   }
   const remove = "delete from percurso where nome = $1";
-  const value = [nome];
-
+  const value = nome;
   console.log(remove);
   bd.query(remove, value, (err,q_res) =>{
     if(err){
