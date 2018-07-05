@@ -26,7 +26,7 @@ export class ParadasPercurso extends React.Component{
 		return (
 			<div align="left">
 				{/*render de uma parada de um percurso*/}
-				{i}<div align="right"><button class="btn red" onClick = {() => this.removerParada(i)}><i class="material-icons">remove</i></button></div>
+				{i}<a href="#!" onClick = {() => this.removerParada(i)} class="secondary-content grey lighten-5"><i class="material-icons green-text text-darken-4">delete</i></a>
 			</div>
 		);
 	}
