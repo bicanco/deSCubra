@@ -44,7 +44,7 @@ export class Percurso extends React.Component{
 
 export class FinalPercurso extends Component{
   constructor(props){
-      super(props);
+      super(props);//passar como props nome do percurso
       this.state={
         percurso: "percurso",
       }
@@ -64,8 +64,10 @@ export class FinalPercurso extends Component{
             </ul>
           </div>
         </nav>
+        {/*mensagem de parabenizacao*/}
         <h2>Parabéns!</h2>
         <h4>Você terminou o percurso {this.state.percurso} </h4>
+        {/*botao de recomecar percurso*/}
         <button class="btn-flat red-text">Recomeçar Percurso</button>
       </div>
     );

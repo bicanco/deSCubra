@@ -11,6 +11,7 @@ import {TopMenu,FootMenu} from './Menu.js';
 import {Percurso} from './Percurso.js';
 import About from './About.js';
 import {ListaPercursos} from './ListaPercursos.js';
+import {Parada} from './Parada.js'
 
 class App extends Component {
   constructor(props) {

@@ -83,6 +83,24 @@ export class PerfilPercurso extends React.Component{
 		})
 	}
 
+	removerPercurso(){
+		var elem = document.getElementById("formRemoverPercurso");
+		var percursoARemover = elem.elements[0].value;
+		if(percursoARemover === this.state.nome){
+			console.log("remover");
+			Client.removePercurso(this.state.nome, res => {
+				console.log(res.sucess);
+				if(res.sucess === 'True'){
+					console.log("Removeu Percurso");
+				}else{
+					console.log("Erro ao tentar remover Percurso");
+				}
+			});
+		}else{
+			console.log("não remover");
+		}
+	}
+
 	render(){
 		return(
 			<div class="white">
@@ -131,14 +149,14 @@ export class PerfilPercurso extends React.Component{
 								{/*Conteudo da mensagem*/}
 	    						<h4>Tem certeza que deseja remover?</h4>
 								<p>Digite o nome do percurso para removê-lo:</p>
-								<form action="#">
+								<form id="formRemoverPercurso" action="#">
 									<input type="text" />
 								</form>
 	   						</div>
     						<div className="modal-footer">
 								{/*botoes na parte inferior da mensagem*/}
-								<a href="#!" className="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-								<a href="#!" className="modal-close waves-effect waves-green btn-flat red-text">Remover</a>
+								<button className="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+								<button className="waves-effect waves-red btn-flat red-text" onClick={() => this.removerPercurso()}>Remover</button>
 							</div>
 						</div>
 					</div>

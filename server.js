@@ -115,7 +115,7 @@ app.get("/expLogin", (req, res) => {
 })
 
 app.post("/uploadImage", (req, res) =>{
-  
+
 }
 
 app.get("/addParada", (req, res) => {
@@ -277,6 +277,23 @@ app.get("/addPercurso", (req, res) => {
     }
   })
 })
+
+app.get("/removePercurso", (req, res) => {
+  if(!nome){
+    res.json({
+      error: "Missing required parameter `n`"
+    });
+  }
+  const remove = "delete from percurso where nome = $1";
+  const value = nome;
+
+  bd.query(remove, value, (err,q_res) =>{
+    if(err){
+      console.log("Erro ao remover percurso");
+      console.log(err.stack);
+    }
+  });
+});
 
 // query teste para ver se banco esta conectando
 bd.query('SELECT NOW()', (err, res) => {
