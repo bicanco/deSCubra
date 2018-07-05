@@ -12,6 +12,7 @@ import About from './About.js';
 import {ListaPercursos} from './ListaPercursos.js';
 import {Parada} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
+import {HomeExplorador} from './HomeExplorador.js';
 
 class App extends Component {
 
@@ -81,6 +82,7 @@ class App extends Component {
     					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
     					<Route exact path="/editarPercurso/:idPercurso/:idParada" component={PerfilParada} />
               {/*rota exploradores*/}
+              <Route path="/explorar/ListaPercursos" component={HomeExplorador} />
               <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
               <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
             </main>
