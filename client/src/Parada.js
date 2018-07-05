@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export class Parada extends Component{
   constructor(props){
-      super(props);//passar como props nome do percurso, id da parada, nome da parada, direcoes e enigma da prada, imagem da parada, descricao da parada e possiveis respostas da parada
-      this.state = {
-          percurso: "Percurso de Teste 1",
-          id: 0,
+      super(props);
+      this.state ={
+          percurso: props.aux.match.params.idPercurso,
+          id: props.aux.match.params.idParada,
       }
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -36,6 +36,10 @@ export class Parada extends Component{
     });
   }
 
+  mudarParada(){
+    /*atualizar status*/
+  }
+
   conferirResposta(){
     var x = document.getElementById("formRespostaParada").elements[0].value;
     var modal = "modalRespostaErrada";
@@ -52,6 +56,9 @@ export class Parada extends Component{
   }
 
   render(){
+    const nextID = parseInt(this.state.id) + 1;
+    const next = "/"+this.state.percurso+"/"+nextID;
+    console.log(nextID);
     return(
       <div>
         <nav>
@@ -83,8 +90,8 @@ export class Parada extends Component{
           </div>
           {/*botoes de pular e tentar novamente*/}
           <div class="modal-footer">
-            <a class="btn-flat red-text modal-trigger" href="#modalDescricao">Pular</a>
-            <a class="btn-flat green-text modal-close" href="#!">Tentar Novamente</a>
+            <button class="btn-flat red-text modal-trigger" data-target="modalDescricao">Pular</button>
+            <button class="btn-flat green-text modal-close" data-target="modalRespostaErrada">Tentar Novamente</button>
           </div>
         </div>
         {/*modal de resposta correta*/}
@@ -94,7 +101,7 @@ export class Parada extends Component{
           </div>
           {/*botao de ver parada*/}
           <div class="modal-footer">
-            <a class="btn-flat green-text modal-trigger" href="#modalDescricao">Ver Parada</a>
+            <button class="btn-flat green-text modal-trigger" data-target="modalDescricao">Ver Parada</button>
           </div>
         </div>
         {/*modal de descricao de parada*/}
@@ -106,7 +113,7 @@ export class Parada extends Component{
           </div>
           {/*botao de proximo enigma*/}
           <div class="modal-footer">
-            <Link to="./Parada" class="btn-flat green-text">Próximo Enigma</Link>
+            <a href={next} class="btn-flat green-text" onClick={() => this.mudarParada()}>Próximo Enigma</a>
           </div>
         </div>
         <p><br /></p>
