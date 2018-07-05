@@ -43,20 +43,13 @@ export class PerfilPercurso extends React.Component{
 	mudarPerfilPercurso(){
 		//funcao que altera os elementos a html quando os dados sao atualizados
 		const nome_prev = this.state.nome;
-		var imgpath = null;
 		var x = document.getElementById("formTrocarPerfilPercurso");
 		var f = document.getElementById("FotoPercursoPerfilPercurso");
 		var n = document.getElementById("NomePercursoPerfilPercurso");
 
 		if(x.elements[0].value !== ""){
-			console.log(this.state.imgSrc)
 			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value)
-			const response = Client.uploadImage(x.elements[0], x.elements[2].value)
-			if(response.type = 'UPLOAD_DOCUMENT_SUCCESS'){
-				imgpath = response.data.fileUrl
-			} else if(response.type = 'UPLOAD_DOCUMENT_FAIL'){
-				imgpath = null;
-			}
+			this.state.imgSrc = x.elements[0].value;
 		}
 
 		if(x.elements[2].value !== ""){
