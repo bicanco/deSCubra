@@ -355,7 +355,7 @@ app.get("/selectPercursos", (req, res) =>{
     } else{
       if(q_res.rowCount > 0){
         res.json({
-          sucess: "True"
+          sucess: "True",
           percursos: q_res.rows
         })
       } else{
@@ -377,7 +377,6 @@ app.get("/removePercurso", (req, res) => {
   }
   const remove = "delete from percurso where nome = $1";
   const value = nome;
-  console.log(remove);
   bd.query(remove, value, (err,q_res) =>{
     if(err){
       console.log("Erro ao remover percurso");

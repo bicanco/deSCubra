@@ -11,7 +11,7 @@ export class PerfilPercurso extends React.Component{
 			nome: null,
 			descricao: null,
 			imgSrc: null,
-			paradas: null,
+			paradas: [1, 2, 3, 4, 5],
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
@@ -21,6 +21,7 @@ export class PerfilPercurso extends React.Component{
  		 });
 	}
 
+	/*
 	componentDidMount(){
 		Client.perfilPercurso(this.state.nome, res => {
 			console.log(res)
@@ -30,7 +31,7 @@ export class PerfilPercurso extends React.Component{
 				console.log("Informações não encontradas")
 			}
 		})
-	}
+	}*/
 
 	stringRenderFotoPerfil(foto){
 		//composicao do elemento html da foto do percurso

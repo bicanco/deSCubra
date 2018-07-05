@@ -81,8 +81,8 @@ class App extends Component {
     					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
     					<Route exact path="/editarPercurso/:idPercurso/:idParada" component={PerfilParada} />
               {/*rota exploradores*/}
-              <Route path="/Percursos" component={Percurso} />
-              <Route path="/Parada" component={Parada} />
+              <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
+              <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
             </main>
           <footer>
             <FootMenu />
