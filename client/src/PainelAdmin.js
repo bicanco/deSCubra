@@ -48,7 +48,6 @@ export class PainelAdmin extends React.Component{
 
 					<button className="btn green">Cadastrar Novo Percurso</button><br /><br />
 			</div>
-		</div>
 		);
 	}
 }
