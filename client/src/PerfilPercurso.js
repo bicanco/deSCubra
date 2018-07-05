@@ -8,8 +8,8 @@ export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			nome: "teste",
-			descricao: props.descricao,
+			nome: 'teste',
+			descricao: 'aaaaaaaaaaaaaaadesgfadgwe',
 			imgSrc: props.imgSrc,
 			paradas: [1,2,3,4,5,6],
 		}
