@@ -33,6 +33,7 @@ export class PainelAdmin extends React.Component{
 
 	render(){
 		return(
+		<div>
 		<div className="container">
  			<div align='center'>
   			<div id="tituloPainelAdmin" className='black-text'>
