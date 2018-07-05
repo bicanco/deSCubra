@@ -56,6 +56,7 @@ export class PerfilPercurso extends React.Component{
 		if(x.elements[0].value !== ""){
 			console.log(this.state.imgSrc);
 			f.innerHTML = this.stringRenderFotoPerfil(x.elements[0].value);
+			/*
 			Client.uploadImage(x.elements[0], x.elements[2].value, res=> {
 				console.log(res.sucess);
 				if(res.sucess == 'True'){
@@ -66,6 +67,7 @@ export class PerfilPercurso extends React.Component{
 					this.state.imgSrc = null;
 				}
 			})
+			})*/
 		}
 
 		if(x.elements[2].value !== ""){

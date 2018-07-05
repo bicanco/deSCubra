@@ -116,7 +116,7 @@ app.get("/expLogin", (req, res) => {
 
 app.post("/uploadImage", (req, res) =>{
 
-}
+})
 
 app.get("/addParada", (req, res) => {
   const percurso = req.query.p
@@ -249,7 +249,7 @@ app.get("/addPercurso", (req, res) => {
       console.log("Erro ao alterar percurso")
       console.log(err.stack)
     } else {
-      if(q_res.rowCount == 1){
+      if(q_res.rowCount == 0){
         res.json({
           sucess: "True"
         });
