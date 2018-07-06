@@ -4,6 +4,7 @@ import Client from './Client.js';
 import uspPH from './img/usp-placeholder.jpg';
 import { Link } from "react-router-dom";
 
+//classe de tela de uma parada do explorador
 export class Parada extends Component{
   constructor(props){
       super(props);
@@ -21,8 +22,6 @@ export class Parada extends Component{
 
   componentDidMount(){
     Client.selectParada(this.state.percurso,this.state.id, res =>{
-      //console.log(res.sucess);
-      //console.log("Selecionou Parada");
       if(res.sucess === 'True'){
         this.setState({
           nome: res.nome,

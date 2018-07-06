@@ -2,14 +2,14 @@ import React from 'react';
 import uspPH from './img/usp-placeholder.jpg';
 import { Link } from "react-router-dom";
 
+//classe que gera a lista de cards da homePage do explorador
 export class ListaCartasPercursos extends React.Component{
 	constructor(props){
-		super(props);//passar como props um vetor com os dados das paradas
+		super(props);
 		this.state ={
 			percursos: props.percursos,
 		};
 
-		//console.log(this.state.percursos);
 	}
 
 	renderCartaoPercurso(percursoObj){

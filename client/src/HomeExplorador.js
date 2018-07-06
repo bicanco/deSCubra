@@ -5,6 +5,7 @@ import axios from 'axios';
 import uspPH from './img/usp-placeholder.jpg';
 import {ListaCartasPercursos} from './ListaCartasPercursos.js';
 
+//classe de tela de lista de percursos para os exploradores
 export class HomeExplorador extends React.Component{
 	constructor(props){
 		super(props);
@@ -28,7 +29,6 @@ export class HomeExplorador extends React.Component{
 	componentDidMount(){
 		Client.listPercursos(res => {
 			this.setState({percursos: res.percursos})
-			//console.log(res.percursos)
 		})
 	}
 

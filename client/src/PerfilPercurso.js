@@ -4,6 +4,7 @@ import M from 'materialize-css';
 import axios from 'axios';
 import Client from './Client.js'
 
+//classe de tela de adiministracao de um percurso
 export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);

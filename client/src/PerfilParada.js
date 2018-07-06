@@ -3,6 +3,7 @@ import Client from './Client.js';
 import M from 'materialize-css';
 import uspimg from './img/usp-campus1.jpg';
 
+//classe de tela de adiministracao de uma parada
 export class PerfilParada extends React.Component{
 	constructor(props){
 		super(props);//passar como props o nome, descricao, enigma e possossiveis respostas do percurso

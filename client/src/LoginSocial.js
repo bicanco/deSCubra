@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleLogin from 'react-google-login';
 
+//classe de tela de login dos exploradores
 class LoginSocial extends Component {
   render() {
     const responseFacebook = (response) => {
      let email = response.email;
      let name = response.name;
      this.props.onSignIn(email, name, 'exp')
-     //console.log(email, name);
+     console.log(email, name);
     }
 
-/*    const responseGoogle = (response) => {
+    const responseGoogle = (response) => {
      let email = response.profileObj.email;
      let name = response.profileObj.name;
      this.props.onSignIn(email, name, 'exp')
      console.log(email, name);
    }
-*/
     return (
       <div>
         {/*interface para login dos exploradores*/}

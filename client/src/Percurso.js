@@ -3,6 +3,7 @@ import logo from './img/logo.png';
 import uspimg from './img/usp-campus1.jpg';
 import Client from './Client.js';
 
+//classe de tela de percursos do explorador
 export class Percurso extends React.Component{
   constructor(props){
     console.log(props.match)

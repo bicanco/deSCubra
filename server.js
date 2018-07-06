@@ -10,7 +10,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5433,
+  port: 5432,
 })
 bd.connect()
 
@@ -394,8 +394,10 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
+//selecao de informacoes sobre percurso
 app.get("/selectPerc", (req, res) => {
   const nome = req.query.n
+    //checagem de erro
   if (!nome) {
     res.json({
       error: "Missing required parameter `n`"
@@ -410,6 +412,7 @@ app.get("/selectPerc", (req, res) => {
   }
 
   bd.query(query1, (err,q_res) => {
+      //checagem de erro
     if(err){
       console.log("Erro ao selecionar percurso")
       console.log(err.stack)
@@ -430,6 +433,7 @@ app.get("/selectPerc", (req, res) => {
   })
 })
 
+//selecionar paradas
 app.get("/selectParadas", (req, res) =>{
   const percurso = req.query.p
   if (!percurso) {
@@ -446,6 +450,7 @@ app.get("/selectParadas", (req, res) =>{
   }
 
   bd.query(query2, (err, q_res) => {
+    //checagem de erro
     if(err){
       console.log("Erro ao selecionar paradas")
       console.log(err.stack)
@@ -466,7 +471,7 @@ app.get("/selectParadas", (req, res) =>{
 
 app.get("/selectPercurso", (req, res) => {
   const percurso = req.query.p
-
+  //checagem de erro
   if (!percurso) {
     res.json({
       error: "Missing required parameter `p`"

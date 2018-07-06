@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Client from './Client.js';
 
+//classe que gera os percursos para a homePage do administrador
 export class ListaPercursos extends React.Component{
 	constructor(props){
-		super(props);//passar como props um vetor com os nomes das paradas do percurso
+		super(props);
 		this.state ={
 			percursos: props.percursos,
 		};
