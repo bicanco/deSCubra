@@ -21,8 +21,8 @@ export class Parada extends Component{
 
   componentDidMount(){
     Client.selectParada(this.state.percurso,this.state.id, res =>{
-      console.log(res.sucess);
-      console.log("Selecionou Parada");
+      //console.log(res.sucess);
+      //console.log("Selecionou Parada");
       if(res.sucess === 'True'){
         this.setState({
           nome: res.nome,
@@ -33,7 +33,7 @@ export class Parada extends Component{
           next: this.conferirFinalPercurso(),
         });
       }else{
-        console.log("Erro ao tentar selecionar Parada");
+        //console.log("Erro ao tentar selecionar Parada");
       }
     });
   }
@@ -69,8 +69,9 @@ export class Parada extends Component{
   }
 
   render(){
-//    const nextID = parseInt(this.state.id) + 1;
-//    const next = "/explorar/Parada/"+this.state.percurso+"/"+nextID;
+    const nextID = parseInt(this.state.id) + 1;
+    const next = "/explorar/Parada/"+this.state.percurso+"/"+nextID;
+    //console.log(nextID);
     return(
       <div>
         <nav class="red">

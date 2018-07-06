@@ -27,7 +27,7 @@ export class PainelAdmin extends React.Component{
 	componentDidMount(){
 		Client.listPercursos(res => {
 			this.setState({percursos: res.percursos})
-			console.log(res.percursos)
+			//console.log(res.percursos)
 		})
 	}
 

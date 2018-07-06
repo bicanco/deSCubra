@@ -76,11 +76,11 @@ app.get("/expLogin", (req, res) => {
     return;
   }
 
-  const q1 = 'select * from explorador where email = $1 and nome = $2'
-  const values = [email, name]
-
+  const q1 = 'select * from explorador where email = $1'
+  const values1 = [email]
+  const values2 = [email, name]
   // callback
-  bd.query(q1, values, (err, q_res) => {
+  bd.query(q1, values1, (err, q_res) => {
     console.log(err, q_res)
     if (err) {
       console.log("Erro ao buscar explorador")
@@ -92,7 +92,7 @@ app.get("/expLogin", (req, res) => {
         });
       } else {
         const q2 = 'insert into explorador(email, nome) values ($1, $2)'
-        bd.query(q2, values, (err, q_res) => {
+        bd.query(q2, values2, (err, q_res) => {
           console.log(err, q_res)
           if (err) {
             console.log("Erro ao cadastrar explorador")
@@ -370,17 +370,27 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
-app.get("/selectPercursos", (req, res) =>{
+app.get("/selectPercurso", (req, res) =>{
+  const percurso = req.query.p
+
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+
   const query ={
-    text: "select nome from percurso",
+    text: "select pe.nome, pe.descricao, count(pa.codigo) from percurso pe, parada pa where pe.nome = pa.percurso and pe.nome = $1 group by pe.nome, pe.descricao",
     rowMode: 'array',
   }
 
-  bd.query(query, (err, q_res) => {
+  bd.query(query, [percurso], (err, q_res) => {
     if(err){
-      console.log("Erro ao selecionar percursos")
+      console.log("Erro ao buscar informacoes do percurso")
       console.log(err.stack)
     } else{
+      console.log(q_res)
       if(q_res.rowCount !== 0){
         res.json({
           sucess: "True",

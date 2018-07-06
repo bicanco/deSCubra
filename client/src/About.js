@@ -11,12 +11,12 @@ class About extends Component {
 
     <div className="row">
       <div className="col s12 m8 l8 offset-m2 offset-l2 hide-on-med-and-down">
-        <div class="card horizontal">
-          <div class="card-image">
+        <div className="card horizontal">
+          <div className="card-image">
             <img src={aboutimg1} />
           </div>
-          <div class="card-stacked">
-            <div class="card-content valign-wrapper">
+          <div className="card-stacked">
+            <div className="card-content valign-wrapper">
               <h5>Conhecer São Carlos nunca foi tão divertido! Com o <b>#deSCubra</b>, você vai aprender mais sobre a cidade, sua história e seus pontos mais importantes, resolvendo enigmas com os seus amigos durante suas caminhadas.</h5>
             </div>
           </div>
@@ -24,12 +24,12 @@ class About extends Component {
       </div>
 
       <div className="col s12 m8 l8 offset-m2 offset-l2 hide-on-large-only">
-        <div class="card">
-          <div class="card-image">
+        <div className="card">
+          <div className="card-image">
             <img src={aboutimg1} />
           </div>
           <div>
-            <div class="card-content valign-wrapper">
+            <div className="card-content valign-wrapper">
               <h5>Conhecer São Carlos nunca foi tão divertido! Com o <b>#deSCubra</b>, você vai aprender mais sobre a cidade, sua história e seus pontos mais importantes, resolvendo enigmas com os seus amigos durante suas caminhadas.</h5>
             </div>
           </div>
@@ -39,12 +39,12 @@ class About extends Component {
 
     <div className="row">
       <div className="col s12 m4 l4 offset-m2 offset-l2 hide-on-med-and-down">
-        <div class="card horizontal">
-          <div class="card-image">
+        <div className="card horizontal">
+          <div className="card-image">
             <img src={logosquare} />
           </div>
-          <div class="card-stacked">
-            <div class="card-content valign-wrapper">
+          <div className="card-stacked">
+            <div className="card-content valign-wrapper">
               <p>O <b>#deSCubra</b> é uma plataforma de guias turísticos gamificados preparados exclusivamente para a cidade de São Carlos.</p>
             </div>
           </div>
@@ -52,12 +52,12 @@ class About extends Component {
       </div>
 
       <div className="col s12 m4 l4 offset-m2 offset-l2 hide-on-large-only">
-        <div class="card">
-          <div class="card-image">
+        <div className="card">
+          <div className="card-image">
             <img src={logorect} />
           </div>
           <div>
-            <div class="card-content valign-wrapper">
+            <div className="card-content valign-wrapper">
               <p>O <b>#deSCubra</b> é uma plataforma de guias turísticos gamificados preparados exclusivamente para a cidade de São Carlos.</p>
             </div>
           </div>
@@ -65,7 +65,7 @@ class About extends Component {
       </div>
 
       <div className="col s12 m4 l4">
-        <div class="card-panel">
+        <div className="card-panel">
           <p>O propósito do projeto é tornar mais prática e divertida a familiarização com o ambiente em que os moradores de São Carlos se encontram. Durante um percurso, você explorará diferentes pontos da cidade e conhecerá detalhes históricas e curiosidades sobre cada ponto de parada.</p>
         </div>
       </div>

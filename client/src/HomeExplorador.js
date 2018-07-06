@@ -1,5 +1,6 @@
 import React from 'react';
 import M from 'materialize-css';
+import Client from './Client.js';
 import axios from 'axios';
 import uspPH from './img/usp-placeholder.jpg';
 import {ListaCartasPercursos} from './ListaCartasPercursos.js';
@@ -14,7 +15,7 @@ export class HomeExplorador extends React.Component{
 			  {"nome":"Percurso 2",
 					"descricao":"Descricao 2 do primeiro percurso, sou um cartão!"}
       ],
-			nomeUsuario: "Juliana Crivelli"
+			nomeUsuario: props.user.name
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
@@ -24,10 +25,18 @@ export class HomeExplorador extends React.Component{
  		 });
 	}
 
+	componentDidMount(){
+		Client.listPercursos(res => {
+			this.setState({percursos: res.percursos})
+			//console.log(res.percursos)
+		})
+	}
+
+
 	render(){
 		return(
-				<div class="container">
-						<div id="tituloHome" class='black-text'>
+				<div className="container">
+						<div id="tituloHome" className='black-text'>
 							<h1>Olá, {this.state.nomeUsuario}!</h1>
 							<h4>Onde você quer explorar hoje?</h4>
 						</div>
