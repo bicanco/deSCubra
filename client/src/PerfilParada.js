@@ -8,11 +8,23 @@ export class PerfilParada extends React.Component{
 		super(props);//passar como props o nome, descricao, enigma e possossiveis respostas do percurso
 		this.state = {
 			percurso: props.aux.match.params.idPercurso,
+			codigo: props.cod,
 			nome: props.nome,
 			descricao: props.descricao,
 			enigma: props.enigma,
 			possiveisResp: props.possiveisResp,
 		}
+	}
+
+	componentWillMount(){
+		Client.maxCod(this.state.percurso, res => {
+			if(res.sucess === 'True'){
+				console.log("Achou max")
+				this.setState({ codigo: res.cod })
+			} else {
+				console.log("Erro ao tentar achar max")
+			}
+		})
 	}
 
 	// Insere uma nova parada no banco por meio de uma chamada ao servidor com o modulo fetch
@@ -21,12 +33,15 @@ export class PerfilParada extends React.Component{
 		var img = x.elements[0].value
 
 		var percurso = this.state.percurso
-		var nome = this.state.nome
-		var desc = this.state.descricao
-		var engm = this.state.enigma
-		var resp = this.state.possiveisResp
+		var cod = this.state.codigo
+		var nome = x.elements[2].value
+		var desc = x.elements[3].value
+		var engm = x.elements[4].value
+		var resp = x.elements[5].value
 
-		Client.addParada(percurso, nome, desc, engm, resp, img, res => {
+		console.log(cod)
+
+		Client.addParada(percurso, cod, nome, desc, engm, resp, img, res => {
 			console.log(res.sucess)
 			if(res.sucess === 'True'){
 				console.log("Adicionou parada")
