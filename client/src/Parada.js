@@ -113,11 +113,9 @@ export class Enigma extends Component{
                     </form>
                     <br />
                     {/*botoes de pular e responder*/}
-                    <Link to={this.state.next}>
-                      <button className="btn red white-text" onClick={() => console.log(this.state.next)}>
+                      <button className="btn red white-text" onClick={() => this.setState({status: "info"}) }>
                         <i className="material-icons left">call_missed_outgoing</i>Pular
                       </button>
-                    </Link>
                     <button className="btn green white-text" onClick={() => this.conferirResposta()}>
                       <i className="material-icons left">explore</i>Responder
                     </button>
@@ -162,11 +160,9 @@ export class Enigma extends Component{
           <h4 className="red-text">Resposta Incorreta</h4>
           <h5>Infelizmente, essa não é a resposta... Tente de novo!</h5>
           <div>
-            <Link to={this.state.next}>
-              <button className="btn red white-text" onClick={() => console.log(this.state.next)}>
+              <button className="btn red white-text" onClick={() => this.setState({status: "info"}) }>
                 <i className="material-icons left">call_missed_outgoing</i>Pular
               </button>
-            </Link>
             <button className="btn-flat green-text" onClick={() => this.setState({status: "answering"}) }>Tentar Novamente</button>
           </div>
           <br />

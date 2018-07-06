@@ -6,7 +6,7 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'postgres',
+  user: 'juliana',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
