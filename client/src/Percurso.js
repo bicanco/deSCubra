@@ -72,7 +72,7 @@ export class FinalPercurso extends Component{
   constructor(props){
       super(props);//passar como props nome do percurso
       this.state={
-        percurso: "percurso",
+        percurso: props.aux.match.params.idPercurso,
       }
   }
 
@@ -83,22 +83,39 @@ export class FinalPercurso extends Component{
   render(){
     return(
       <div>
-        <nav>
-          {/*barra de voltar para tela principal*/}
-          <div className="nav-wrapper red">
-            <ul className="left">
-            <li><a href={"explorar/Percurso/"+this.state.percurso}>
-              <i className="material-icons">keyboard_backspace</i>
-            </a></li>
-            <li>Percurso: {this.state.percurso}</li>
-            </ul>
-          </div>
-        </nav>
+      <nav class="red">
+        {/*barra de voltar para tela principal*/}
+        <div className="nav-wrapper red container">
+          <ul className="left">
+          <li><a href={"/explorar/Percurso/"+this.state.percurso}>
+            <i className="material-icons">keyboard_backspace</i>
+          </a></li>
+          <li>Percurso: {this.state.percurso}</li>
+          </ul>
+        </div>
+      </nav>
+
+      {/*estrelas para telas grandes*/}
+      <div class="container hide-on-small-only">
+        <br />
+        <i class="material-icons large blue-text">grade</i><i class="material-icons large blue-text">grade</i><i class="material-icons large blue-text">grade</i><i class="material-icons large blue-text">grade</i><i class="material-icons large blue-text">grade</i>
+      </div>
+
+      {/*estrelas para telas pequenas*/}
+      <div class="container hide-on-med-and-up">
+        <i class="material-icons medium blue-text">grade</i><i class="material-icons medium blue-text">grade</i><i class="material-icons medium blue-text">grade</i><i class="material-icons medium blue-text">grade</i><i class="material-icons medium blue-text">grade</i>
+      </div>
+
+      <div class="container">
         {/*mensagem de parabenizacao*/}
-        <h2>Parabéns!</h2>
-        <h4>Você terminou o percurso {this.state.percurso} </h4>
+        <h2 class="blue-text">Parabéns!</h2>
+        <h5>Você terminou o percurso {this.state.percurso}.</h5>
         {/*botao de recomecar percurso*/}
-        <a href={"/explorar/Percurso/"+this.state.percurso} className="btn-flat red-text" onClick={()=>this.recomecarPercurso()}>Recomeçar Percurso</a>
+        <br />
+        <a href={"/explorar/Percurso/"+this.state.percurso} class="btn red white-text" onClick={()=>this.recomecarPercurso()}><i class="material-icons left">replay</i> Recomeçar Percurso</a> <a href="/explorar/ListaPercursos" class="btn green white-text"><i class="material-icons left">playlist_play</i>Lista de Percursos</a>
+      </div>
+
+        <br />
       </div>
     );
   }

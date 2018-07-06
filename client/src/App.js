@@ -7,7 +7,7 @@ import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
-import {Percurso} from './Percurso.js';
+import {Percurso, FinalPercurso} from './Percurso.js';
 import About from './About.js';
 import {ListaPercursos} from './ListaPercursos.js';
 import {Parada} from './Parada.js';
@@ -88,6 +88,7 @@ class App extends Component {
               <Route path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
               <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
+              <Route path="/explorar/finalPercurso/:idPercurso" component={(match) =><FinalPercurso aux={match} />} />
             </main>
           <footer>
             <FootMenu />

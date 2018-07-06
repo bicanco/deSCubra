@@ -99,6 +99,10 @@ export class PerfilPercurso extends React.Component{
 		}
 	}
 
+	onChangeDescricao = (descricao) =>{
+		this.setState({descricao})
+	}
+
 	render(){
 		const url = "/adicionarParada/" + this.state.nome
 
@@ -108,6 +112,10 @@ export class PerfilPercurso extends React.Component{
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
 						<div>{this.renderNomePerfil(this.state.nome)}</div>
+						<form id="formDescricaoPerfilPercurso">
+							<label htmlFor="descricaoField" className="black-text"><h6>Descrição do Percurso</h6></label>
+							<textarea value={this.state.descricao} onChange={(e) => this.onChangeDescricao(e.target.descricao)} id="descricaoField" class="materialize-textarea"></textarea>
+						</form>
 						<div id="modalTrocarNomePercurso" className="modal">
 							{/*mensagem a aparecer ao selecionar o botao que troca as informcaoes do percurso*/}
 							<div className="modal-content">
