@@ -11,7 +11,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5433,
+  port: 5432,
 })
 bd.connect()
 
@@ -76,11 +76,11 @@ app.get("/expLogin", (req, res) => {
     return;
   }
 
-  const q1 = 'select * from explorador where email = $1 and nome = $2'
-  const values = [email, name]
-
+  const q1 = 'select * from explorador where email = $1'
+  const values1 = [email]
+  const values2 = [email, name]
   // callback
-  bd.query(q1, values, (err, q_res) => {
+  bd.query(q1, values1, (err, q_res) => {
     console.log(err, q_res)
     if (err) {
       console.log("Erro ao buscar explorador")
@@ -92,7 +92,7 @@ app.get("/expLogin", (req, res) => {
         });
       } else {
         const q2 = 'insert into explorador(email, nome) values ($1, $2)'
-        bd.query(q2, values, (err, q_res) => {
+        bd.query(q2, values2, (err, q_res) => {
           console.log(err, q_res)
           if (err) {
             console.log("Erro ao cadastrar explorador")
@@ -272,6 +272,34 @@ app.get("/removeParada", (req,res) => {
   })
 })
 
+app.get("/lastParada", (req, res) => {
+  const percurso = req.query.p
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+
+  const query ={
+    text: "select max(codigo) from parada where percurso = $1",
+    values: [percurso],
+    rowMode: 'array',
+  }
+
+  bd.query(query, (err, q_res) =>{
+    if(err){
+      console.log("Erro ao remover percurso");
+      console.log(err.stack);
+    } else{
+        res.json({
+          sucess: "True",
+          lastParada: q_res.rows[0][0],
+        })
+    }
+  })
+})
+
 app.get("/addPercurso", (req, res) => {
   const nome_prev = req.query.pn
   const nome_curr = req.query.cn
@@ -342,7 +370,7 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
-app.get("/selectPercurso", (req, res) => {
+app.get("/selectPerc", (req, res) => {
   const nome = req.query.n
   if (!nome) {
     res.json({
@@ -354,6 +382,7 @@ app.get("/selectPercurso", (req, res) => {
   const query1 ={
     text: "select nome, descricao, imagem from percurso where nome = $1",
     values: [nome],
+app.get("/selectPercurso", (req, res) =>{
     rowMode: 'array',
   }
 
@@ -402,6 +431,42 @@ app.get("/selectParadas", (req, res) =>{
         res.json({
           sucess: "True",
           paradas: q_res.rows
+        })
+      } else{
+        res.json({
+          sucess: "False"
+        })
+      }
+    }
+  })
+})
+
+
+app.get("/selectPercurso", (req, res) =>{
+  const percurso = req.query.p
+
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+
+  const query ={
+    text: "select pe.nome, pe.descricao, count(pa.codigo) from percurso pe, parada pa where pe.nome = pa.percurso and pe.nome = $1 group by pe.nome, pe.descricao",
+    rowMode: 'array',
+  }
+
+  bd.query(query, [percurso], (err, q_res) => {
+    if(err){
+      console.log("Erro ao buscar informacoes do percurso")
+      console.log(err.stack)
+    } else{
+      console.log(q_res)
+      if(q_res.rowCount !== 0){
+        res.json({
+          sucess: "True",
+          percursos: q_res.rows
         })
       } else{
         res.json({

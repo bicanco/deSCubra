@@ -11,7 +11,7 @@ export class ParadasPercurso extends React.Component{
 
 	removerParada(paradaRem){
 		Client.removeParada(paradaRem, res => {
-			console.log(res.sucess);
+			//console.log(res.sucess);
 			if(res.sucess === 'True'){
 				console.log("Removeu Parada");
 			}else{
@@ -37,8 +37,8 @@ export class ParadasPercurso extends React.Component{
 			aux = this.props.paradas.map((paradas) => <li class="collection-item">{this.renderParada(paradas)}</li>);
 		}
 		return(
-			<div class="row">
-				<ul class="collection col s12 m6 offset-m3 l6 offset-l3">
+			<div className="row">
+				<ul className="collection col s12 m6 offset-m3 l6 offset-l3">
 				{/*render da lista de paradas do percurso*/}
 				{aux}
 				</ul>

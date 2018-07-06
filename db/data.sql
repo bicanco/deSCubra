@@ -1,4 +1,4 @@
-INSERT INTO ADMINISTRADOR VALUES ('323DA4752E086A347E3FE58236E26357315F76ED1F6DA5D385D30A9D8C3FA169', 'C6AAD61D3218F8D7CABA296C24A23B1C56E21D83704324B534B269D4EE61B4E5');
+INSERT INTO ADMINISTRADOR VALUES ('c70b5dd9ebfb6f51d09d4132b7170c9d20750a7852f00680f65658f0310e810056e6763c34c9a00b0e940076f54495c169fc2302cceb312039271c43469507dc', '48149519ed0be8360db4f4ce1c3d3bbd20e6ca8054cf47fa42c01729058880aaf4873ddf1945ccd324061de378bf5d56516dd8bba49727e23327248fba35e5a7');
 
 INSERT INTO PERCURSO VALUES ('Percurso de Teste 1', 'Esse é um percurso de teste. Ele está sendo inserido diretamente no banco de dados.', 'images/percursos/teste1.png');
 INSERT INTO PERCURSO VALUES ('Percurso de Teste 2', 'Eu queria ter algo legal para escrever aqui, mas vou ensinar você a terminar uma frase. Quando achar que está bom, escreva um ponto.', 'images/percursos/teste2.png');

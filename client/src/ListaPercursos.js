@@ -10,23 +10,20 @@ export class ListaPercursos extends React.Component{
 		};
 	}
 
-	componentDidMount(){
-		console.log("mounted"+this.props.percursos)
-	}
-
 	renderLinhaPercurso(i){
 		const url = "/editarPercurso/" + i[0]
 		return (
 			<div>
 				{/*render de um percurso, com botao para editar*/}
-				{i[0]}<a href={url} className="secondary-content"><i className="material-icons green-text text-darken-4">edit</i></a>
+				<Link to={url} percurso={i}>
+					 {i[0]}<span className="secondary-content"><i className="material-icons green-text text-darken-4">edit</i></span>
+				</Link>
 			</div>
 		);
 	}
 
 	render(){
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-		console.log('renderizando'+this.state.percursos)
 		var aux = <p>Sem percursos cadastrados.</p>
 		if(this.props.percursos != []){
 			aux = this.props.percursos.map((percursos) => <li className="collection-item">{this.renderLinhaPercurso(percursos)}</li>);

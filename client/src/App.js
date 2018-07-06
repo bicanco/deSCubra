@@ -7,7 +7,7 @@ import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
-import {Percurso} from './Percurso.js';
+import {Percurso, FinalPercurso} from './Percurso.js';
 import About from './About.js';
 import {ListaPercursos} from './ListaPercursos.js';
 import {Parada} from './Parada.js';
@@ -29,9 +29,9 @@ class App extends Component {
     // calling setState will re-render the entire app (efficiently!)
     if(type === 'adm'){
       Client.admLogin(username, password, res => {
-        console.log(res.sucess)
+        //console.log(res.sucess)
         if(res.sucess === 'True'){
-          console.log("Fez login como administrador")
+          //onsole.log("Fez login como administrador")
           this.setState({
             user: {
               username,
@@ -40,22 +40,24 @@ class App extends Component {
           })
           this.props.history.push('/PainelAdmin')
         } else {
-          console.log("Administrador nao cadastrado")
+          //console.log("Administrador nao cadastrado")
         }
       })
     } else if (type === 'exp'){
       Client.expLogin(username, password, res => {
-        console.log(res.sucess)
+        var name = password
+        //console.log(res.sucess)
         if(res.sucess === 'True'){
-          console.log("Fez login como explorador")
+          //console.log("Fez login como explorador")
           this.setState({
             user: {
               username,
+              name,
               type
             }
           })
         } else {
-          console.log("Erro ao fazer login de explorador")
+          //console.log("Erro ao fazer login de explorador")
         }
       })
     }
@@ -79,13 +81,15 @@ class App extends Component {
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
               <Route path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
+              <Route exact path="/adicionarPercurso" component={PerfilPercurso} />
     					<Route exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
     					<Route exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
               <Route exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
               {/*rota exploradores*/}
-              <Route path="/explorar/ListaPercursos" component={HomeExplorador} />
+              <Route path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
-              <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) => <Parada aux={match} />} />
+              <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
+              <Route path="/explorar/finalPercurso/:idPercurso" component={(match) =><FinalPercurso aux={match} />} />
             </main>
           <footer>
             <FootMenu />

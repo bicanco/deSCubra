@@ -33,11 +33,25 @@ function addPercurso(nome_prev, nome_curr, desc, img, callbackFn) {
   .then(callbackFn)
 }
 
-function selectPercurso(nome, callbackFn){
-  return fetch(`/selectPercurso?n=${nome}`)
+function selectPercurso(percurso, callbackFn){
+  return fetch(`/selectPercurso?p=${percurso}`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
+}
+
+function selectPerc(nome, callbackFn){
+  return fetch(`/selectPerc?n=${nome}`)
     .then(checkStatus)
     .then(parseJSON)
     .then(callbackFn)
+}
+
+function lastParada(percurso, callbackFn){
+  return fetch(`/lastParada?p=${percurso}`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
 }
 
 function removePercurso(nome, callbackFn){
@@ -83,5 +97,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { admLogin, expLogin, addParada, selectParada, selectParadasPercurso, removeParada, addPercurso, selectPercurso, removePercurso, listPercursos };
+const Client = { admLogin, expLogin, addParada, selectParada, selectParadasPercurso, removeParada, addPercurso, selectPerc, selectPercurso, removePercurso, listPercursos, lastParada };
 export default Client;
