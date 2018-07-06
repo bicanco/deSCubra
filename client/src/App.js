@@ -82,6 +82,7 @@ class App extends Component {
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
               <Route path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
     					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
+              <Route exact path="/adicionarPercurso" component={PerfilPercurso} />
     					<Route exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
               <Route exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
               {/*rota exploradores*/}

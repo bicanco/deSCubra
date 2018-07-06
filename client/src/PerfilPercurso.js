@@ -149,7 +149,7 @@ export class PerfilPercurso extends React.Component{
       				<ParadasPercurso paradas={this.state.paradas} />
       				<div align='center'>
 						{/*botoes de Salvar e Remover Percurso*/}
-						<a className="btn-flat green-text" href="/painelAdmin">Salvar</a>
+						<a className="btn-flat green-text" href="/painelAdmin" onClick={() => this.mudarPerfilPercurso()}>Salvar</a>
 						<button data-target="modalRemoverPercurso" className="btn-flat modal-trigger red-text">Remover Percurso</button>
 						<p><br className="red" /></p>
 						<div id="modalRemoverPercurso" className="modal">

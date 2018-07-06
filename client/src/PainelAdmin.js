@@ -42,7 +42,7 @@ export class PainelAdmin extends React.Component{
 			</div>
 			<ListaPercursos percursos = {this.state.percursos} />
 			{/*render da colecao dos percursos disponiveis no sistema*/}
-			<button className="btn green">Cadastrar Novo Percurso</button><br /><br />
+			<a href="/adicionarPercurso" className="btn green">Cadastrar Novo Percurso</a><br /><br />
 		</div>
 		);
 	}
