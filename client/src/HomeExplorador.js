@@ -35,8 +35,8 @@ export class HomeExplorador extends React.Component{
 
 	render(){
 		return(
-				<div class="container">
-						<div id="tituloHome" class='black-text'>
+				<div className="container">
+						<div id="tituloHome" className='black-text'>
 							<h1>Olá, {this.state.nomeUsuario}!</h1>
 							<h4>Onde você quer explorar hoje?</h4>
 						</div>

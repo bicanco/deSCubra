@@ -15,14 +15,14 @@ export class TopMenu extends React.Component{
         );
       }
       if(user.type === 'adm'){
-        console.log("Login adm")
+        //console.log("Login adm")
         return(
           <div>
           <li><a onClick={this.props.callbackSignOut}>Log Out</a></li>
           </div>
         );
       }else if(user.type === 'exp'){
-        console.log("Login exp")
+        //console.log("Login exp")
         return(
           <div>
           <li><Link to='/'>Sobre</Link></li>

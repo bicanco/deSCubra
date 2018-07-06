@@ -29,9 +29,9 @@ class App extends Component {
     // calling setState will re-render the entire app (efficiently!)
     if(type === 'adm'){
       Client.admLogin(username, password, res => {
-        console.log(res.sucess)
+        //console.log(res.sucess)
         if(res.sucess === 'True'){
-          console.log("Fez login como administrador")
+          //onsole.log("Fez login como administrador")
           this.setState({
             user: {
               username,
@@ -40,15 +40,15 @@ class App extends Component {
           })
           this.props.history.push('/PainelAdmin')
         } else {
-          console.log("Administrador nao cadastrado")
+          //console.log("Administrador nao cadastrado")
         }
       })
     } else if (type === 'exp'){
       Client.expLogin(username, password, res => {
         var name = password
-        console.log(res.sucess)
+        //console.log(res.sucess)
         if(res.sucess === 'True'){
-          console.log("Fez login como explorador")
+          //console.log("Fez login como explorador")
           this.setState({
             user: {
               username,
@@ -57,7 +57,7 @@ class App extends Component {
             }
           })
         } else {
-          console.log("Erro ao fazer login de explorador")
+          //console.log("Erro ao fazer login de explorador")
         }
       })
     }

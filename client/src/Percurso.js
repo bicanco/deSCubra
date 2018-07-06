@@ -1,17 +1,31 @@
 import React,{Component} from 'react';
 import logo from './img/logo.png';
 import uspimg from './img/usp-campus1.jpg';
+import Client from './Client.js';
 
 export class Percurso extends React.Component{
   constructor(props){
+    console.log(props.match)
     super(props);//passar como props nome, descricao, nParadas e estimativa
     this.state = {
-      nome: "USP - Campus 1",
+      nome: props.match.params.idPercurso,
       descricao: "A casa de milhares de estudantes por ano. Conheça mais o campus, seus prédios e um pouco da sua história.",
       nParadas: 8,
       estimativa: "2:30",
     }
   }
+
+  componentDidMount(){
+    console.log("teste")
+		Client.selectPercurso(this.state.nome, res => {
+			this.setState({
+        nome: res.percursos[0][0],
+        descricao: res.percursos[0][1],
+        nParadas: res.percursos[0][2]
+      })
+			console.log(res)
+		})
+	}
 
   render(){
       return(
@@ -31,20 +45,20 @@ export class Percurso extends React.Component{
           <div className="container">
             <br />
             <div className="row">
-              <div class="card s12 m4 offset-m4 l4 offset-l4">
-                <div class="card-image">
+              <div className="card s12 m4 offset-m4 l4 offset-l4">
+                <div className="card-image">
                   <img src={uspimg} />
-                  <span class="card-title">{this.state.nome}</span> {/*nome do percurso*/}
+                  <span className="card-title">{this.state.nome}</span> {/*nome do percurso*/}
                 </div>
-              <div class="card-content">
+              <div className="card-content">
                 {/*informacoes do percurso*/}
-                <span class="badge green white-text left" data-badge-caption="PARADAS">{this.state.nParadas}</span>
-                <span class="badge blue white-text left" data-badge-caption="CAMINHADA"></span>
+                <span className="badge green white-text left" data-badge-caption="PARADAS">{this.state.nParadas}</span>
+                <span className="badge blue white-text left" data-badge-caption="CAMINHADA"></span>
 
                 <br /><h6>{this.state.descricao}</h6> {/*descricao do percurso*/}
               </div>
-              <div class="card-action">
-                <a href={"/explorar/Parada/"+this.state.nome+"/0"} className="btn waves-effect waves-light red white-text"><i class="material-icons left">directions_run</i>INICIAR</a>
+              <div className="card-action">
+                <a href={"/explorar/Parada/"+this.state.nome+"/0"} className="btn waves-effect waves-light red white-text"><i className="material-icons left">directions_run</i>INICIAR</a>
               </div>
             </div>
           </div>
@@ -84,7 +98,7 @@ export class FinalPercurso extends Component{
         <h2>Parabéns!</h2>
         <h4>Você terminou o percurso {this.state.percurso} </h4>
         {/*botao de recomecar percurso*/}
-        <a href={"/explorar/Percurso/"+this.state.percurso} class="btn-flat red-text" onClick={()=>this.recomecarPercurso()}>Recomeçar Percurso</a>
+        <a href={"/explorar/Percurso/"+this.state.percurso} className="btn-flat red-text" onClick={()=>this.recomecarPercurso()}>Recomeçar Percurso</a>
       </div>
     );
   }

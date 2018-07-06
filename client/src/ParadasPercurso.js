@@ -11,9 +11,9 @@ export class ParadasPercurso extends React.Component{
 
 	removerParada(i){
 		var paradaRem = this.state.paradas[i-1];
-		console.log(paradaRem);
+		//console.log(paradaRem);
 		Client.removeParada(paradaRem, res => {
-			console.log(res.sucess);
+			//console.log(res.sucess);
 			if(res.sucess === 'True'){
 				console.log("Removeu Parada");
 			}else{

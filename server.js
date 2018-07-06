@@ -342,17 +342,27 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
-app.get("/selectPercursos", (req, res) =>{
+app.get("/selectPercurso", (req, res) =>{
+  const percurso = req.query.p
+
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `p`"
+    });
+    return;
+  }
+
   const query ={
-    text: "select nome from percurso",
+    text: "select pe.nome, pe.descricao, count(pa.codigo) from percurso pe, parada pa where pe.nome = pa.percurso and pe.nome = $1 group by pe.nome, pe.descricao",
     rowMode: 'array',
   }
 
-  bd.query(query, (err, q_res) => {
+  bd.query(query, [percurso], (err, q_res) => {
     if(err){
-      console.log("Erro ao selecionar percursos")
+      console.log("Erro ao buscar informacoes do percurso")
       console.log(err.stack)
     } else{
+      console.log(q_res)
       if(q_res.rowCount !== 0){
         res.json({
           sucess: "True",

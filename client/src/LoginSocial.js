@@ -8,14 +8,14 @@ class LoginSocial extends Component {
      let email = response.email;
      let name = response.name;
      this.props.onSignIn(email, name, 'exp')
-     console.log(email, name);
+     //console.log(email, name);
     }
 
     const responseGoogle = (response) => {
      let email = response.profileObj.email;
      let name = response.profileObj.name;
      this.props.onSignIn(email, name, 'exp')
-     console.log(email, name);
+     //console.log(email, name);
     }
 
     return (
