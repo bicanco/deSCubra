@@ -1,7 +1,6 @@
 import React from 'react';
 import {ParadasPercurso} from './ParadasPercurso.js';
 import M from 'materialize-css';
-import axios from 'axios';
 import Client from './Client.js'
 
 export class PerfilPercurso extends React.Component{

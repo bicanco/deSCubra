@@ -1,8 +1,6 @@
 import React from 'react';
 import M from 'materialize-css';
 import Client from './Client.js';
-import axios from 'axios';
-import uspPH from './img/usp-placeholder.jpg';
 import {ListaCartasPercursos} from './ListaCartasPercursos.js';
 
 export class HomeExplorador extends React.Component{

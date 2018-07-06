@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Client from './Client.js';
 import './App.css';
 
@@ -9,7 +9,6 @@ import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
 import {Percurso, FinalPercurso} from './Percurso.js';
 import About from './About.js';
-import {ListaPercursos} from './ListaPercursos.js';
 import {Parada} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
 import {HomeExplorador} from './HomeExplorador.js';
@@ -56,6 +55,7 @@ class App extends Component {
               type
             }
           })
+          this.props.history.push('/explorar/ListaPercursos')
         } else {
           //console.log("Erro ao fazer login de explorador")
         }

@@ -1,6 +1,5 @@
 import React from 'react';
 import Client from './Client.js';
-import M from 'materialize-css';
 import uspimg from './img/usp-campus1.jpg';
 
 export class PerfilParada extends React.Component{

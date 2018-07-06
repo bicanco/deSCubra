@@ -13,7 +13,7 @@ class About extends Component {
       <div className="col s12 m8 l8 offset-m2 offset-l2 hide-on-med-and-down">
         <div className="card horizontal">
           <div className="card-image">
-            <img src={aboutimg1} />
+            <img src={aboutimg1} alt="Pessoas sentadas jogando" />
           </div>
           <div className="card-stacked">
             <div className="card-content valign-wrapper">

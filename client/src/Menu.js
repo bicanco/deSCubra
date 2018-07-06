@@ -1,7 +1,6 @@
 import React from 'react';
 import gitlogo from './img/github.png';
 import logo32 from './img/logo-white32.png';
-import fulllogo from './img/logo-topmenu32.png';
 import logotexto32 from './img/logo-texto32.png';
 import LoginSocial from './LoginSocial.js';
 import { Link } from "react-router-dom";
@@ -42,9 +41,9 @@ export class TopMenu extends React.Component{
             <a href="#" className="brand-logo left hide-on-med-and-down">
               <img src={logo32} alt="deSCubra logo" />   <img src={logotexto32} alt="deSCubra logo" />
             </a>
-            <a href="#" className="brand-logo center hide-on-large-only">
+            <Link to="/"><span className="brand-logo center hide-on-large-only">
               <img src={logo32} alt="deSCubra logo" />
-            </a>
+            </span></Link>
 
               {/* menu mobile com botao de menu lateral e logo */}
               <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>

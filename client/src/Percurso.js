@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import logo from './img/logo.png';
 import uspimg from './img/usp-campus1.jpg';
 import Client from './Client.js';
+import { Link } from "react-router-dom";
 
 export class Percurso extends React.Component{
   constructor(props){
@@ -16,14 +16,12 @@ export class Percurso extends React.Component{
   }
 
   componentDidMount(){
-    console.log("teste")
 		Client.selectPercurso(this.state.nome, res => {
 			this.setState({
         nome: res.percursos[0][0],
         descricao: res.percursos[0][1],
         nParadas: res.percursos[0][2]
       })
-			console.log(res)
 		})
 	}
 
@@ -47,7 +45,7 @@ export class Percurso extends React.Component{
             <div className="row">
               <div className="card s12 m4 offset-m4 l4 offset-l4">
                 <div className="card-image">
-                  <img src={uspimg} />
+                  <img src={uspimg} alt="Imagem ilustrativa do percurso"/>
                   <span className="card-title">{this.state.nome}</span> {/*nome do percurso*/}
                 </div>
               <div className="card-content">
@@ -58,7 +56,11 @@ export class Percurso extends React.Component{
                 <br /><h6>{this.state.descricao}</h6> {/*descricao do percurso*/}
               </div>
               <div className="card-action">
-                <a href={"/explorar/Parada/"+this.state.nome+"/0"} className="btn waves-effect waves-light red white-text"><i className="material-icons left">directions_run</i>INICIAR</a>
+                <Link to={"/explorar/Parada/"+this.state.nome+"/0"}>
+                  <span className="btn waves-effect waves-light red white-text">
+                    <i className="material-icons left">directions_run</i>INICIAR
+                  </span>
+                </Link>
               </div>
             </div>
           </div>

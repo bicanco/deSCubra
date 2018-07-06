@@ -17,7 +17,7 @@ export class ListaCartasPercursos extends React.Component{
 		return (
 				<div className="card">
 					<div className="card-image">
-						<img src={uspPH} />
+						<img src={uspPH} alt="Imagem do percurso" />
 						<span className="card-title">{percursoObj[0]}</span>
 						<Link to={url} >
 							<span className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">play_circle_filled</i></span>

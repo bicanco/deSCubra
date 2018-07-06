@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Client from './Client.js';
 
 export class ListaPercursos extends React.Component{
 	constructor(props){
