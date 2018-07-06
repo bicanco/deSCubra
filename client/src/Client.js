@@ -82,6 +82,7 @@ function expLogin(email, name, callbackFn) {
   .then(callbackFn)
 }
 
+//checagem de erros
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -93,9 +94,11 @@ function checkStatus(response) {
   throw error;
 }
 
+//funcao que retorna o JSON de resposta do servidor
 function parseJSON(response) {
   return response.json();
 }
 
+//lista de funcoes que executam requisicoes ao servidor
 const Client = { admLogin, expLogin, addParada, selectParada, selectParadasPercurso, removeParada, addPercurso, selectPerc, selectPercurso, removePercurso, listPercursos, lastParada };
 export default Client;

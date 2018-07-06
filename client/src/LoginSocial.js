@@ -11,13 +11,13 @@ class LoginSocial extends Component {
      //console.log(email, name);
     }
 
-    const responseGoogle = (response) => {
+/*    const responseGoogle = (response) => {
      let email = response.profileObj.email;
      let name = response.profileObj.name;
      this.props.onSignIn(email, name, 'exp')
-     //console.log(email, name);
-    }
-
+     console.log(email, name);
+   }
+*/
     return (
       <div>
         {/*interface para login dos exploradores*/}
@@ -33,8 +33,8 @@ class LoginSocial extends Component {
            )}
           />
         </li>
-        <li>
-          {/*interface login Google*/}
+{/*        <li>
+          {/*interface login Google*\/}
           <GoogleLogin
             clientId="280220453193-emokhhlts65sak7idrcunpu09irer0mq.apps.googleusercontent.com"
             buttonText="LOGIN COM GOOGLE"
@@ -44,7 +44,7 @@ class LoginSocial extends Component {
               <a className="waves-effect waves-light btn red darken-4" onClick={renderProps.onClick}>LOGIN COM GOOGLE</a>
             )}
           />
-          </li>
+          </li>*/}
       </div>
     );
   }
