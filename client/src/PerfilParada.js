@@ -8,7 +8,7 @@ export class PerfilParada extends React.Component{
 	constructor(props){
 		super(props);//passar como props o nome, descricao, enigma e possossiveis respostas do percurso
 		this.state = {
-			percurso: props.percurso,
+			percurso: props.aux.match.params.idPercurso,
 			nome: props.nome,
 			descricao: props.descricao,
 			enigma: props.enigma,

@@ -7,7 +7,7 @@ import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
-import {Percurso, FinalPercurso} from './Percurso.js';
+import {Percurso} from './Percurso.js';
 import About from './About.js';
 import {ListaPercursos} from './ListaPercursos.js';
 import {Parada} from './Parada.js';
@@ -60,7 +60,7 @@ class App extends Component {
     // calling setState will re-render the entire app (efficiently!)
     if(type === 'adm'){
       Client.admLogin(username, password, res => {
-        //console.log(res.sucess)
+        console.log(res.sucess)
         if(res.sucess === 'True'){
           //onsole.log("Fez login como administrador")
           fakeAuth.authenticate();
@@ -72,25 +72,23 @@ class App extends Component {
           })
           this.props.history.push('/PainelAdmin')
         } else {
-          //console.log("Administrador nao cadastrado")
+          console.log("Administrador nao cadastrado")
         }
       })
     } else if (type === 'exp'){
       Client.expLogin(username, password, res => {
-        var name = password
-        //console.log(res.sucess)
+        console.log(res.sucess)
         if(res.sucess === 'True'){
           //console.log("Fez login como explorador")
           fakeAuth.authenticate();
           this.setState({
             user: {
               username,
-              name,
               type
             }
           })
         } else {
-          //console.log("Erro ao fazer login de explorador")
+          console.log("Erro ao fazer login de explorador")
         }
       })
     }

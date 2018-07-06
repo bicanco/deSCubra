@@ -364,7 +364,7 @@ app.get("/addPercurso", (req, res) => {
       console.log("Erro ao alterar percurso")
       console.log(err.stack)
     } else {
-      if(q_res.rowCount == 0){
+      if(q_res.rowCount === 1){
         res.json({
           sucess: "True"
         });
@@ -515,8 +515,10 @@ app.get("/removePercurso", (req, res) => {
       error: "Missing required parameter `n`"
     });
   }
+
   const remove = "delete from percurso where nome = $1";
-  const value = nome;
+  const value = [nome];
+
   bd.query(remove, value, (err,q_res) =>{
     //checagem de erro
     if(err){
