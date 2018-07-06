@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import Client from './Client.js';
 import './App.css';
 
@@ -7,18 +7,17 @@ import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
-import {Percurso} from './Percurso.js';
+import {Percurso, FinalPercurso} from './Percurso.js';
 import About from './About.js';
 import {Parada} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
 import {HomeExplorador} from './HomeExplorador.js';
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
 <Route
   {...rest}
   render={props =>
-    fakeAuth.isAuthenticated ? (
+    Auth.isAuthenticated ? (
       <Component {...props} />
     ) : (
       <Redirect
@@ -32,7 +31,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 />
 );
 
-const fakeAuth = {
+const Auth = {
   isAuthenticated: false,
   authenticate(cb) {
     this.isAuthenticated = true;
@@ -62,7 +61,7 @@ class App extends Component {
         console.log(res.sucess)
         if(res.sucess === 'True'){
           //onsole.log("Fez login como administrador")
-          fakeAuth.authenticate();
+          Auth.authenticate();
           this.setState({
             user: {
               username,
@@ -79,7 +78,7 @@ class App extends Component {
         console.log(res.sucess)
         if(res.sucess === 'True'){
           //console.log("Fez login como explorador")
-          fakeAuth.authenticate();
+          Auth.authenticate();
           this.setState({
             user: {
               username,
@@ -98,7 +97,7 @@ class App extends Component {
     // clear out user from state
     this.setState({user: null})
     this.props.history.push('/')
-    fakeAuth.signout();
+    Auth.signout();
   }
 
   render() {
@@ -116,7 +115,7 @@ class App extends Component {
               <PrivateRoute exact path="/adicionarPercurso" component={(match) => <PerfilPercurso aux={match} />} />
     					<PrivateRoute exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
     					<PrivateRoute exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
-              <PrivateRoute exact path="/adicionarParada/:idPercurso" component={(match) => <PerfilParada aux={match} />} />
+              <PrivateRoute exact path="/adicionarParada/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
               {/*rota exploradores*/}
               <PrivateRoute path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <PrivateRoute path="/explorar/Percurso/:idPercurso" component={Percurso} />
