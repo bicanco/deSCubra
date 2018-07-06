@@ -5,13 +5,11 @@ export class ParadasPercurso extends React.Component{
 	constructor(props){
 		super(props);//passar como props um vetor com os nomes das paradas do percurso
 		this.state ={
-			paradas: props.paradas,
+			paradas: ["test"],
 		};
 	}
 
-	removerParada(i){
-		var paradaRem = this.state.paradas[i-1];
-		console.log(paradaRem);
+	removerParada(paradaRem){
 		Client.removeParada(paradaRem, res => {
 			console.log(res.sucess);
 			if(res.sucess === 'True'){
@@ -22,18 +20,22 @@ export class ParadasPercurso extends React.Component{
 		});
 	}
 
-	renderParada(i){
+	renderParada(paradaObj){
 		return (
 			<div align="left">
 				{/*render de uma parada de um percurso*/}
-				{i}<a href="#!" onClick = {() => this.removerParada(i)} class="secondary-content grey lighten-5"><i class="material-icons green-text text-darken-4">delete</i></a>
+				{paradaObj[0]}<a href="#" onClick = {() => this.removerParada(paradaObj[0])} class="secondary-content grey lighten-5"><i class="material-icons green-text text-darken-4">delete</i></a>
 			</div>
 		);
 	}
 
 	render(){
+		console.log(this.props.paradas)
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-		const aux = this.state.paradas.map((paradas) => <li class="collection-item">{this.renderParada(paradas)}</li>);
+		var aux = <p>Sem paradas cadastradas.</p>
+		if(this.props.paradas != null){
+			aux = this.props.paradas.map((paradas) => <li class="collection-item">{this.renderParada(paradas)}</li>);
+		}
 		return(
 			<div class="row">
 				<ul class="collection col s12 m6 offset-m3 l6 offset-l3">

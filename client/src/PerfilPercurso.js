@@ -8,10 +8,10 @@ export class PerfilPercurso extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			nome: null,
+			nome: props.aux.match.params.idPercurso,
 			descricao: null,
 			imgSrc: null,
-			paradas: [1, 2, 3, 4, 5],
+			paradas: [1],
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
@@ -21,17 +21,28 @@ export class PerfilPercurso extends React.Component{
  		 });
 	}
 
-	/*
-	componentDidMount(){
-		Client.perfilPercurso(this.state.nome, res => {
-			console.log(res)
+	componentWillMount(){
+		Client.selectPercurso(this.state.nome, res => {
 			if(res.sucess){
 				console.log("Informações do percurso obtidas")
+				this.setState({ nome: res.nome,
+												descricao: res.descricao,
+												imgSrc: res.imgSrc})
 			} else{
-				console.log("Informações não encontradas")
+				console.log("Informações percurso não encontradas")
 			}
 		})
-	}*/
+
+		Client.selectParadasPercurso(this.state.nome, res => {
+			if(res.sucess){
+				console.log("Informações das paradas obtidas")
+				this.setState({ paradas: res.paradas })
+			} else{
+				console.log("Informações paradas não encontradas")
+				this.setState({ paradas: null })
+			}
+		})
+	}
 
 	stringRenderFotoPerfil(foto){
 		//composicao do elemento html da foto do percurso

@@ -15,7 +15,7 @@ export class ListaPercursos extends React.Component{
 	}
 
 	renderLinhaPercurso(i){
-		const url = "/editarPercurso/"+i[0]
+		const url = "/editarPercurso/" + i[0]
 		return (
 			<div>
 				{/*render de um percurso, com botao para editar*/}
@@ -26,7 +26,6 @@ export class ListaPercursos extends React.Component{
 
 	render(){
 		//transformando o vetor de paradas em uma colecao de elementos na pagina
-
 		console.log('renderizando'+this.state.percursos)
 		var aux = <p>Sem percursos cadastrados.</p>
 		if(this.props.percursos != []){

@@ -79,13 +79,13 @@ class App extends Component {
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
               <Route path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
-    					<Route exact path="/editarPercurso/:idPercurso" component={PerfilPercurso} />
+    					<Route exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
     					<Route exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
               <Route exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
               {/*rota exploradores*/}
               <Route path="/explorar/ListaPercursos" component={HomeExplorador} />
               <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
-              <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
+              <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) => <Parada aux={match} />} />
             </main>
           <footer>
             <FootMenu />

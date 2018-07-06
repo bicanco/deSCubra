@@ -7,7 +7,7 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'juliana',
+  user: 'postgres',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
@@ -342,21 +342,66 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
-app.get("/selectPercursos", (req, res) =>{
-  const query ={
-    text: "select nome from percurso",
+app.get("/selectPercurso", (req, res) => {
+  const nome = req.query.n
+  if (!nome) {
+    res.json({
+      error: "Missing required parameter `n`"
+    });
+    return;
+  }
+
+  const query1 ={
+    text: "select nome, descricao, imagem from percurso where nome = $1",
+    values: [nome],
     rowMode: 'array',
   }
 
-  bd.query(query, (err, q_res) => {
+  bd.query(query1, (err,q_res) => {
     if(err){
-      console.log("Erro ao selecionar percursos")
+      console.log("Erro ao selecionar percurso")
       console.log(err.stack)
-    } else{
+    }else{
+      if(q_res.rowCount === 1){
+        res.json({
+          sucess: "True",
+          nome: q_res.rows[0][0],
+          descricao: q_res.rows[0][1],
+          imgScr: q_res.rows[0][2]
+        })
+      } else{
+        res.json({
+          sucess: "False"
+        })
+      }
+    }
+  })
+})
+
+app.get("/selectParadas", (req, res) =>{
+  const percurso = req.query.p
+  if (!percurso) {
+    res.json({
+      error: "Missing required parameter `n`"
+    });
+    return;
+  }
+
+  const query2 ={
+    text: "select nome from parada where percurso = $1",
+    values: [percurso],
+    rowMode: 'array',
+  }
+
+  bd.query(query2, (err, q_res) => {
+    if(err){
+      console.log("Erro ao selecionar paradas")
+      console.log(err.stack)
+    }else{
       if(q_res.rowCount !== 0){
         res.json({
           sucess: "True",
-          percursos: q_res.rows
+          paradas: q_res.rows
         })
       } else{
         res.json({
