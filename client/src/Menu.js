@@ -5,6 +5,7 @@ import logotexto32 from './img/logo-texto32.png';
 import LoginSocial from './LoginSocial.js';
 import { Link } from "react-router-dom";
 
+//classe que renderiza os menus de topo e final de pagina
 export class TopMenu extends React.Component{
 
     renderOptions(user){

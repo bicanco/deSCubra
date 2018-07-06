@@ -4,6 +4,7 @@ import {ListaPercursos} from './ListaPercursos.js';
 import M from 'materialize-css';
 import axios from 'axios';
 
+//classe de tela de adiminstracao
 export class PainelAdmin extends React.Component{
 	constructor(props){
 
@@ -11,9 +12,11 @@ export class PainelAdmin extends React.Component{
 		this.state = {
 			percursos:  [ [ 'Teste 1',
 											'Esse é um percurso de teste. Ele está sendo inserido diretamente no banco de dados.',
-											'images/percursos/teste1.png' ] ],
+											'images/percursos/teste1.png' ],
+										[ 'Teste 2',
+											'Eu queria ter algo legal para escrever aqui, mas vou ensinar você a terminar uma frase. Quando achar que está bom, escreva um ponto.',
+											'images/percursos/teste2.png' ] ],
 		}
-
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
     		var elems = document.querySelectorAll('.modal');
@@ -22,9 +25,10 @@ export class PainelAdmin extends React.Component{
  		});
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		Client.listPercursos(res => {
 			this.setState({percursos: res.percursos})
+			console.log(res.percursos)
 		})
 	}
 

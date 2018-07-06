@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//classe de tela de login do administrador
 class LoginAdmin extends Component {
 
   handleSignIn(e) {

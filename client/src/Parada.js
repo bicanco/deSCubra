@@ -4,6 +4,7 @@ import Client from './Client.js';
 import uspPH from './img/usp-placeholder.jpg';
 import { Link } from "react-router-dom";
 
+//classe de tela de uma parada do explorador
 export class Parada extends Component{
   constructor(props){
       super(props);

@@ -5,6 +5,7 @@ import logosquare from './img/logo-square.png';
 import logorect from './img/logo-rect.png';
 
 class About extends Component {
+  //classe que da render na tela incial do site
   render() {
     return (
     <div>

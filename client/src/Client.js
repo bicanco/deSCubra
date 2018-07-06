@@ -1,3 +1,4 @@
+//funcao que adiciona uma parada
 function addParada(percurso, nome, desc, engm, resp, img, callbackFn) {
   return fetch(`/addParada?p=${percurso}&n=${nome}&d=${desc}&e=${engm}&r=${resp}&i=${img}`)
   .then(checkStatus)
@@ -5,6 +6,7 @@ function addParada(percurso, nome, desc, engm, resp, img, callbackFn) {
   .then(callbackFn)
 }
 
+//funcao que seleciona informacoes de uma parada
 function selectParada(percurso, id, callbackFn){
   return fetch(`/selectParada?p=${percurso}&i=${id}`)
   .then(checkStatus)
@@ -12,6 +14,7 @@ function selectParada(percurso, id, callbackFn){
   .then(callbackFn)
 }
 
+//funcao que seleciona informacoes das paradas de um percurso
 function selectParadasPercurso(percurso, callbackFn){
   return fetch(`/selectParadas?p=${percurso}`)
   .then(checkStatus)
@@ -19,6 +22,7 @@ function selectParadasPercurso(percurso, callbackFn){
   .then(callbackFn)
 }
 
+//funcao de remocao de parada
 function removeParada(nome, callbackFn){
   return fetch(`/removeParada?n=${nome}`)
   .then(checkStatus)
@@ -26,6 +30,7 @@ function removeParada(nome, callbackFn){
   .then(callbackFn)
 }
 
+//funcao que adiciona um percurso
 function addPercurso(nome_prev, nome_curr, desc, img, callbackFn) {
   return fetch(`/addPercurso?pn=${nome_prev}&cn=${nome_curr}&d=${desc}&i=${img}`)
   .then(checkStatus)
@@ -33,6 +38,7 @@ function addPercurso(nome_prev, nome_curr, desc, img, callbackFn) {
   .then(callbackFn)
 }
 
+//funcao que seleciona informacoes de um percurso
 function selectPercurso(percurso, callbackFn){
   return fetch(`/selectPercurso?p=${percurso}`)
   .then(checkStatus)
@@ -40,6 +46,7 @@ function selectPercurso(percurso, callbackFn){
   .then(callbackFn)
 }
 
+//funcao que seleciona informacoes de um percurso
 function selectPerc(nome, callbackFn){
   return fetch(`/selectPerc?n=${nome}`)
     .then(checkStatus)
@@ -47,6 +54,7 @@ function selectPerc(nome, callbackFn){
     .then(callbackFn)
 }
 
+//fuincao que identifica a ultima parada de um percurso
 function lastParada(percurso, callbackFn){
   return fetch(`/lastParada?p=${percurso}`)
   .then(checkStatus)
@@ -54,6 +62,7 @@ function lastParada(percurso, callbackFn){
   .then(callbackFn)
 }
 
+//funcao de remocao de percursos
 function removePercurso(nome, callbackFn){
   return fetch(`/removePercurso?n=${nome}`)
   .then(checkStatus)
@@ -61,6 +70,7 @@ function removePercurso(nome, callbackFn){
   .then(callbackFn)
 }
 
+//funcao de listagem de percursos
 function listPercursos(callbackFn) {
   return fetch(`/listPercursos`)
   .then(checkStatus)
@@ -68,6 +78,7 @@ function listPercursos(callbackFn) {
   .then(callbackFn)
 }
 
+//funcao de login de adiministrador
 function admLogin(user, password, callbackFn) {
   return fetch(`/admLogin?u=${user}&p=${password}`)
   .then(checkStatus)
@@ -75,6 +86,7 @@ function admLogin(user, password, callbackFn) {
   .then(callbackFn)
 }
 
+//funcao de login de exploradores
 function expLogin(email, name, callbackFn) {
   return fetch(`/expLogin?e=${email}&n=${name}`)
   .then(checkStatus)
@@ -82,6 +94,7 @@ function expLogin(email, name, callbackFn) {
   .then(callbackFn)
 }
 
+//checagem de erros
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -93,9 +106,11 @@ function checkStatus(response) {
   throw error;
 }
 
+//funcao que retorna o JSON de resposta do servidor
 function parseJSON(response) {
   return response.json();
 }
 
+//lista de funcoes que executam requisicoes ao servidor
 const Client = { admLogin, expLogin, addParada, selectParada, selectParadasPercurso, removeParada, addPercurso, selectPerc, selectPercurso, removePercurso, listPercursos, lastParada };
 export default Client;

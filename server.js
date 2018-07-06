@@ -1,6 +1,5 @@
 const { Pool, Client } = require('pg')
 const express = require("express")
-//const login = require("./routes/login.js")
 // Setup banco e ports
 
 const app = express();
@@ -11,7 +10,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5433,
+  port: 5432,
 })
 bd.connect()
 
@@ -20,10 +19,12 @@ app.listen(app.get("port"), () => {
 });
 
 // Middleware
+// login do adiministrador no banco
 app.get("/admLogin", (req, res) => {
   const user = req.query.u
   const password = req.query.p
 
+  //checagem de erro
   if (!user) {
     res.json({
       error: "Missing required parameter `u`"
@@ -43,6 +44,7 @@ app.get("/admLogin", (req, res) => {
   // callback
   bd.query(text, values, (err, q_res) => {
     console.log(err, q_res)
+    //checagem de erro
     if (err) {
       console.log(err.stack)
     } else {
@@ -59,10 +61,12 @@ app.get("/admLogin", (req, res) => {
   })
 })
 
+//login do explorador no banco
 app.get("/expLogin", (req, res) => {
   const email = req.query.e
   const name = req.query.n
 
+  //checagem de erro
   if (!email) {
     res.json({
       error: "Missing required parameter `e`"
@@ -82,6 +86,7 @@ app.get("/expLogin", (req, res) => {
   // callback
   bd.query(q1, values1, (err, q_res) => {
     console.log(err, q_res)
+    //checagem de erro
     if (err) {
       console.log("Erro ao buscar explorador")
       console.log(err.stack)
@@ -94,6 +99,7 @@ app.get("/expLogin", (req, res) => {
         const q2 = 'insert into explorador(email, nome) values ($1, $2)'
         bd.query(q2, values2, (err, q_res) => {
           console.log(err, q_res)
+          //checagem de erro
           if (err) {
             console.log("Erro ao cadastrar explorador")
             console.log(err.stack)
@@ -114,6 +120,7 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
+//adicionar uma parada no banco
 app.get("/addParada", (req, res) => {
   const percurso = req.query.p
   const nome = req.query.n
@@ -122,6 +129,7 @@ app.get("/addParada", (req, res) => {
   const respostas = req.query.r
   const imagem = req.query.i
 
+  //checagem de erro
   if (!percurso) {
     res.json({
       error: "Missing required parameter `p`"
@@ -166,10 +174,12 @@ app.get("/addParada", (req, res) => {
   // find max cod
   bd.query(nextcod, value, (err, q_res) => {
     console.log(err, q_res)
+    //checagem de erro
     if (err) {
       console.log("Erro ao procurar o max value")
       console.log(err.stack)
     } else {
+      //checagem de erro
       if(q_res.rowCount == 1){
         console.log("Busca max realizada com sucesso")
         if(!q_res.rows[0]){
@@ -187,6 +197,7 @@ app.get("/addParada", (req, res) => {
   // callback
   bd.query(add, values, (err, q_res) => {
     console.log(err, q_res)
+    //checagem de erro
     if (err) {
       console.log("Erro ao cadastrar parada")
       console.log(err.stack)
@@ -204,9 +215,11 @@ app.get("/addParada", (req, res) => {
   })
 })
 
+//selecionar as informacoes de uma parada
 app.get("/selectParada", (req, res) =>{
   const percurso = req.query.p
   const id = req.query.i
+  //checagem de erro
   if (!percurso) {
     res.json({
       error: "Missing required parameter `p`"
@@ -226,6 +239,7 @@ app.get("/selectParada", (req, res) =>{
     rowMode: 'array',
   }
   bd.query(query, (err,q_res) => {
+    //checagem de erro
     if(err){
       console.log("Erro ao selecionar parada")
       console.log(err.stack)
@@ -242,9 +256,11 @@ app.get("/selectParada", (req, res) =>{
   })
 })
 
+//remover uma parada do banco
 app.get("/removeParada", (req,res) => {
   const nome = req.query.n
 
+  //checagem de erro
   if(!nome){
     res.json({
       error: "Missing required parameter `n`"
@@ -255,6 +271,7 @@ app.get("/removeParada", (req,res) => {
   const value = [nome];
 
   bd.query(remove, value, (err, q_res) =>{
+    //checagem de erro
     if(err){
       console.log("Erro ao remover percurso");
       console.log(err.stack);
@@ -272,8 +289,10 @@ app.get("/removeParada", (req,res) => {
   })
 })
 
+//identificar qual eh a última parada do percurso
 app.get("/lastParada", (req, res) => {
   const percurso = req.query.p
+  //checagem de erro
   if (!percurso) {
     res.json({
       error: "Missing required parameter `p`"
@@ -288,6 +307,7 @@ app.get("/lastParada", (req, res) => {
   }
 
   bd.query(query, (err, q_res) =>{
+    //checagem de erro
     if(err){
       console.log("Erro ao remover percurso");
       console.log(err.stack);
@@ -300,12 +320,14 @@ app.get("/lastParada", (req, res) => {
   })
 })
 
+//adicionar um percurso no banco
 app.get("/addPercurso", (req, res) => {
   const nome_prev = req.query.pn
   const nome_curr = req.query.cn
   const descricao = req.query.d
   const imagem = req.query.i
 
+  //checagem de erro
   if (!nome_prev) {
     res.json({
       error: "Missing required parameter `pn`"
@@ -337,11 +359,12 @@ app.get("/addPercurso", (req, res) => {
   // callback
   bd.query(alter, value, (err, q_res) => {
     console.log(err, q_res)
+    //checagem de erro
     if (err) {
       console.log("Erro ao alterar percurso")
       console.log(err.stack)
     } else {
-      if(q_res.rowCount == 0){
+      if(q_res.rowCount === 1){
         res.json({
           sucess: "True"
         });
@@ -350,6 +373,7 @@ app.get("/addPercurso", (req, res) => {
         values = [nome_curr, descricao, imagem]
         bd.query(add, values, (err, q_res) => {
           console.log(err, q_res)
+          //checagem de erro
           if (err) {
             console.log("Erro ao cadastrar percurso")
             console.log(err.stack)
@@ -370,8 +394,10 @@ app.get("/addPercurso", (req, res) => {
   })
 })
 
+//selecao de informacoes sobre percurso
 app.get("/selectPerc", (req, res) => {
   const nome = req.query.n
+    //checagem de erro
   if (!nome) {
     res.json({
       error: "Missing required parameter `n`"
@@ -386,6 +412,7 @@ app.get("/selectPerc", (req, res) => {
   }
 
   bd.query(query1, (err,q_res) => {
+      //checagem de erro
     if(err){
       console.log("Erro ao selecionar percurso")
       console.log(err.stack)
@@ -406,6 +433,7 @@ app.get("/selectPerc", (req, res) => {
   })
 })
 
+//selecionar paradas
 app.get("/selectParadas", (req, res) =>{
   const percurso = req.query.p
   if (!percurso) {
@@ -422,6 +450,7 @@ app.get("/selectParadas", (req, res) =>{
   }
 
   bd.query(query2, (err, q_res) => {
+    //checagem de erro
     if(err){
       console.log("Erro ao selecionar paradas")
       console.log(err.stack)
@@ -442,7 +471,7 @@ app.get("/selectParadas", (req, res) =>{
 
 app.get("/selectPercurso", (req, res) => {
   const percurso = req.query.p
-
+  //checagem de erro
   if (!percurso) {
     res.json({
       error: "Missing required parameter `p`"
@@ -476,17 +505,22 @@ app.get("/selectPercurso", (req, res) => {
   })
 })
 
+//remover um percurso do banco
 app.get("/removePercurso", (req, res) => {
   const nome = req.query.n
 
+  //checagem de erro
   if(!nome){
     res.json({
       error: "Missing required parameter `n`"
     });
   }
+
   const remove = "delete from percurso where nome = $1";
-  const value = nome;
+  const value = [nome];
+
   bd.query(remove, value, (err,q_res) =>{
+    //checagem de erro
     if(err){
       console.log("Erro ao remover percurso");
       console.log(err.stack);
@@ -504,6 +538,7 @@ app.get("/removePercurso", (req, res) => {
   })
 })
 
+//listar os perucrsos no banco
 app.get("/listPercursos", (req, res) => {
   const query = {
     text: 'select * from percurso',
@@ -512,6 +547,7 @@ app.get("/listPercursos", (req, res) => {
 
   bd.query(query, (err, q_res) => {
     console.log(err, q_res)
+    //checagem de erro
     if (err) {
       console.log("Erro ao selecionar percursos")
       console.log(err.stack)

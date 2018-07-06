@@ -1,6 +1,7 @@
 import React from 'react';
 import Client from './Client.js'
 
+//classe que gera a lista de paradas para a administracao dos percursos
 export class ParadasPercurso extends React.Component{
 	constructor(props){
 		super(props);//passar como props um vetor com os nomes das paradas do percurso
