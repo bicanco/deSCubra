@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter, Redirect } from "react-router-dom";
 import Client from './Client.js';
 import './App.css';
 
@@ -13,6 +13,37 @@ import {ListaPercursos} from './ListaPercursos.js';
 import {Parada} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
 import {HomeExplorador} from './HomeExplorador.js';
+
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+<Route
+  {...rest}
+  render={props =>
+    fakeAuth.isAuthenticated ? (
+      <Component {...props} />
+    ) : (
+      <Redirect
+        to={{
+          pathname: "/",
+          state: { from: props.location }
+        }}
+      />
+    )
+  }
+/>
+);
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+};
 
 class App extends Component {
 
@@ -32,6 +63,7 @@ class App extends Component {
         //console.log(res.sucess)
         if(res.sucess === 'True'){
           //onsole.log("Fez login como administrador")
+          fakeAuth.authenticate();
           this.setState({
             user: {
               username,
@@ -49,6 +81,7 @@ class App extends Component {
         //console.log(res.sucess)
         if(res.sucess === 'True'){
           //console.log("Fez login como explorador")
+          fakeAuth.authenticate();
           this.setState({
             user: {
               username,
@@ -67,6 +100,7 @@ class App extends Component {
     // clear out user from state
     this.setState({user: null})
     this.props.history.push('/')
+    fakeAuth.signout();
   }
 
   render() {
@@ -80,16 +114,16 @@ class App extends Component {
               <Route exact path="/" component={About} />
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
-              <Route path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
-              <Route exact path="/adicionarPercurso" component={PerfilPercurso} />
-    					<Route exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
-    					<Route exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
-              <Route exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
+              <PrivateRoute path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
+              <PrivateRoute exact path="/adicionarPercurso" component={PerfilPercurso} />
+    					<PrivateRoute exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
+    					<PrivateRoute exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
+              <PrivateRoute exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
               {/*rota exploradores*/}
-              <Route path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
-              <Route path="/explorar/Percurso/:idPercurso" component={Percurso} />
-              <Route path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
-              <Route path="/explorar/finalPercurso/:idPercurso" component={(match) =><FinalPercurso aux={match} />} />
+              <PrivateRoute path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
+              <PrivateRoute path="/explorar/Percurso/:idPercurso" component={Percurso} />
+              <PrivateRoute path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
+              <PrivateRoute path="/explorar/finalPercurso/:idPercurso" component={(match) =><FinalPercurso aux={match} />} />
             </main>
           <footer>
             <FootMenu />
