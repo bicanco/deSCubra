@@ -13,12 +13,11 @@ import {Parada} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
 import {HomeExplorador} from './HomeExplorador.js';
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
 <Route
   {...rest}
   render={props =>
-    fakeAuth.isAuthenticated ? (
+    Auth.isAuthenticated ? (
       <Component {...props} />
     ) : (
       <Redirect
@@ -32,7 +31,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 />
 );
 
-const fakeAuth = {
+const Auth = {
   isAuthenticated: false,
   authenticate(cb) {
     this.isAuthenticated = true;
@@ -61,8 +60,8 @@ class App extends Component {
       Client.admLogin(username, password, res => {
         console.log(res.sucess)
         if(res.sucess === 'True'){
-          //console.log("Fez login como administrador")
-          fakeAuth.authenticate();
+          //onsole.log("Fez login como administrador")
+          Auth.authenticate();
           this.setState({
             user: {
               username,
@@ -79,7 +78,7 @@ class App extends Component {
         var name = password
         if(res.sucess === 'True'){
           //console.log("Fez login como explorador")
-          fakeAuth.authenticate();
+          Auth.authenticate();
           this.setState({
             user: {
               username,
@@ -99,7 +98,7 @@ class App extends Component {
     // clear out user from state
     this.setState({user: null})
     this.props.history.push('/')
-    fakeAuth.signout();
+    Auth.signout();
   }
 
   render() {
@@ -114,10 +113,10 @@ class App extends Component {
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
               <PrivateRoute path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
-              <PrivateRoute exact path="/adicionarPercurso" component={PerfilPercurso} />
+              <PrivateRoute exact path="/adicionarPercurso" component={(match) => <PerfilPercurso aux={match} />} />
     					<PrivateRoute exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
     					<PrivateRoute exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
-              <PrivateRoute exact path="/adicionarParada/:idPercurso" component={PerfilParada} />
+              <PrivateRoute exact path="/adicionarParada/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
               {/*rota exploradores*/}
               <PrivateRoute path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <PrivateRoute path="/explorar/Percurso/:idPercurso" component={Percurso} />
