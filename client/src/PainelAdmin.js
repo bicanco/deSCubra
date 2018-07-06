@@ -13,7 +13,7 @@ export class PainelAdmin extends React.Component{
 											'Esse é um percurso de teste. Ele está sendo inserido diretamente no banco de dados.',
 											'images/percursos/teste1.png' ] ],
 		}
-		
+
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
     		var elems = document.querySelectorAll('.modal');
@@ -22,10 +22,9 @@ export class PainelAdmin extends React.Component{
  		});
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		Client.listPercursos(res => {
 			this.setState({percursos: res.percursos})
-			//console.log(res.percursos)
 		})
 	}
 

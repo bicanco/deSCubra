@@ -59,9 +59,16 @@ export class PerfilPercurso extends React.Component{
 	renderNomePerfil(name){
 		//render do nome do percurso
 		return(
-			<h1><div id="NomePercursoPerfilPercurso"><p>{name}</p></div>
+			<h1><div id="NomePercursoPerfilPercurso"><p>{name}</p></div></h1>
+		);
+	}
+
+	renderDescricaoPerfil(descricao){
+		//render da descricao do percurso
+		return(
+			<h6><div id="NomePercursoPerfilPercurso"><p>{descricao}</p></div>
 			<button data-target="modalTrocarNomePercurso" className="btn modal-trigger red">
-				<i className="material-icons">create</i></button></h1>
+				<i className="material-icons">create</i></button></h6>
 		);
 	}
 
@@ -110,10 +117,6 @@ export class PerfilPercurso extends React.Component{
 		}
 	}
 
-	onChangeDescricao = (descricao) =>{
-		this.setState({descricao})
-	}
-
 	render(){
 		const url = "/adicionarParada/" + this.state.nome
 
@@ -123,10 +126,7 @@ export class PerfilPercurso extends React.Component{
  	     			<div align='center'>
    	    			 	<div id="FotoPercursoPerfilPercurso">{this.renderFotoPerfil(this.state.imgSrc)}</div>
 						<div>{this.renderNomePerfil(this.state.nome)}</div>
-						<form id="formDescricaoPerfilPercurso">
-							<label htmlFor="descricaoField" className="black-text"><h6>Descrição do Percurso</h6></label>
-							<textarea value={this.state.descricao} onChange={(e) => this.onChangeDescricao(e.target.descricao)} id="descricaoField" class="materialize-textarea"></textarea>
-						</form>
+						<div>{this.renderDescricaoPerfil(this.state.descricao)}</div>
 						<div id="modalTrocarNomePercurso" className="modal">
 							{/*mensagem a aparecer ao selecionar o botao que troca as informcaoes do percurso*/}
 							<div className="modal-content">
@@ -144,6 +144,8 @@ export class PerfilPercurso extends React.Component{
 									</div>
 									<p>Definir novo nome para o percurso:</p>
 									<input type="text" />
+									<p>Alterar a descricao do percurso:</p>
+									<input type="text" />
 								</form>
 							</div>
 							<div className="modal-footer">
@@ -152,17 +154,22 @@ export class PerfilPercurso extends React.Component{
 								<button  className="modal-close waves-effect waves-green btn-flat green-text" onClick={() => this.mudarPerfilPercurso()}>Trocar</button>
 							</div>
 						</div>
-						<div align="center">
-						<a className="btn red" href={url} ><i className="material-icons left">add</i>ADICIONAR PARADA</a>
-						</div>
-      				</div>
+      		</div>
 					{/*render da colecao das paradas desse percurso*/}
       				<ParadasPercurso paradas={this.state.paradas} />
+							<div align="center">
+								<a className="btn blue" href={url} ><i className="material-icons left">add</i>ADICIONAR PARADA</a>
+							</div>
+							<br />
       				<div align='center'>
 						{/*botoes de Salvar e Remover Percurso*/}
-						<a className="btn-flat green-text" href="/painelAdmin" onClick={() => this.mudarPerfilPercurso()}>Salvar</a>
-						<button data-target="modalRemoverPercurso" className="btn-flat modal-trigger red-text">Remover Percurso</button>
-						<p><br className="red" /></p>
+							<a className="btn green white-text" href="/painelAdmin" onClick={() => this.mudarPerfilPercurso()}><i class="material-icons left">save</i>Salvar</a>
+						</div>
+						<br />
+						<div align="center">
+						<button data-target="modalRemoverPercurso" className="btn red modal-trigger white-text"><i class="material-icons left">delete</i>Remover Percurso</button>
+						</div>
+						<br />
 						<div id="modalRemoverPercurso" className="modal">
 							{/*mensagem a aparecer quando deseja-se remover um percurso*/}
 							<div className="modal-content">
@@ -181,7 +188,6 @@ export class PerfilPercurso extends React.Component{
 						</div>
 					</div>
 				</div>
-			</div>
 		);
 	}
 }

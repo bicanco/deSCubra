@@ -11,7 +11,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5432,
+  port: 5433,
 })
 bd.connect()
 
@@ -382,7 +382,6 @@ app.get("/selectPerc", (req, res) => {
   const query1 ={
     text: "select nome, descricao, imagem from percurso where nome = $1",
     values: [nome],
-app.get("/selectPercurso", (req, res) =>{
     rowMode: 'array',
   }
 
@@ -441,8 +440,7 @@ app.get("/selectParadas", (req, res) =>{
   })
 })
 
-
-app.get("/selectPercurso", (req, res) =>{
+app.get("/selectPercurso", (req, res) => {
   const percurso = req.query.p
 
   if (!percurso) {
@@ -454,10 +452,11 @@ app.get("/selectPercurso", (req, res) =>{
 
   const query ={
     text: "select pe.nome, pe.descricao, count(pa.codigo) from percurso pe, parada pa where pe.nome = pa.percurso and pe.nome = $1 group by pe.nome, pe.descricao",
+    values: [percurso],
     rowMode: 'array',
   }
 
-  bd.query(query, [percurso], (err, q_res) => {
+  bd.query(query, (err, q_res) => {
     if(err){
       console.log("Erro ao buscar informacoes do percurso")
       console.log(err.stack)
