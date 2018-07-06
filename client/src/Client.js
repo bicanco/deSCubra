@@ -1,6 +1,14 @@
+//funcao que encontra o valor max do codigo da parada
+function maxCod(percurso, callbackFn) {
+  return fetch(`/maxCod?p=${percurso}`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(callbackFn)
+}
+
 //funcao que adiciona uma parada
-function addParada(percurso, nome, desc, engm, resp, img, callbackFn) {
-  return fetch(`/addParada?p=${percurso}&n=${nome}&d=${desc}&e=${engm}&r=${resp}&i=${img}`)
+function addParada(percurso, cod, nome, desc, engm, resp, img, callbackFn) {
+  return fetch(`/addParada?p=${percurso}&c=${cod}&n=${nome}&d=${desc}&e=${engm}&r=${resp}&i=${img}`)
   .then(checkStatus)
   .then(parseJSON)
   .then(callbackFn)
@@ -31,8 +39,8 @@ function removeParada(nome, callbackFn){
 }
 
 //funcao que adiciona um percurso
-function addPercurso(nome_prev, nome_curr, desc, img, callbackFn) {
-  return fetch(`/addPercurso?pn=${nome_prev}&cn=${nome_curr}&d=${desc}&i=${img}`)
+function addPercurso(nome, desc, img, callbackFn) {
+  return fetch(`/addPercurso?n=${nome}&d=${desc}&i=${img}`)
   .then(checkStatus)
   .then(parseJSON)
   .then(callbackFn)
@@ -112,5 +120,5 @@ function parseJSON(response) {
 }
 
 //lista de funcoes que executam requisicoes ao servidor
-const Client = { admLogin, expLogin, addParada, selectParada, selectParadasPercurso, removeParada, addPercurso, selectPerc, selectPercurso, removePercurso, listPercursos, lastParada };
+const Client = { admLogin, expLogin, maxCod, addParada, selectParada, selectParadasPercurso, removeParada, addPercurso, selectPerc, selectPercurso, removePercurso, listPercursos, lastParada };
 export default Client;

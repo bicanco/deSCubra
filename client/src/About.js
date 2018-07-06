@@ -27,7 +27,7 @@ class About extends Component {
       <div className="col s12 m8 l8 offset-m2 offset-l2 hide-on-large-only">
         <div className="card">
           <div className="card-image">
-            <img src={aboutimg1} />
+            <img src={aboutimg1} alt="Pessoas usando o aplicativo" />
           </div>
           <div>
             <div className="card-content valign-wrapper">
@@ -42,7 +42,7 @@ class About extends Component {
       <div className="col s12 m4 l4 offset-m2 offset-l2 hide-on-med-and-down">
         <div className="card horizontal">
           <div className="card-image">
-            <img src={logosquare} />
+            <img src={logosquare} alt="logo descubra"/>
           </div>
           <div className="card-stacked">
             <div className="card-content valign-wrapper">
@@ -55,7 +55,7 @@ class About extends Component {
       <div className="col s12 m4 l4 offset-m2 offset-l2 hide-on-large-only">
         <div className="card">
           <div className="card-image">
-            <img src={logorect} />
+            <img src={logorect} alt="logo descubra"/>
           </div>
           <div>
             <div className="card-content valign-wrapper">

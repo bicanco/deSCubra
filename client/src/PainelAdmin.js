@@ -2,7 +2,6 @@ import React from 'react';
 import Client from './Client.js';
 import {ListaPercursos} from './ListaPercursos.js';
 import M from 'materialize-css';
-import axios from 'axios';
 
 //classe de tela de adiminstracao
 export class PainelAdmin extends React.Component{

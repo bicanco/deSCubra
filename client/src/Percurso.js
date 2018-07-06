@@ -115,7 +115,13 @@ export class FinalPercurso extends Component{
         <h5>Você terminou o percurso {this.state.percurso}.</h5>
         {/*botao de recomecar percurso*/}
         <br />
-        <a href={"/explorar/Percurso/"+this.state.percurso} class="btn red white-text" onClick={()=>this.recomecarPercurso()}><i class="material-icons left">replay</i> Recomeçar Percurso</a> <a href="/explorar/ListaPercursos" class="btn green white-text"><i class="material-icons left">playlist_play</i>Lista de Percursos</a>
+        <Link to={"/explorar/Percurso/"+this.state.percurso}>
+          <span class="btn red white-text" onClick={()=>this.recomecarPercurso()}>
+            <i class="material-icons left">replay</i> Recomeçar Percurso</span> 
+        </Link>
+        <Link to="/explorar/ListaPercursos">
+          <span class="btn green white-text"><i class="material-icons left">playlist_play</i>Lista de Percursos</span>
+        </Link>
       </div>
 
         <br />
