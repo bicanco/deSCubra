@@ -1,6 +1,6 @@
 # deSCubra
 
-![alt text](https://github.com/gabrieltoschi/deSCubra/blob/master/client/src/img/logo.png )
+![alt text](https://github.com/gabrieltoschi/deSCubra/blob/master/client/src/img/logo-react.png )
 
 
 ## Sobre
@@ -20,17 +20,20 @@ O #deSCubra é um projeto universitário feito por alunos de graduação do curs
 * Organização da Equipe: Redmine
 
 ## Membros
-[@github/bicanco](https://github.com/bicanco)
 
-[@github/MarcosWendell](https://github.com/MarcosWendell)
 
-[@github/gabrieltoschi](https://github.com/gabrieltoschi)
 
-[@github/jumc](https://github.com/jumc)
+David Souza Rodrigues [@github/bicanco](https://github.com/bicanco)
 
-[@github/niiu](https://github.com/niiu)
+Marcos Wendell Souza de Oliveira Santos [@github/MarcosWendell](https://github.com/MarcosWendell)
 
-[@github/fertmarana](https://github.com/fertmarana)
+Gabriel Toschi de Oliveira [@github/gabrieltoschi](https://github.com/gabrieltoschi)
+
+Juliana de Mello Crivelli[@github/jumc](https://github.com/jumc)
+
+Marcelo de Moraes Carvalho da Silva [@github/niiu](https://github.com/niiu)
+
+Fernanda Tostes Marana [@github/fertmarana](https://github.com/fertmarana)
 
 
 
