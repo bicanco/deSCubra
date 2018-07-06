@@ -1,6 +1,6 @@
 # deSCubra
 
-![alt text](https://github.com/gabrieltoschi/deSCubra/blob/master/client/src/img/logo-react.png )
+![alt text](https://github.com/gabrieltoschi/deSCubra/blob/master/client/src/img/logo-rect.png )
 
 
 ## Sobre
