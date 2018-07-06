@@ -90,7 +90,7 @@ export class FootMenu extends React.Component{
         </div>
         <div className="footer-copyright">
           <div className="container">
-            © 2018 Copyright Text
+            © 2018 Copyright ANIS
             <a className="grey-text text-lighten-4 right" href="https://github.com/gabrieltoschi/deSCubra">
               <img src={gitlogo} alt="git logo" />
             </a>
