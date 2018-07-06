@@ -27,9 +27,10 @@ export class Parada extends Component{
   }
 
   componentDidMount(){
+    console.log(this.state.percurso);
     Client.selectParada(this.state.percurso,this.state.id, res =>{
       console.log(res);
-      //console.log("Selecionou Parada");
+      console.log("Selecionou Parada");
       if(res.sucess === 'True'){
         this.setState({
           nome: res.nome,
@@ -37,8 +38,8 @@ export class Parada extends Component{
           enigma: res.pergunta,
           resposta: res.resposta,
           imgSrc: res.imagem,
-          next: this.conferirFinalPercurso(),
         });
+        this.conferirFinalPercurso();
       }else{
         //console.log("Erro ao tentar selecionar Parada");
       }
@@ -76,9 +77,6 @@ export class Parada extends Component{
   }
 
   render(){
-    const nextID = parseInt(this.state.id) + 1;
-    const next = "/explorar/Parada/"+this.state.percurso+"/"+nextID;
-    //console.log(nextID);
     return(
       <div>
         <nav className="red">
@@ -159,7 +157,7 @@ export class Parada extends Component{
             </div>
             {/*botao de proximo enigma*/}
             <div className="modal-footer">
-              <Link to={"/explorar/Parada/"+this.state.nome+"/"+this.state.next}>
+              <Link to={this.state.next}>
                 <span className="btn-flat green-text" onClick={() => this.mudarParada()}>Próximo Enigma</span>
               </Link>
             </div>
