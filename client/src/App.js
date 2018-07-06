@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import Client from './Client.js';
 import './App.css';
 
@@ -7,7 +7,7 @@ import {PerfilPercurso} from './PerfilPercurso.js';
 import LoginAdmin from './LoginAdmin.js';
 import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
-import {Percurso} from './Percurso.js';
+import {Percurso, FinalPercurso} from './Percurso.js';
 import About from './About.js';
 import {Parada} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
@@ -61,7 +61,7 @@ class App extends Component {
       Client.admLogin(username, password, res => {
         console.log(res.sucess)
         if(res.sucess === 'True'){
-          //onsole.log("Fez login como administrador")
+          //console.log("Fez login como administrador")
           fakeAuth.authenticate();
           this.setState({
             user: {
@@ -76,13 +76,14 @@ class App extends Component {
       })
     } else if (type === 'exp'){
       Client.expLogin(username, password, res => {
-        console.log(res.sucess)
+        var name = password
         if(res.sucess === 'True'){
           //console.log("Fez login como explorador")
           fakeAuth.authenticate();
           this.setState({
             user: {
               username,
+              name,
               type
             }
           })

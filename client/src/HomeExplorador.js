@@ -14,7 +14,7 @@ export class HomeExplorador extends React.Component{
 			  {"nome":"Percurso 2",
 					"descricao":"Descricao 2 do primeiro percurso, sou um cartão!"}
       ],
-			nomeUsuario: props.user.name
+			nomeUsuario: this.props.user.name
 		}
 		//inicializacao de elementos do materialize
 		document.addEventListener('DOMContentLoaded', function() {
