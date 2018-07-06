@@ -15,10 +15,20 @@ Kanban: Trello
 Versionamento: GitHub
 Organização da Equipe: Redmine
 
-##Membros
-@github/bicanco
-@github/MarcosWendell
-@github/gabrieltoschi
-@github/jumc
-@github/niiu
-@github/fertmarana
+## Membros
+[@github/bicanco](https://github.com/bicanco)
+
+[@github/MarcosWendell](https://github.com/MarcosWendell)
+
+[@github/gabrieltoschi](https://github.com/gabrieltoschi)
+
+[@github/jumc](https://github.com/jumc)
+
+[@github/niiu](https://github.com/niiu)
+
+[@github/fertmarana](https://github.com/fertmarana)
+
+
+
+
+
