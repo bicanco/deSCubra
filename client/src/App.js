@@ -9,7 +9,7 @@ import {PerfilParada} from './PerfilParada.js';
 import {TopMenu,FootMenu} from './Menu.js';
 import {Percurso, FinalPercurso} from './Percurso.js';
 import About from './About.js';
-import {Parada} from './Parada.js';
+import {Enigma} from './Parada.js';
 import {PainelAdmin} from './PainelAdmin.js';
 import {HomeExplorador} from './HomeExplorador.js';
 
@@ -120,7 +120,7 @@ class App extends Component {
               {/*rota exploradores*/}
               <PrivateRoute path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <PrivateRoute path="/explorar/Percurso/:idPercurso" component={Percurso} />
-              <PrivateRoute path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Parada aux={match} />} />
+              <PrivateRoute path="/explorar/Parada/:idPercurso/:idParada" component={(match) =><Enigma aux={match} />} />
               <PrivateRoute path="/explorar/finalPercurso/:idPercurso" component={(match) =><FinalPercurso aux={match} />} />
             </main>
           <footer>

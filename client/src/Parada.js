@@ -5,7 +5,7 @@ import uspPH from './img/usp-placeholder.jpg';
 import { Link } from "react-router-dom";
 
 //classe de tela de uma parada do explorador
-export class Parada extends Component{
+export class Enigma extends Component{
   constructor(props){
       super(props);
       this.state ={
@@ -17,16 +17,15 @@ export class Parada extends Component{
           resposta: "",
           imgSrc: "",
           next: "",
+          status: "answering"
       }
-
-      document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.modal');
-      var options = {};
-      M.Modal.init(elems, options);
-       });
   }
 
   componentDidMount(){
+    this.setState({
+      percurso: this.props.aux.match.params.idPercurso,
+      id: this.props.aux.match.params.idParada,
+    })
     console.log(this.state.percurso);
     Client.selectParada(this.state.percurso,this.state.id, res =>{
       console.log(res);
@@ -41,28 +40,26 @@ export class Parada extends Component{
         });
         this.conferirFinalPercurso();
       }else{
-        //console.log("Erro ao tentar selecionar Parada");
+        console.log("Erro ao tentar selecionar Parada");
       }
     });
   }
 
-  mudarParada(){
-    /*atualizar status*/
-  }
-
   conferirResposta(){
     var x = document.getElementById("formRespostaParada").elements[0].value;
-    var modal = "modalRespostaErrada";
+    var acertou = false
+    console.log("Resposta digitada "+x)
     var possiveisRespostas = this.state.resposta.split(";");
     for(var i = 0 ; i < possiveisRespostas.length; i++){
       if(x === possiveisRespostas[i]){
-        modal = "modalRespostaCorreta";
+        this.setState({status: "correct"})
+        acertou = true
         break;
       }
     }
-    var elem = document.getElementById(modal);
-    var instance = M.Modal.getInstance(elem);
-    instance.open();
+    if(!acertou){
+      this.setState({status: "wrong"})
+    }
   }
 
   conferirFinalPercurso(){
@@ -77,95 +74,107 @@ export class Parada extends Component{
   }
 
   render(){
-    return(
-      <div>
-        <nav className="red">
-          {/*barra de voltar para tela principal*/}
-          <div className="nav-wrapper red container">
-            <ul className="left">
-            <li><a href={"/explorar/Percurso/"+this.state.percurso}>
-              <i className="material-icons">keyboard_backspace</i>
-            </a></li>
-            <li>Percurso: {this.state.percurso}</li>
-            </ul>
-          </div>
-        </nav>
+    if(this.state.status === "answering"){
+      return(
+        <div>
+          <nav className="red">
+            {/*barra de voltar para tela principal*/}
+            <div className="nav-wrapper red container">
+              <ul className="left">
+              <li><a href={"/explorar/Percurso/"+this.state.percurso}>
+                <i className="material-icons">keyboard_backspace</i>
+              </a></li>
+              <li>Percurso: {this.state.percurso}</li>
+              </ul>
+            </div>
+          </nav>
 
-        {/*texto do enigma da parada*/}
-        <div className="container">
-          <br />
-          <div className="row">
-            <div className="col s12 m6 l6">
-              <div className="card">
-                <div className="card-content">
-                  <span className="badge red white-text left" data-badge-caption="° ENIGMA">{parseInt(this.state.id) + 1}</span>
-                  <br /><h6>{this.state.enigma}</h6>
+          {/*texto do enigma da parada*/}
+          <div className="container">
+            <br />
+            <div className="row">
+              <div className="col s12 m6 l6">
+                <div className="card">
+                  <div className="card-content">
+                    <span className="badge red white-text left" data-badge-caption="° ENIGMA">{parseInt(this.state.id) + 1}</span>
+                    <br /><h6>{this.state.enigma}</h6>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="col s12 m6 l6">
-              <div className="card">
-                <div className="card-content">
-                  <span className="badge green white-text left" data-badge-caption="DIGITE SUA RESPOSTA"></span>
-                  <br />
-                  {/*resposta do enigma da parada*/}
-                  <form id="formRespostaParada">
-                    <input type="text" />
-                  </form>
-                  <br />
-                  {/*botoes de pular e responder*/}
-                  <button className="btn red white-text modal-trigger" data-target="modalDescricao"><i className="material-icons left">call_missed_outgoing</i>Pular</button>     <button className="btn green white-text" onClick={() => this.conferirResposta()}><i className="material-icons left">explore</i>Responder</button>
+              <div className="col s12 m6 l6">
+                <div className="card">
+                  <div className="card-content">
+                    <span className="badge green white-text left" data-badge-caption="DIGITE SUA RESPOSTA"></span>
+                    <br />
+                    {/*resposta do enigma da parada*/}
+                    <form id="formRespostaParada">
+                      <input type="text" />
+                    </form>
+                    <br />
+                    {/*botoes de pular e responder*/}
+                    <Link to={this.state.next}>
+                      <button className="btn red white-text" onClick={() => console.log(this.state.next)}>
+                        <i className="material-icons left">call_missed_outgoing</i>Pular
+                      </button>
+                    </Link>
+                    <button className="btn green white-text" onClick={() => this.conferirResposta()}>
+                      <i className="material-icons left">explore</i>Responder
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/*modal de reposta errada*/}
-          <div id="modalRespostaErrada" className="modal">
-            <div className="modal-content">
-              <i className="material-icons large red-text">error</i><br />
-              <h4 className="red-text">Resposta Incorreta</h4>
-              <h5>Infelizmente, essa não é a resposta... Tente de novo!</h5>
-            </div>
-            {/*botoes de pular e tentar novamente*/}
-            <div className="modal-footer">
-              <button className="btn-flat red-text modal-trigger" data-target="modalDescricao">Pular</button>
-              <button className="btn-flat green-text modal-close" data-target="modalRespostaErrada">Tentar Novamente</button>
-            </div>
-          </div>
-          {/*modal de resposta correta*/}
-          <div id="modalRespostaCorreta" className="modal">
-            <div className="modal-content">
-              <i className="material-icons large green-text">offline_pin</i><br />
-              <h4 className="green-text">Resposta Correta</h4>
-              <h5>Parabéns, você acertou!</h5>
-            </div>
-            {/*botao de ver parada*/}
-            <div className="modal-footer">
-              <button className="btn-flat green-text modal-trigger" data-target="modalDescricao">Ver Parada</button>
-            </div>
-          </div>
-          {/*modal de descricao de parada*/}
-          <div id="modalDescricao" className="modal modal-fixed-footer">
-            <div className="modal-content">
-              <div className="row"><div className="col s12 m8 l8 offset-m2 offset-l2">
-                <img src={uspPH} className="responsive-img" alt="Imagem do Percurso" />
-              </div></div>
-              <h4>{this.state.nome}</h4>
-              <p>{this.state.descricao}</p>
-            </div>
-            {/*botao de proximo enigma*/}
-            <div className="modal-footer">
-              <Link to={this.state.next}>
-                <span className="btn-flat green-text" onClick={() => this.mudarParada()}>Próximo Enigma</span>
-              </Link>
             </div>
           </div>
         </div>
+      );
+    } else if(this.state.status === "correct"){
+      return (
+        <div id="RespostaCorreta">
+          <i className="material-icons large green-text">offline_pin</i><br />
+          <h4 className="green-text">Resposta Correta</h4>
+          <h5>Parabéns, você acertou!</h5>
+          <button className="btn-flat green-text" onClick={() => this.setState({status: "info"})}>Ver Parada</button>
+          <br />
       </div>
-    );
+      )
+    } else if(this.state.status === "info"){
+      return (
+        <div id="Descricao">
+          <div>
+            <div className="row"><div className="col s12 m8 l8 offset-m2 offset-l2">
+              <img src={uspPH} className="responsive-img" alt="Imagem do Percurso" />
+            </div></div>
+            <h4>{this.state.nome}</h4>
+            <p>{this.state.descricao}</p>
+          </div>
+          {/*botao de proximo enigma*/}
+          <Link to={this.state.next}>
+            <span className="btn-flat green-text">Próximo Enigma</span>
+          </Link>
+          <br />
+        </div>
+      )
+    } else if(this.state.status === "wrong"){
+      return(
+        <div id="RespostaErrada">
+          <i className="material-icons large red-text">error</i><br />
+          <h4 className="red-text">Resposta Incorreta</h4>
+          <h5>Infelizmente, essa não é a resposta... Tente de novo!</h5>
+          <div>
+            <Link to={this.state.next}>
+              <button className="btn red white-text" onClick={() => console.log(this.state.next)}>
+                <i className="material-icons left">call_missed_outgoing</i>Pular
+              </button>
+            </Link>
+            <button className="btn-flat green-text" onClick={() => this.setState({status: "answering"}) }>Tentar Novamente</button>
+          </div>
+          <br />
+        </div>
+      )
+    }
   }
 }
 
+const Parada = {Enigma};
 export default Parada;

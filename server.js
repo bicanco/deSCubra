@@ -10,7 +10,7 @@ const bd = new Pool({
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5432,
+  port: 5433,
 })
 bd.connect()
 
