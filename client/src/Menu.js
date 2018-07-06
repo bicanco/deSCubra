@@ -39,15 +39,15 @@ export class TopMenu extends React.Component{
           <nav>
             <div className="nav-wrapper red accent-4">
             <div className="container">
-            <a href="#" className="brand-logo left hide-on-med-and-down">
+            <a href="/" className="brand-logo left hide-on-med-and-down">
               <img src={logo32} alt="deSCubra logo" />   <img src={logotexto32} alt="deSCubra logo" />
             </a>
-            <Link to="/"><span className="brand-logo center hide-on-large-only">
+            <a href="/"><span className="brand-logo center hide-on-large-only">
               <img src={logo32} alt="deSCubra logo" />
-            </span></Link>
+            </span></a>
 
               {/* menu mobile com botao de menu lateral e logo */}
-              <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+              <a href="/" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
 
               <ul className="right hide-on-med-and-down">
                 {this.renderOptions(this.props.user)}

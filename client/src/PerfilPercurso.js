@@ -86,15 +86,10 @@ export class PerfilPercurso extends React.Component{
 
 		if(x.elements[2].value !== ""){
 			n.innerHTML = x.elements[2].value;
-			this.state.nome = x.elements[2].value;
+			this.state.descricao = x.elements[2].value;
 		}
 
-		if(x.elements[3].value !== ""){
-			n.innerHTML = x.elements[2].value;
-			this.state.descricao = x.elements[3].value;
-		}
-
-		Client.addPercurso(nome_prev, this.state.nome, this.state.descricao, this.state.imgSrc, res => {
+		Client.addPercurso(nome_prev, this.state.descricao, this.state.imgSrc, res => {
 			console.log(res.sucess);
 			if(res.sucess === 'True'){
 				console.log("Adicionou/Alterou Percurso");
@@ -147,8 +142,6 @@ export class PerfilPercurso extends React.Component{
 												<input className="file-path validate" type="text" />
 											</div>
 										</div>
-										<p>Definir novo nome para o percurso:</p>
-										<input type="text" />
 										<p>Alterar a descrição do percurso:</p>
 										<input type="text" />
 									</form>

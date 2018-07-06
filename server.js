@@ -6,11 +6,11 @@ const app = express();
 app.set("port", process.env.PORT || 3001);
 
 const bd = new Pool({
-  user: 'juliana',
+  user: 'postgres',
   host: 'localhost',
   database: 'deSCubra',
   password: 'password',
-  port: 5432,
+  port: 5433,
 })
 bd.connect()
 
@@ -120,9 +120,34 @@ app.get("/expLogin", (req, res) => {
   })
 })
 
+app.get("/maxCod", (req, res) => {
+  const percurso = req.query.p
+
+  const nextcod = 'select max(codigo) from parada where percurso = $1'
+  const value = [percurso]
+
+  // find max cod
+  bd.query(nextcod, value, (err, q_res) => {
+    console.log(err, q_res)
+    //checagem de erro
+    if (err) {
+      console.log("Erro ao procurar o max value")
+      console.log(err.stack)
+    } else {
+      if(q_res.rowCount === 1){
+        res.json({
+          sucess: "True",
+          cod: q_res.rows[0].max + 1
+        })
+      }
+    }
+  })
+})
+
 //adicionar uma parada no banco
 app.get("/addParada", (req, res) => {
   const percurso = req.query.p
+  const cod = req.query.c
   const nome = req.query.n
   const descricao = req.query.d
   const enigma = req.query.e
@@ -133,6 +158,12 @@ app.get("/addParada", (req, res) => {
   if (!percurso) {
     res.json({
       error: "Missing required parameter `p`"
+    });
+    return;
+  }
+  if (!cod) {
+    res.json({
+      error: "Missing required parameter `c`"
     });
     return;
   }
@@ -167,30 +198,6 @@ app.get("/addParada", (req, res) => {
     return;
   }
 
-  const nextcod = 'select max(codigo) from parada where percurso = $1'
-  const value = [percurso]
-  var cod = 0
-
-  // find max cod
-  bd.query(nextcod, value, (err, q_res) => {
-    console.log(err, q_res)
-    //checagem de erro
-    if (err) {
-      console.log("Erro ao procurar o max value")
-      console.log(err.stack)
-    } else {
-      //checagem de erro
-      if(q_res.rowCount == 1){
-        console.log("Busca max realizada com sucesso")
-        if(!q_res.rows[0]){
-          cod = 0
-        } else{
-          cod = q_res.rows[0] + 1
-        }
-      }
-    }
-  })
-
   const add = 'insert into parada values ($1, $2, $3, $4, $5, $6, $7)'
   const values = [percurso, cod, nome, descricao, enigma, respostas, imagem]
 
@@ -202,13 +209,13 @@ app.get("/addParada", (req, res) => {
       console.log("Erro ao cadastrar parada")
       console.log(err.stack)
     } else {
-      if(q_res.rowCount == 1){
+      if(q_res.rowCount === 1){
         res.json({
           sucess: "True"
         });
       } else {
         res.json({
-        sucess: "False"
+          sucess: "False"
         });
       }
     }
@@ -322,21 +329,14 @@ app.get("/lastParada", (req, res) => {
 
 //adicionar um percurso no banco
 app.get("/addPercurso", (req, res) => {
-  const nome_prev = req.query.pn
-  const nome_curr = req.query.cn
+  const nome = req.query.n
   const descricao = req.query.d
   const imagem = req.query.i
 
   //checagem de erro
-  if (!nome_prev) {
+  if (!nome) {
     res.json({
-      error: "Missing required parameter `pn`"
-    });
-    return;
-  }
-  if (!nome_curr) {
-    res.json({
-      error: "Missing required parameter `cn`"
+      error: "Missing required parameter `n`"
     });
     return;
   }
@@ -353,8 +353,8 @@ app.get("/addPercurso", (req, res) => {
     return;
   }
 
-  const alter = 'update percurso set nome = $1, descricao = $2, imagem = $3  where nome = $4'
-  const value = [nome_curr, descricao, imagem, nome_prev]
+  const alter = 'update percurso set descricao = $1, imagem = $2  where nome = $3'
+  const value = [descricao, imagem, nome]
 
   // callback
   bd.query(alter, value, (err, q_res) => {
@@ -370,7 +370,7 @@ app.get("/addPercurso", (req, res) => {
         });
       } else{
         const add = 'insert into percurso values ($1,$2,$3)'
-        values = [nome_curr, descricao, imagem]
+        values = [nome, descricao, imagem]
         bd.query(add, values, (err, q_res) => {
           console.log(err, q_res)
           //checagem de erro

@@ -111,11 +111,11 @@ class App extends Component {
               <Route exact path="/" component={About} />
               {/*rota de administradores*/}
               <Route path="/adminLogin" component={() => <LoginAdmin onSignIn={this.signIn.bind(this)} />}/>
-              <PrivateRoute path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
-              <PrivateRoute exact path="/adicionarPercurso" component={(match) => <PerfilPercurso aux={match} />} />
-    					<PrivateRoute exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
-    					<PrivateRoute exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
-              <PrivateRoute exact path="/adicionarParada/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
+              <Route path="/painelAdmin" component={() => <PainelAdmin user={this.state.user} />} />
+              <Route exact path="/adicionarPercurso" component={About}/>
+    					<Route exact path="/editarPercurso/:idPercurso" component={(match) => <PerfilPercurso aux={match} />} />
+    					<Route exact path="/editarParada/:idPercurso/:idParada" component={PerfilParada} />
+              <Route exact path="/adicionarParada/:idPercurso" component={(match) => <PerfilParada aux={match} />} />
               {/*rota exploradores*/}
               <PrivateRoute path="/explorar/ListaPercursos" component={() => <HomeExplorador user={this.state.user} />} />
               <PrivateRoute path="/explorar/Percurso/:idPercurso" component={Percurso} />
