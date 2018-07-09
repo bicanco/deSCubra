@@ -59,8 +59,8 @@ class App extends Component {
     if(type === 'adm'){
       Client.admLogin(username, password, res => {
         console.log(res.sucess)
-        if(res.sucess === 'True'){
-          //onsole.log("Fez login como administrador")
+        //if(res.sucess === 'True'){
+          //console.log("Fez login como administrador")
           Auth.authenticate();
           this.setState({
             user: {
@@ -69,14 +69,14 @@ class App extends Component {
             }
           })
           this.props.history.push('/PainelAdmin')
-        } else {
-          console.log("Administrador nao cadastrado")
-        }
+        //} else {
+          //console.log("Administrador nao cadastrado")
+        //}
       })
     } else if (type === 'exp'){
-      Client.expLogin(username, password, res => {
+      //Client.expLogin(username, password, res => {
         var name = password
-        if(res.sucess === 'True'){
+        //if(res.sucess === 'True'){
           //console.log("Fez login como explorador")
           Auth.authenticate();
           this.setState({
@@ -87,10 +87,10 @@ class App extends Component {
             }
           })
           this.props.history.push('/explorar/ListaPercursos')
-        } else {
-          console.log("Erro ao fazer login de explorador")
-        }
-      })
+        //} else {
+          //console.log("Erro ao fazer login de explorador")
+        //}
+      //})
     }
   }
 

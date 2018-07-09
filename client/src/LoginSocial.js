@@ -6,17 +6,19 @@ import GoogleLogin from 'react-google-login';
 class LoginSocial extends Component {
   render() {
     const responseFacebook = (response) => {
-     let email = response.email;
-     let name = response.name;
-     this.props.onSignIn(email, name, 'exp')
-     console.log(email, name);
+     //let email = response.email;
+     //let name = response.name;
+     //this.props.onSignIn(email, name, 'exp')
+     this.props.onSignIn('email', 'name', 'exp')
+     //console.log(email, name);
     }
 
     const responseGoogle = (response) => {
-     let email = response.profileObj.email;
-     let name = response.profileObj.name;
-     this.props.onSignIn(email, name, 'exp')
-     console.log(email, name);
+     //let email = response.profileObj.email;
+     //let name = response.profileObj.name;
+     //this.props.onSignIn(email, name, 'exp')
+     this.props.onSignIn('email', 'name', 'exp')
+     //console.log(email, name);
    }
     return (
       <div>
